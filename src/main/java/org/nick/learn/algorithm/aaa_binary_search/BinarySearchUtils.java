@@ -33,25 +33,38 @@ public class BinarySearchUtils {
      * [,]
      */
     public static int binarySearchLeftIncludeRightInclude(int[] nums, int target) {
-        int indexL = 0;
-        int indexR = nums.length - 1;
-        int indexM;
-        int valueM;
-        while (indexL < indexR) {
-            indexM = (indexL + indexR) / 2;
-            valueM = nums[indexM];
-            if (target < valueM) {
-                indexR = indexM;
-            } else if (valueM < target) {
-                indexL = indexM;
+        int left = 0;
+        int right = nums.length - 1;
+        int middle;
+        while (left <= right) {
+            middle = left + ((right - left) / 2);
+            if (target < nums[middle]) {
+                right = middle - 1;
+            } else if (nums[middle] < target) {
+                left = middle + 1;
             } else {
-                return indexM;
+                return middle;
             }
         }
         return -1;
     }
 
-    public static int binarySearchLeftIncludeRightExclude(int[] numbers, int target) {
+    /**
+     * [,)
+     */
+    public static int binarySearchLeftIncludeRightExclude(int[] nums, int target) {
+        int l = 0;
+        int r = nums.length;
+        while (l < r) {
+            int m = l + ((r - l) / 2);
+            if (target < nums[m]) {
+                r = m;
+            } else if (nums[m] < target) {
+                l = m + 1;
+            } else {
+                return m;
+            }
+        }
         return -1;
     }
 
