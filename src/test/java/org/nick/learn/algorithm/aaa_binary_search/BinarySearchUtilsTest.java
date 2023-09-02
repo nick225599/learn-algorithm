@@ -34,14 +34,17 @@ public class BinarySearchUtilsTest {
     public void binarySearchLeftIncludeRightExclude() {
         Assert.assertEquals(result1, BinarySearchUtils.binarySearchLeftIncludeRightExclude(nums, target1));
         Assert.assertEquals(result2, BinarySearchUtils.binarySearchLeftIncludeRightExclude(nums, target2));
-
     }
 
     @Test
     public void binarySearchLeftExcludeRightInclude() {
+        Assert.assertEquals(result1, BinarySearchUtils.binarySearchLeftExcludeRightInclude(nums, target1));
+        Assert.assertEquals(result2, BinarySearchUtils.binarySearchLeftExcludeRightInclude(nums, target2));
     }
 
     @Test
     public void binarySearchLeftExcludeRightExclude() {
+        Assert.assertEquals(result1, BinarySearchUtils.binarySearchLeftExcludeRightExclude(nums, target1));
+        Assert.assertEquals(result2, BinarySearchUtils.binarySearchLeftExcludeRightExclude(nums, target2));
     }
 }
