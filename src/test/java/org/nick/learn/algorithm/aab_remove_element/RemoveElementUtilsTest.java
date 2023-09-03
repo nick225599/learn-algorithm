@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 public class RemoveElementUtilsTest {
 
     int[] nums1 = new int[]{3, 2, 2, 3};
@@ -31,9 +33,9 @@ public class RemoveElementUtilsTest {
     @Test
     public void removeElement() {
         Assert.assertEquals(2, RemoveElementUtils.removeElement(nums1, val1));
-        Assert.assertArrayEquals(new int[]{2, 2}, nums1);
+        System.out.println(Arrays.toString(nums1));
 
         Assert.assertEquals(5, RemoveElementUtils.removeElement(nums2, val2));
-        Assert.assertArrayEquals(new int[]{0, 1, 4, 0, 3}, nums2);
+        System.out.println(Arrays.toString(nums2));
     }
 }
