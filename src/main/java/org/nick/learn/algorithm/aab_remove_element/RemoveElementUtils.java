@@ -27,21 +27,18 @@ public class RemoveElementUtils {
      * 快指针负责查找，慢指针负责替换
      */
     public static int removeElementDoublePoint(int[] nums, int val) {
-        int fast = 0, slow = 0;
-        while (fast < nums.length) {
+        int slow = 0;
+        for (int fast = 0; fast < nums.length; fast++) {
             if (nums[fast] != val) {
                 nums[slow] = nums[fast];
-                fast++;
                 slow++;
-            } else {
-                fast++;
             }
         }
         return slow; // slow 指向下一个要存储的位置，所以 return 新数组 length 时不需要再 + 1
     }
 
     //TODO scs 20230903 相向双指针法
-    public static int removeElementZueinanderDoublePoint(int[] nums, int val){
+    public static int removeElementZueinanderDoublePoint(int[] nums, int val) {
         return -1;
     }
 }
