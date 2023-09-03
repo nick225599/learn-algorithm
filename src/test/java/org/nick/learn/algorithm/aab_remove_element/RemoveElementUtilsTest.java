@@ -33,9 +33,26 @@ public class RemoveElementUtilsTest {
     @Test
     public void removeElement() {
         Assert.assertEquals(2, RemoveElementUtils.removeElement(nums1, val1));
-        System.out.println(Arrays.toString(nums1));
+        Assert.assertTrue(Arrays.toString(nums1).startsWith("[2, 2"));
+
 
         Assert.assertEquals(5, RemoveElementUtils.removeElement(nums2, val2));
-        System.out.println(Arrays.toString(nums2));
+        Assert.assertTrue(Arrays.toString(nums2).startsWith("[0, 1, 3, 0, 4,"));
+    }
+
+    @Test
+    public void removeElementDoublePoint() {
+        Assert.assertEquals(2, RemoveElementUtils.removeElementDoublePoint(nums1, val1));
+        Assert.assertTrue(Arrays.toString(nums1).startsWith("[2, 2"));
+
+
+        Assert.assertEquals(5, RemoveElementUtils.removeElementDoublePoint(nums2, val2));
+        Assert.assertTrue(Arrays.toString(nums2).startsWith("[0, 1, 3, 0, 4,"));
+
+
+        Assert.assertEquals(1,
+                RemoveElementUtils.removeElementDoublePoint(
+                        new int[]{1,2,1,1,1,1,1,1,1,1}, 1));
+
     }
 }
