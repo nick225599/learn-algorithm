@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class BinarySearchUtilsTest {
 
-    int[] nums = new int[]{-1, 0, 3, 5, 9, 12};
+    int[] nums = new int[]{-1, 0, 3, 5, 9, 12, 15};
 
     int target1 = 9;
     int result1 = 4;
