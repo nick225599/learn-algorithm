@@ -7,9 +7,9 @@ import org.junit.Test;
 
 public class RemoveElementUtilsTest {
 
-    Integer[] nums1 = new Integer[]{3, 2, 2, 3};
+    int[] nums1 = new int[]{3, 2, 2, 3};
     int val1 = 3;
-    Integer[] nums2 = new Integer[]{0, 1, 2, 2, 3, 0, 4, 2};
+    int[] nums2 = new int[]{0, 1, 2, 2, 3, 0, 4, 2};
     int val2 = 2;
 
 //    输入：nums = [3,2,2,3], val = 3
@@ -31,9 +31,9 @@ public class RemoveElementUtilsTest {
     @Test
     public void removeElement() {
         Assert.assertEquals(2, RemoveElementUtils.removeElement(nums1, val1));
-        Assert.assertArrayEquals(new Integer[]{2, 2}, nums1);
+        Assert.assertArrayEquals(new int[]{2, 2}, nums1);
 
         Assert.assertEquals(5, RemoveElementUtils.removeElement(nums2, val2));
-        Assert.assertArrayEquals(new Integer[]{0, 1, 4, 0, 3}, nums2);
+        Assert.assertArrayEquals(new int[]{0, 1, 4, 0, 3}, nums2);
     }
 }
