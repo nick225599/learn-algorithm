@@ -4,6 +4,14 @@ import java.util.Random;
 
 public class ArrayUtils {
 
+    public static int count(int[] arr){
+        int count = 0;
+        for(int i : arr){
+            count += i;
+        }
+        return count;
+    }
+
     public static int[] generateIntArray(int length) {
         int[] arr = new int[length];
         Random r = new Random(System.currentTimeMillis());
