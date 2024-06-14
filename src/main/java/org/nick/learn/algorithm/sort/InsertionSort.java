@@ -8,37 +8,37 @@ import java.util.Arrays;
 public class InsertionSort {
 
     public static void main(String[] args) {
-        int times = 100;
+        int times = 2000;
 
         long startTimeA = System.currentTimeMillis();
         for (int i = 0; i < times; i++) {
             int[] array = ArrayUtils.generateIntArray(times);
-            System.out.println("array: " + Arrays.toString(array));
+//            System.out.println("array: " + Arrays.toString(array));
             int countA =  ArrayUtils.count(array);
             insertionSort(array);
-            System.out.println("array: " + Arrays.toString(array));
+//            System.out.println("array: " + Arrays.toString(array));
             int countB = ArrayUtils.count(array);
             Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
             Assert.assertEquals(countA, countB);
-            System.out.println();
+//            System.out.println();
         }
         long endTimeA = System.currentTimeMillis();
         System.out.println("my time: " + (endTimeA - startTimeA) + " ms");
 
-//        System.out.println("-----------------------------------------------------------------------------------------");
-//        long startTimeB = System.currentTimeMillis();
-//        for (int i = 0; i < times; i++) {
-//            int[] array = ArrayUtils.generateIntArray(times);
+        System.out.println("-----------------------------------------------------------------------------------------");
+        long startTimeB = System.currentTimeMillis();
+        for (int i = 0; i < times; i++) {
+            int[] array = ArrayUtils.generateIntArray(times);
 //            System.out.println("array: " + Arrays.toString(array));
 //            System.out.println("array count: " + ArrayUtils.count(array));
-//            insertionSortFromGeekTime(array, array.length);
+            insertionSortFromGeekTime(array, array.length);
 //            System.out.println("array: " + Arrays.toString(array));
 //            System.out.println("array count: " + ArrayUtils.count(array));
 //            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
 //            System.out.println();
-//        }
-//        long endTimeB = System.currentTimeMillis();
-//        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
+        }
+        long endTimeB = System.currentTimeMillis();
+        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
 
 
     }
@@ -47,9 +47,7 @@ public class InsertionSort {
         for( int i = 0; i < arr.length; i++){
             int curVal = arr[i];
             for(int j = i -1; j >= 0; j--){
-                int left = arr[j];
-                int right = arr[j + 1];
-                if (left > right) {
+                if (arr[j] > arr[j + 1]) {
                     arr[j + 1] = arr[j];
                     arr[j] = curVal;
                 }
