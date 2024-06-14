@@ -61,7 +61,7 @@ public class BubbleSort {
 //        System.out.println(" ++i 循环次数：" + times);
 
         for (int i = 0; i < 50; i++) {
-            int[] array = ArrayUtils.generateIntArray(50);
+            int[] array = ArrayUtils.generateIntArray(2);
             System.out.println("array: " + Arrays.toString(array));
             array = bubbleSort(array);
             System.out.println("array: " + Arrays.toString(array));
@@ -70,7 +70,7 @@ public class BubbleSort {
         }
 
         for (int i = 0; i < 50; i++) {
-            int[] array = ArrayUtils.generateIntArray(50);
+            int[] array = ArrayUtils.generateIntArray(2);
             System.out.println("array: " + Arrays.toString(array));
             bubbleSortFromGeekTime(array, array.length);
             System.out.println("array: " + Arrays.toString(array));
