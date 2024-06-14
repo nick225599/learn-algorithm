@@ -8,23 +8,29 @@ import java.util.Arrays;
 public class InsertionSort {
 
     public static void main(String[] args) {
-        for (int i = 0; i < 50; i++) {
-            int[] array = ArrayUtils.generateIntArray(10);
-            System.out.println("array: " + Arrays.toString(array));
+        long startTimeA = System.currentTimeMillis();
+        for (int i = 0; i < 500; i++) {
+            int[] array = ArrayUtils.generateIntArray(500);
+//            System.out.println("array: " + Arrays.toString(array));
             insertionSort(array, array.length);
-            System.out.println("array: " + Arrays.toString(array));
-            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-            System.out.println();
+//            System.out.println("array: " + Arrays.toString(array));
+//            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
+//            System.out.println();
         }
+        long endTimeA = System.currentTimeMillis();
+        System.out.println("my time: " + (endTimeA - startTimeA) + " ms");
 
-        for (int i = 0; i < 50; i++) {
-            int[] array = ArrayUtils.generateIntArray(10);
-            System.out.println("array: " + Arrays.toString(array));
+        long startTimeB = System.currentTimeMillis();
+        for (int i = 0; i < 500; i++) {
+            int[] array = ArrayUtils.generateIntArray(500);
+//            System.out.println("array: " + Arrays.toString(array));
             insertionSortFromGeekTime(array, array.length);
-            System.out.println("array: " + Arrays.toString(array));
-            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-            System.out.println();
+//            System.out.println("array: " + Arrays.toString(array));
+//            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
+//            System.out.println();
         }
+        long endTimeB = System.currentTimeMillis();
+        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
     }
 
     public static void insertionSort(int[] arr, int n) {
@@ -55,12 +61,12 @@ public class InsertionSort {
             // 查找插入的位置
             for (; j >= 0; --j) {
                 if (a[j] > value) {
-                    a[j+1] = a[j];  // 数据移动
+                    a[j + 1] = a[j];  // 数据移动
                 } else {
                     break;
                 }
             }
-            a[j+1] = value; // 插入数据
+            a[j + 1] = value; // 插入数据
         }
     }
 }
