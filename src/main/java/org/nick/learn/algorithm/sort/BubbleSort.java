@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class BubbleSort {
 
-    public static int[] bubbleSort(int[] array) {
+    public static void bubbleSort(int[] array) {
         for (int indexLast = array.length - 1; indexLast > 0; indexLast--) {
             boolean exchangeHappened = false;
             for (int i = 0; i < indexLast; i++) {
@@ -22,7 +22,6 @@ public class BubbleSort {
                 break;
             }
         }
-        return array;
     }
 
     // 冒泡排序，a表示数组，n表示数组大小
@@ -59,24 +58,32 @@ public class BubbleSort {
 //            times++;
 //        }
 //        System.out.println(" ++i 循环次数：" + times);
-
-        for (int i = 0; i < 50; i++) {
-            int[] array = ArrayUtils.generateIntArray(2);
-            System.out.println("array: " + Arrays.toString(array));
-            array = bubbleSort(array);
-            System.out.println("array: " + Arrays.toString(array));
-            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-            System.out.println();
-        }
-
-        for (int i = 0; i < 50; i++) {
-            int[] array = ArrayUtils.generateIntArray(2);
-            System.out.println("array: " + Arrays.toString(array));
+        long startTimeB = System.currentTimeMillis();
+        for (int i = 0; i < 1000; i++) {
+            int[] array = ArrayUtils.generateIntArray(1000);
+//            System.out.println("array: " + Arrays.toString(array));
             bubbleSortFromGeekTime(array, array.length);
-            System.out.println("array: " + Arrays.toString(array));
-            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-            System.out.println();
+//            System.out.println("array: " + Arrays.toString(array));
+//            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
+//            System.out.println();
         }
+        long endTimeB = System.currentTimeMillis();
+        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
+
+
+        long startTimeA = System.currentTimeMillis();
+        for (int i = 0; i < 1000; i++) {
+            int[] array = ArrayUtils.generateIntArray(1000);
+//            System.out.println("array: " + Arrays.toString(array));
+            bubbleSort(array);
+//            System.out.println("array: " + Arrays.toString(array));
+//            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
+//            System.out.println();
+        }
+        long endTimeA = System.currentTimeMillis();
+        System.out.println("my time: " + (endTimeA - startTimeA) + " ms");
+
+        //sunchuansheng 20240614 谁的代码放前面谁就慢
     }
 
 }
