@@ -1,8 +1,8 @@
 package org.nick.learn.algorithm.sort;
 
+import org.junit.Assert;
 import org.nick.learn.algorithm.common.ArrayUtils;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class BubbleSort {
@@ -65,7 +65,7 @@ public class BubbleSort {
             System.out.println("array: " + Arrays.toString(array));
             array = bubbleSort(array);
             System.out.println("array: " + Arrays.toString(array));
-            System.out.println("array is asc: " + ArrayUtils.arrayIsSorted(array, "ASC"));
+            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
             System.out.println();
         }
     }

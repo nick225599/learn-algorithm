@@ -32,4 +32,12 @@ public class ArrayUtils {
             throw new IllegalArgumentException("Illegal Type: " + type);
         }
     }
+
+    public static boolean arrayIsAsc(int[] array) {
+        return arrayIsSorted(array, "ASC");
+    }
+
+    public static boolean arrayIsDesc(int[] array) {
+        return arrayIsSorted(array, "DESC");
+    }
 }
