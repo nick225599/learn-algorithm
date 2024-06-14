@@ -46,7 +46,7 @@ public class BubbleSort {
 //        }
 
         // 第二版报错了，改成第三版
-        for (int indexLast = array.length - 1; indexLast >= 0; indexLast--) {
+        for (int indexLast = array.length - 1; indexLast > 0; indexLast--) {
             for (int i = 0; i < indexLast; i++) {
                 if (array[i] > array[i + 1]) {
                     int temp = array[i];
