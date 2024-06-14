@@ -10,7 +10,7 @@ public class InsertionSort {
     public static void main(String[] args) {
         int times = 2000;
 
-        long startTimeA = System.currentTimeMillis();
+//        long startTimeA = System.currentTimeMillis();
         for (int i = 0; i < times; i++) {
             int[] array = ArrayUtils.generateIntArray(times);
 //            System.out.println("array: " + Arrays.toString(array));
@@ -22,23 +22,23 @@ public class InsertionSort {
             Assert.assertEquals(countA, countB);
 //            System.out.println();
         }
-        long endTimeA = System.currentTimeMillis();
-        System.out.println("my time: " + (endTimeA - startTimeA) + " ms");
-
-        System.out.println("-----------------------------------------------------------------------------------------");
-        long startTimeB = System.currentTimeMillis();
-        for (int i = 0; i < times; i++) {
-            int[] array = ArrayUtils.generateIntArray(times);
-//            System.out.println("array: " + Arrays.toString(array));
-//            System.out.println("array count: " + ArrayUtils.count(array));
-            insertionSortFromGeekTime(array, array.length);
-//            System.out.println("array: " + Arrays.toString(array));
-//            System.out.println("array count: " + ArrayUtils.count(array));
-//            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-//            System.out.println();
-        }
-        long endTimeB = System.currentTimeMillis();
-        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
+//        long endTimeA = System.currentTimeMillis();
+//        System.out.println("my time: " + (endTimeA - startTimeA) + " ms");
+//
+//        System.out.println("-----------------------------------------------------------------------------------------");
+//        long startTimeB = System.currentTimeMillis();
+//        for (int i = 0; i < times; i++) {
+//            int[] array = ArrayUtils.generateIntArray(times);
+////            System.out.println("array: " + Arrays.toString(array));
+////            System.out.println("array count: " + ArrayUtils.count(array));
+//            insertionSortFromGeekTime(array, array.length);
+////            System.out.println("array: " + Arrays.toString(array));
+////            System.out.println("array count: " + ArrayUtils.count(array));
+////            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
+////            System.out.println();
+//        }
+//        long endTimeB = System.currentTimeMillis();
+//        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
 
 
     }
