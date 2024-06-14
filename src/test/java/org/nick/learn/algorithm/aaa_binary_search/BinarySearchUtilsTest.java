@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.nick.learn.algorithm.search.aaa_binary_search.BinarySearchUtils;
 
 public class BinarySearchUtilsTest {
 
