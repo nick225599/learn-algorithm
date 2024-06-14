@@ -8,23 +8,23 @@ import java.util.Arrays;
 public class InsertionSort {
 
     public static void main(String[] args) {
-        int times = 2000;
+        int times = 6;
 
-//        long startTimeA = System.currentTimeMillis();
+        long startTimeA = System.currentTimeMillis();
         for (int i = 0; i < times; i++) {
             int[] array = ArrayUtils.generateIntArray(times);
-//            System.out.println("array: " + Arrays.toString(array));
-            int countA =  ArrayUtils.count(array);
-            insertionSort(array);
-//            System.out.println("array: " + Arrays.toString(array));
+            System.out.println("array: " + Arrays.toString(array));
+            int countA = ArrayUtils.count(array);
+            insertionSortVersionB(array);
+            System.out.println("array: " + Arrays.toString(array));
             int countB = ArrayUtils.count(array);
             Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
             Assert.assertEquals(countA, countB);
 //            System.out.println();
         }
-//        long endTimeA = System.currentTimeMillis();
-//        System.out.println("my time: " + (endTimeA - startTimeA) + " ms");
-//
+        long endTimeA = System.currentTimeMillis();
+        System.out.println("my time: " + (endTimeA - startTimeA) + " ms");
+
 //        System.out.println("-----------------------------------------------------------------------------------------");
 //        long startTimeB = System.currentTimeMillis();
 //        for (int i = 0; i < times; i++) {
@@ -44,14 +44,30 @@ public class InsertionSort {
     }
 
     public static void insertionSort(int[] arr) {
-        for( int i = 0; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             int curVal = arr[i];
-            for(int j = i -1; j >= 0; j--){
+            for (int j = i - 1; j >= 0; j--) {
                 if (arr[j] > arr[j + 1]) {
                     arr[j + 1] = arr[j];
                     arr[j] = curVal;
                 }
             }
+        }
+    }
+
+    // 优化下插入排序，把多次位置交换，替换成直接赋值
+    public static void insertionSortVersionB(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int curVal = arr[i];
+            int index = -1;
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[j] > curVal) {
+                    arr[j + 1] = arr[j];
+                } else {
+                    index = j + 1;
+                }
+            }
+            arr[index] = curVal;
         }
     }
 
