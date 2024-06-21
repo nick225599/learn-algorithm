@@ -28,16 +28,21 @@ public class ArrayUtils {
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
+    public static void main(String[] args) {
+        int[] arr = {2, 2, 1};
+        System.out.println(arrayIsAsc(arr));
+
+    }
     public static boolean arrayIsSorted(int[] array, String type) {
         if ("ASC".equals(type)) {
-            for (int i = 0; i < array.length - 2; i++) {
+            for (int i = 0; i < array.length - 1; i++) {
                 if (array[i] > array[i + 1]) {
                     return false;
                 }
             }
             return true;
         } else if ("DESC".equals(type)) {
-            for (int i = 0; i < array.length - 2; i++) {
+            for (int i = 0; i < array.length - 1; i++) {
                 if (array[i] < array[i + 1]) {
                     return false;
                 }
