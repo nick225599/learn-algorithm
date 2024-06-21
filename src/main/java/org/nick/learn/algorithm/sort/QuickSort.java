@@ -13,10 +13,10 @@ public class QuickSort {
     public static Random r = new Random(System.currentTimeMillis());
 
     public static void main(String[] args) {
-        int times = 4;
+        int times = 10;
 
         long startTimeB = System.currentTimeMillis();
-//        for (int i = 0; i < times; i++) {
+        for (int i = 0; i < times; i++) {
             int[] array = ArrayUtils.generateIntArray(times);
 
             System.out.println("array: " + Arrays.toString(array));
@@ -29,7 +29,7 @@ public class QuickSort {
             Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
             Assert.assertEquals(countA, countB);
             System.out.println();
-//        }
+        }
         long endTimeB = System.currentTimeMillis();
         System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
 
@@ -41,26 +41,21 @@ public class QuickSort {
 
     // 结束条件：l <= r + 1
     private void sort(int[] array) {
-        //TODO sunchuansheng 20240619 自己写一下递推公式，自己实现一下快排
         this.quickSort(array, 0, array.length - 1);
     }
 
     private void quickSort(int[] arr, int l, int r) {
-        if(l>=r){
+        if (l >= r) {
             return;
         }
 
-        int baseIdx = l;
-        int baseNum = arr[baseIdx];
 
-        int[] arrL = new int[arr.length];
+        int baseNum = arr[l];
+
         int idxL = 0;
-
-        int[] arrR = new int[arr.length];
+        int[] arrL = new int[arr.length];
         int idxR = 0;
-
-        int splitIdx = 0;
-
+        int[] arrR = new int[arr.length];
         for (int i = l + 1; i <= r; i++) {
             if (arr[i] <= baseNum) {
                 arrL[idxL++] = arr[i];
@@ -69,25 +64,17 @@ public class QuickSort {
             }
         }
 
-
-        splitIdx = idxL;
-
-
-        int[] result = new int[arr.length];
-        int resultIdx = 0;
+        int j = l;
         for (int i = 0; i < idxL; i++) {
-            result[resultIdx++] = arrL[i];
+            arr[j++] = arrL[i];
         }
-        result[resultIdx++] = baseNum;
-        for (int i = resultIdx; i < idxR; i++) {
-            result[resultIdx++] = arrR[i];
+        int splitIdx = j;
+        arr[j++] = baseNum;
+        for (int i = 0; i < idxR; i++) {
+            arr[j++] = arrR[i];
         }
 
-        arr = result;
-
-
-
-        quickSort(arr, l, splitIdx);
+        quickSort(arr, l, splitIdx - 1);
         quickSort(arr, splitIdx + 1, r);
     }
 

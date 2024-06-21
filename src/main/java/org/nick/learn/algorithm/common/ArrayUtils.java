@@ -2,28 +2,28 @@ package org.nick.learn.algorithm.common;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @Slf4j
 public class ArrayUtils {
 
-    public static int count(int[] arr){
+    public static int count(int[] arr) {
         int count = 0;
-        for(int i : arr){
+        for (int i : arr) {
             count += i;
         }
         return count;
     }
 
     public static int[] generateIntArray(int length) {
-        Set<Integer> set = new HashSet<>();
         List<Integer> list = new ArrayList<>();
         Random r = new Random(System.currentTimeMillis());
-        for (; set.size() < length; ) {
+        while (list.size() < length) {
             int randomI = r.nextInt(length);
-            if(set.add(randomI) ){
-                list.add(randomI);
-            }
+            list.add(randomI);
+
         }
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
