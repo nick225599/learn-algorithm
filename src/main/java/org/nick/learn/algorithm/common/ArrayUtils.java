@@ -1,7 +1,10 @@
 package org.nick.learn.algorithm.common;
 
-import java.util.Random;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.*;
+
+@Slf4j
 public class ArrayUtils {
 
     public static int count(int[] arr){
@@ -13,12 +16,16 @@ public class ArrayUtils {
     }
 
     public static int[] generateIntArray(int length) {
-        int[] arr = new int[length];
+        Set<Integer> set = new HashSet<>();
+        List<Integer> list = new ArrayList<>();
         Random r = new Random(System.currentTimeMillis());
-        for (int i = 0; i < length; i++) {
-            arr[i] = r.nextInt(length);
+        for (; set.size() < length; ) {
+            int randomI = r.nextInt(length);
+            if(set.add(randomI) ){
+                list.add(randomI);
+            }
         }
-        return arr;
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
     public static boolean arrayIsSorted(int[] array, String type) {
