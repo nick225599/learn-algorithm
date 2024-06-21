@@ -32,8 +32,7 @@ public class QuickSort {
         }
         long endTimeB = System.currentTimeMillis();
         System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
-
-//        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------");
 
     }
 
