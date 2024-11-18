@@ -21,9 +21,8 @@ public class ArrayUtils {
         List<Integer> list = new ArrayList<>();
         Random r = new Random(System.currentTimeMillis());
         while (list.size() < length) {
-            int randomI = r.nextInt(length);
-            list.add(randomI);
-
+            int tmpI = r.nextInt();
+            list.add(tmpI);
         }
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
@@ -33,6 +32,7 @@ public class ArrayUtils {
         System.out.println(arrayIsAsc(arr));
 
     }
+
     public static boolean arrayIsSorted(int[] array, String type) {
         if ("ASC".equals(type)) {
             for (int i = 0; i < array.length - 1; i++) {
