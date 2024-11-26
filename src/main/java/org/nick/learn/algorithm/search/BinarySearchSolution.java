@@ -15,7 +15,7 @@ public class BinarySearchSolution {
             if (target < arr[midIndex]) {
                 endIndex = midIndex;
 
-                //TODO 20241126 怎么避免死循环？
+                //TODO 20241126 怎么避免死循环？ 
             } else if (arr[midIndex] < target) {
                 startIndex = midIndex;
             } else {
