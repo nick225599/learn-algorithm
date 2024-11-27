@@ -10,9 +10,8 @@ public class BinarySearchSolution {
         int endIndex = arr.length - 1;
         while (startIndex < endIndex) {
             int midIndex = startIndex + (endIndex - startIndex) / 2;
-            log.info("start index: {}, mid index: {}, end index: {}", startIndex, midIndex, endIndex);
             if (target < arr[midIndex]) {
-                if(endIndex == midIndex){
+                if(endIndex == midIndex){ // 丑陋，不如 BinarySearchUtils.binarySearchLeftIncludeRightInclude 优雅
                     break;
                 }
                 endIndex = midIndex;

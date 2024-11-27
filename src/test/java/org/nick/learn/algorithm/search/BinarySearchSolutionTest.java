@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.nick.learn.algorithm.common.ArrayUtils;
+import org.nick.learn.algorithm.search.aaa_binary_search.BinarySearchUtils;
 
 import java.util.Arrays;
 
@@ -30,6 +31,9 @@ public class BinarySearchSolutionTest {
         assertTrue(ArrayUtils.arrayIsAsc(arr));
 
         assertEquals(-1, BinarySearchSolution.binarySearch(arr, 1024));
+        assertEquals(-1, BinarySearchUtils.binarySearchLeftIncludeRightInclude(arr, 1024));
         assertEquals(2, BinarySearchSolution.binarySearch(arr, 3));
+        assertEquals(2, BinarySearchUtils.binarySearchLeftIncludeRightInclude(arr, 3));
+
     }
 }
