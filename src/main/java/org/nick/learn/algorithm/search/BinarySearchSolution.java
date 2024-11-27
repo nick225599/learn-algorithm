@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BinarySearchSolution {
 
-    //TODO 20241122 边界没考虑好
     public static int binarySearch(int[] arr, int target) {
         int startIndex = 0;
         int endIndex = arr.length - 1;
@@ -13,10 +12,15 @@ public class BinarySearchSolution {
             int midIndex = startIndex + (endIndex - startIndex) / 2;
             log.info("start index: {}, mid index: {}, end index: {}", startIndex, midIndex, endIndex);
             if (target < arr[midIndex]) {
+                if(endIndex == midIndex){
+                    break;
+                }
                 endIndex = midIndex;
 
-                //TODO 20241126 怎么避免死循环？ 
             } else if (arr[midIndex] < target) {
+                if(startIndex == midIndex){
+                    break;
+                }
                 startIndex = midIndex;
             } else {
                 return midIndex;
