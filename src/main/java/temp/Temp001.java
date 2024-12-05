@@ -15,6 +15,10 @@ public class Temp001 {
         System.out.println("max in nums[]: " + max);
     }
 
+    // 二叉树的前序、中序、后续遍历
+
+
+
     private static int[] generateIntArray(int length) {
         int[] temp = new int[length];
         Random r = new Random(System.currentTimeMillis());
