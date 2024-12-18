@@ -21,29 +21,29 @@ public class Solution4 {
         this.quickSort(nums, 0, nums.length - 1);
     }
 
-    private void quickSort(int[] nums, int startIndex, int endIndex) {
-        if (startIndex >= endIndex) {
+    private void quickSort(int[] arr, int l, int r) {
+        if (l >= r) {
             return;
         }
 
-        int baseValue = nums[endIndex];
+        int pivot = arr[r];
 
-        int lIndex = startIndex, rIndex = endIndex - 1;
-        while (lIndex <= rIndex) {
-            if (nums[lIndex] <= baseValue) {
-                lIndex += 1;
-            } else {
-                int temp = nums[rIndex];
-                nums[rIndex] = nums[lIndex];
-                nums[lIndex] = temp;
-                rIndex -= 1;
+        int i = l, j = l;
+        for (; j < r; j++) {
+            if (arr[j] <= pivot) {
+                // swap arr[i] <-> arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+
+                i++;
             }
         }
-        nums[endIndex] = nums[lIndex];
-        nums[lIndex] = baseValue;
+        arr[r] = arr[i];
+        arr[i] = pivot;
 
-        quickSort(nums, startIndex, lIndex - 1);
-        quickSort(nums, rIndex + 2, endIndex);
+        quickSort(arr, l, i - 1);
+        quickSort(arr, i + 1, r);
     }
 
 
