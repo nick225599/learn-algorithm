@@ -24,18 +24,15 @@ public class Solution5 {
 
     }
 
-    private void dualPivotQuickSort(int[] nums, int startIndex, int endIndex) {
+    private void dualPivotQuickSort(int[] nums, int startIdx, int endIdx) {
         // 退出机制，开始和结束索引是同一个
-        if (startIndex >= endIndex) {
+        if (startIdx >= endIdx) {
             return;
         }
 
         // 判断两个端点是否 <
-        int p1 = nums[startIndex];
-        int p2 = nums[endIndex];
-        if (p1 > p2) {
-            nums[startIndex] = p2;
-            nums[endIndex] = p1;
+        if (nums[startIdx] > nums[endIdx]) {
+            ArrayUtils.swap(nums, startIdx, endIdx);
         }
 
         // 根据两个端点进行分区
@@ -47,30 +44,38 @@ public class Solution5 {
         // -------- | -------- | ------- | ---------
         //          ^          ^         ^
         //          |          |         |
-        //        lowerIdx     i        super
+        //         left        i        super
+        //         <= p1       <= p2      > p2
 
-        int lowerIdx = startIndex + 1;
-        int superIdx = endIndex;
-        for (int i = startIndex + 1; i <= superIdx; ) {
-            if (nums[i] < p1) {
-                // swap lowerIdx <-> i
-                int temp = nums[lowerIdx];
-                nums[lowerIdx] = nums[i];
-                nums[i] = temp;
+        int left = startIdx;
+        int mid = startIdx;
+        int right = endIdx;
+        for (int i = startIdx + 1; mid < right; ) {
+            if (nums[i] <= nums[startIdx]) {
+                // swap left+1 <-> i
+                ArrayUtils.swap(nums, left + 1, i);
 
-                lowerIdx += 1;
+                left++;
+                mid++;
                 i++;
-            } else if (nums[i] < p2) {
+            } else if (nums[i] < nums[endIdx]) {
+
+                mid += 1;
                 i++;
             } else {
-                // swap super <-> i
-                int temp = nums[superIdx];
-                nums[superIdx] = nums[i];
-                nums[i] = temp;
+                // swap right-1 <-> i
+                ArrayUtils.swap(nums, right - 1, i);
 
-                superIdx -= 1;
+                right--;
             }
+
+            // swap right <-> p1
+            ArrayUtils.swap(nums, right, startIdx);
+
+            // swap mid <-> p2
+            ArrayUtils.swap(nums, mid, endIdx);
         }
+
 
         System.out.println(Arrays.toString(nums));
         //TODO sunchuansheng 不行，研究下别人的源码吧

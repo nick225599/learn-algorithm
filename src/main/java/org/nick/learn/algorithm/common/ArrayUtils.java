@@ -71,4 +71,10 @@ public class ArrayUtils {
     public static boolean arrayIsDesc(int[] array) {
         return arrayIsSorted(array, "DESC");
     }
+
+    public static void swap(int[] arr, int l, int r) {
+        int tmp = arr[l];
+        arr[l] = arr[r];
+        arr[r] = tmp;
+    }
 }
