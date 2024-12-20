@@ -6,7 +6,7 @@ import org.nick.learn.algorithm.common.ArrayUtils;
 import java.util.Arrays;
 
 /**
- * 第 3 版，手写快排，双轴快排
+ * 手搓双轴快排
  */
 public class Solution5 {
     public int[] numberGame(int[] nums) {
