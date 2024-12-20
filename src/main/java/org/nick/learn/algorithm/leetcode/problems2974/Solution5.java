@@ -70,18 +70,20 @@ public class Solution5 {
                 i++;
             } else {
                 // swap right-1 <-> i
-                ArrayUtils.swap(nums, right - 1, i);
+                if (i + 1 < right) {
+                    ArrayUtils.swap(nums, right - 1, i);
+                }
 
                 right--;
             }
         }
         // swap right <-> p1
-//        if (startIdx < left) {
-        ArrayUtils.swap(nums, left, startIdx);
-//        }
-//        if (right < endIdx) {
-        ArrayUtils.swap(nums, right, endIdx);
-//        }
+        if (startIdx < left) {
+            ArrayUtils.swap(nums, left, startIdx);
+        }
+        if (right < endIdx) {
+            ArrayUtils.swap(nums, right, endIdx);
+        }
 
 
         // 对三个分区进行再次排序
