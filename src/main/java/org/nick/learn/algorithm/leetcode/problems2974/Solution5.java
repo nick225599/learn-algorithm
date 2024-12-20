@@ -83,10 +83,11 @@ public class Solution5 {
             ArrayUtils.swap(nums, right, endIdx);
         }
 
+
         // 对三个分区进行再次排序
-        this.dualPivotQuickSort(nums, startIdx, left);
-        this.dualPivotQuickSort(nums, left, right);
-        this.dualPivotQuickSort(nums, right, endIdx);
+        this.dualPivotQuickSort(nums, startIdx, left - 1);
+        this.dualPivotQuickSort(nums, left + 1, right - 1);
+        this.dualPivotQuickSort(nums, right + 1, endIdx);
 
     }
 
