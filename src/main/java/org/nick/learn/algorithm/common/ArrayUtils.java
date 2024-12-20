@@ -75,6 +75,9 @@ public class ArrayUtils {
     }
 
     public static void swap(int[] arr, int l, int r) {
+        if(l == r){
+           throw new RuntimeException();
+        }
         int tmp = arr[l];
         arr[l] = arr[r];
         arr[r] = tmp;

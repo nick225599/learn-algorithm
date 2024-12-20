@@ -35,7 +35,7 @@ public class Solution5 {
             ArrayUtils.swap(nums, startIdx, endIdx);
         }
 
-        if(startIdx + 1 >= endIdx){
+        if (startIdx + 1 >= endIdx) {
             return;
         }
 
@@ -76,12 +76,12 @@ public class Solution5 {
             }
         }
         // swap right <-> p1
-        if (startIdx < left) {
-            ArrayUtils.swap(nums, left, startIdx);
-        }
-        if (right < endIdx) {
-            ArrayUtils.swap(nums, right, endIdx);
-        }
+//        if (startIdx < left) {
+        ArrayUtils.swap(nums, left, startIdx);
+//        }
+//        if (right < endIdx) {
+        ArrayUtils.swap(nums, right, endIdx);
+//        }
 
 
         // 对三个分区进行再次排序
@@ -95,12 +95,14 @@ public class Solution5 {
     public static void main(String[] args) {
         int[] nums;
 
-        nums = ArrayUtils.generateIntArray10();
-        System.out.println("before sort: " + Arrays.toString(nums));
-        new Solution5().dualPivotQuickSort(nums);
-        System.out.println("after sort: " + Arrays.toString(nums));
-        Assert.assertTrue(ArrayUtils.arrayIsAsc(nums));
-        System.out.println();
+        for (int i = 0; i < 10000; i++) {
+            nums = ArrayUtils.generateIntArray10();
+            System.out.println("before sort: " + Arrays.toString(nums));
+            new Solution5().dualPivotQuickSort(nums);
+            System.out.println("after sort: " + Arrays.toString(nums));
+            Assert.assertTrue(ArrayUtils.arrayIsAsc(nums));
+            System.out.println();
+        }
 
         nums = new int[]{5, 4, 2, 3};
         System.out.println(Arrays.toString(new Solution5().numberGame(nums)));
