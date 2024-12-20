@@ -35,6 +35,10 @@ public class Solution5 {
             ArrayUtils.swap(nums, startIdx, endIdx);
         }
 
+        if(startIdx + 1 >= endIdx){
+            return;
+        }
+
         // 根据两个端点进行分区
         //
         // -------- p1 ----------------- p2 --------
@@ -50,10 +54,12 @@ public class Solution5 {
         int left = startIdx;
         int mid = startIdx;
         int right = endIdx;
-        for (int i = startIdx + 1; mid < right; ) {
+        for (int i = startIdx + 1; i < right; ) {
             if (nums[i] <= nums[startIdx]) {
                 // swap left+1 <-> i
-                ArrayUtils.swap(nums, left + 1, i);
+                if (left < mid) {
+                    ArrayUtils.swap(nums, left + 1, i);
+                }
 
                 left++;
                 mid++;
@@ -68,21 +74,19 @@ public class Solution5 {
 
                 right--;
             }
-
-            // swap right <-> p1
-            ArrayUtils.swap(nums, right, startIdx);
-
-            // swap mid <-> p2
-            ArrayUtils.swap(nums, mid, endIdx);
+        }
+        // swap right <-> p1
+        if (startIdx < left) {
+            ArrayUtils.swap(nums, left, startIdx);
+        }
+        if (right < endIdx) {
+            ArrayUtils.swap(nums, right, endIdx);
         }
 
-
-        System.out.println(Arrays.toString(nums));
-        //TODO sunchuansheng 不行，研究下别人的源码吧
-        throw new RuntimeException("-----------------");
-
         // 对三个分区进行再次排序
-
+        this.dualPivotQuickSort(nums, startIdx, left);
+        this.dualPivotQuickSort(nums, left, right);
+        this.dualPivotQuickSort(nums, right, endIdx);
 
     }
 

@@ -2,7 +2,9 @@ package org.nick.learn.algorithm.common;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @Slf4j
 public class ArrayUtils {
@@ -15,10 +17,14 @@ public class ArrayUtils {
         return count;
     }
 
-    public static int[] generateIntArray10(){
-        int[] arr = {0,1,2,3,4,5,6,7,8,9};
+    public static int[] generateIntArray10() {
+        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         Random r = new Random(System.currentTimeMillis());
-        for(int times = 0; times < 1000; times++){
+        int skip = r.nextInt(30);
+        for (int times = 0; times < 1000; times++) {
+            if (skip-- > 0) {
+                continue;
+            }
             int indexA = r.nextInt(10);
             int indexB = r.nextInt(10);
             int temp = arr[indexA];
