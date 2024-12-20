@@ -25,22 +25,36 @@ public class Solution6A {
     }
 
     private void insertionSort(int[] nums) {
-        if (nums.length <= 1) {
-            return;
+        for(int k = 1; k < nums.length; k++){
+            int val = nums[k];
+
+            int i = k;
+            if(val < nums[i - 1]){
+                while(--i >= 0 && val < nums[i]){
+                    nums[i + 1] = nums[i];
+                }
+                nums[i + 1] = val;
+            }
         }
 
-        for (int i = 1; i < nums.length; i++) {
-            int val = nums[i];
-            int j;
-            for (j = i - 1; j >= 0; j--) {
-                if (nums[j] > val) {
-                    nums[j + 1] = nums[j];
-                } else {
-                    break;
-                }
-            }
-            nums[j + 1] = val;
-        }
+//
+//
+//        if (nums.length <= 1) {
+//            return;
+//        }
+//
+//        for (int i = 1; i < nums.length; i++) {
+//            int val = nums[i];
+//            int j;
+//            for (j = i - 1; j >= 0; j--) {
+//                if (nums[j] > val) {
+//                    nums[j + 1] = nums[j];
+//                } else {
+//                    break;
+//                }
+//            }
+//            nums[j + 1] = val;
+//        }
     }
 
     public static void main(String[] args) {
@@ -53,10 +67,10 @@ public class Solution6A {
 
 
             // 自己实现的插入排序
-//            solutionInstance.insertionSort(nums);
+            solutionInstance.insertionSort(nums);
 
             // JDK 源码中的插入排序
-            Solution6A.insertionSortJDK(nums);
+//            Solution6A.insertionSortJDKVariant(nums);
 
             log.info("after sort: {}", Arrays.toString(nums));
             Assert.assertTrue(ArrayUtils.arrayIsAsc(nums));
@@ -71,14 +85,15 @@ public class Solution6A {
      * JDK 中的插入排序实现，源代码参见：
      * java.util.DualPivotQuicksort#insertionSort(int[], int, int)
      */
-    private static void insertionSortJDK(int[] a){
+    private static void insertionSortJDK(int[] a) {
         Solution6A.insertionSortJDK(a, 0, a.length);
     }
+
     /**
      * Sorts the specified range of the array using insertion sort.
      *
-     * @param a the array to be sorted
-     * @param low the index of the first element, inclusive, to be sorted
+     * @param a    the array to be sorted
+     * @param low  the index of the first element, inclusive, to be sorted
      * @param high the index of the last element, exclusive, to be sorted
      */
     private static void insertionSortJDK(int[] a, int low, int high) {
@@ -87,6 +102,19 @@ public class Solution6A {
 
             if (ai < a[i - 1]) {
                 while (--i >= low && ai < a[i]) {
+                    a[i + 1] = a[i];
+                }
+                a[i + 1] = ai;
+            }
+        }
+    }
+
+    private static void insertionSortJDKVariant(int[] a) {
+        for (int i, k = 0; ++k < a.length; ) {
+            int ai = a[i = k];
+
+            if (ai < a[i - 1]) {
+                while (--i >= 0 && ai < a[i]) {
                     a[i + 1] = a[i];
                 }
                 a[i + 1] = ai;
