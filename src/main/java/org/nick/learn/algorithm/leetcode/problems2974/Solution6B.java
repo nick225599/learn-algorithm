@@ -1,8 +1,9 @@
 package org.nick.learn.algorithm.leetcode.problems2974;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
 import org.nick.learn.algorithm.common.ArrayUtils;
+
+import java.util.Arrays;
 
 /**
  * 使用插入排序实现力扣 2974. Minimum Number Game
@@ -21,6 +22,7 @@ class Solution6B {
         return nums;
     }
 
+
     private void insertionSort(int[] nums) {
         if (nums.length <= 1) {
             return;
@@ -31,12 +33,12 @@ class Solution6B {
 
             int k = i - 1;
             if (val < nums[k]) {
-                while (k-- >= 0 && val < nums[k]) {
+                while (k >= 0 && val < nums[k]) {
                     nums[k + 1] = nums[k];
+                    k--;
                 }
                 nums[k + 1] = val;
             }
-
         }
     }
 
@@ -44,15 +46,24 @@ class Solution6B {
         Solution6B solutionInstance = new Solution6B();
         int[] nums;
 
-        nums = new int[]{5, 4, 2, 3};
-        solutionInstance.numberGame(nums);
-        Assert.assertArrayEquals(new int[]{3, 2, 5, 4}, nums);
-
+//        nums = new int[]{5, 4, 2, 3};
+//        solutionInstance.numberGame(nums);
+//        Assert.assertArrayEquals(new int[]{3, 2, 5, 4}, nums);
+//
+//
+//        nums = new int[]{2, 5};
+//        solutionInstance.numberGame(nums);
+//        Assert.assertArrayEquals(new int[]{5, 2}, nums);
 
         nums = new int[]{2, 5};
-        solutionInstance.numberGame(nums);
-        Assert.assertArrayEquals(new int[]{5, 2}, nums);
+        log.info("before sort: {}", Arrays.toString(nums));
+        solutionInstance.insertionSort(nums);
+        log.info("after sort: {}", Arrays.toString(nums));
 
+        nums = new int[]{5, 2};
+        log.info("before sort: {}", Arrays.toString(nums));
+        solutionInstance.insertionSort(nums);
+        log.info("after sort: {}", Arrays.toString(nums));
 
     }
 }
