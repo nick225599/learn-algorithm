@@ -1,4 +1,4 @@
-package org.nick.learn.algorithm.leetcode.problems2974;
+package org.nick.learn.leetcode.problems2974;
 
 import java.util.Arrays;
 

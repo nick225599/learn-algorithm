@@ -16,6 +16,8 @@ public class BruteForceSearch {
             return -1;
         }
 
+        //TODO 分治算法一定要递归吗？ 不递归就不算分治？？？
+
         int result = -1;
         for(int i = 0; i < lengthOfMain; i++){
             for(int tmpI=i, j = 0; tmpI < lengthOfMain && j < lengthOfPattern; j++){
