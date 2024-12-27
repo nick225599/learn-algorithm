@@ -1,7 +1,7 @@
 package org.nick.learn.algorithm.sort;
 
 import org.junit.Assert;
-import org.nick.learn.algorithm.common.ArrayUtils;
+import org.nick.learn.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
 

@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.nick.learn.algorithm.common.ArrayUtils;
+import org.nick.learn.algorithm.utils.ArrayUtils;
 import org.nick.learn.algorithm.search.aaa_binary_search.BinarySearchUtils;
 
 import java.util.Arrays;

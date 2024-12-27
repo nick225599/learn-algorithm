@@ -2,12 +2,11 @@ package org.nick.learn.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
-import org.nick.learn.algorithm.common.ArrayUtils;
+import org.nick.learn.algorithm.utils.ArrayUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 @Slf4j
 public class QuickSortV2 {

@@ -1,4 +1,4 @@
-package org.nick.learn.algorithm.common;
+package org.nick.learn.algorithm.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

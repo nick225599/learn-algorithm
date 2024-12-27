@@ -3,7 +3,7 @@ package org.nick.learn.algorithm.sort.relearn202411;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.nick.learn.algorithm.common.ArrayUtils;
+import org.nick.learn.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
 

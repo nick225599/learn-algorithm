@@ -2,7 +2,7 @@ package org.nick.learn.leetcode.problems2974;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
-import org.nick.learn.algorithm.common.ArrayUtils;
+import org.nick.learn.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
 

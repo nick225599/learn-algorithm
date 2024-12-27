@@ -1,9 +1,6 @@
 package org.nick.learn.algorithm.sort;
 
-import org.junit.Assert;
-import org.nick.learn.algorithm.common.ArrayUtils;
-
-import java.util.Arrays;
+import org.nick.learn.algorithm.utils.ArrayUtils;
 
 public class InsertionSort {
 
