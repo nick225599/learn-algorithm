@@ -6,7 +6,7 @@ package org.nick.learn.leetcode.problems427;
  * 来源：力扣（LeetCode）
  * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  */
-public class SolutionA {
+public class SolutionLeetCodeA {
 
     public Node construct(int[][] grid) {
         return dfs(grid, 0, 0, grid.length, grid.length);
@@ -44,7 +44,7 @@ public class SolutionA {
 
     public static void main(String[] args) {
         int[][] grid = new int[][]{new int[]{0, 1}, new int[]{1, 0}};
-        SolutionA solution = new SolutionA();
+        SolutionLeetCodeA solution = new SolutionLeetCodeA();
         Node root = solution.construct(grid);
         System.out.println(root);
     }
