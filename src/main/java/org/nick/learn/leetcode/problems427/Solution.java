@@ -6,23 +6,22 @@ import org.junit.Assert;
 @Slf4j
 public class Solution {
     public Node construct(int[][] grid) {
-        return construct(grid, 0, grid.length, 0, grid.length);
+        return construct(grid, 0, 0, grid.length);
     }
 
     /**
      * 将二维数组用四叉树表示
      *
-     * @param grid         用于创建四叉树的二维数组
-     * @param rowIndex     行起始下标
-     * @param columnLength 行长度
-     * @param rowLength    列起始下标
-     * @param columnIndex  列长度
+     * @param grid        用于创建四叉树的二维数组
+     * @param rowIndex    行起始坐标
+     * @param columnIndex 列起始坐标
+     * @param length      矩阵长度，2 表示 2*2，4 表示 4*4，8 表示 8*8，以此类推
      */
-    private Node construct(int[][] grid, int rowIndex, int columnIndex, int rowLength, int columnLength) {
+    private Node construct(int[][] grid, int rowIndex, int columnIndex, int length) {
         boolean same = true;
-        for (int i = rowIndex; i < rowLength; i++) {
-            for (int j = columnIndex; j < columnLength; j++) {
-                if (grid[i][j] != grid[rowIndex][columnIndex]) {
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
+                if (grid[rowIndex + i][columnIndex + j] != grid[rowIndex][columnIndex]) {
                     same = false;
                     break;
                 }
@@ -36,13 +35,15 @@ public class Solution {
             return new Node(grid[rowIndex][columnIndex] == 1, true);
         }
 
-        //TODO sunchuansheng 下标处理不对，看不懂源码，怎么不需要处理最小长度的场景？
-        return new Node(false, false,
-                construct(grid, -1, -1, -1, -1),
-                construct(grid, -1, -1, -1, -1),
-                construct(grid, -1, -1, -1, -1),
-                construct(grid, -1, -1, -1, -1)
-        );
+        Node topLeft = construct(grid,
+                rowIndex, columnIndex, length / 2);
+        Node topRight = construct(grid,
+                rowIndex, columnIndex + length / 2, length / 2);
+        Node bottomLeft = construct(grid,
+                rowIndex + length / 2,columnIndex, length / 2);
+        Node bottomRight = construct(grid,
+                rowIndex + length / 2, columnIndex + length / 2, length / 2);
+        return new Node(false, false, topLeft, topRight, bottomLeft, bottomRight);
     }
 
     public static void main(String[] args) {
@@ -83,6 +84,6 @@ public class Solution {
         // ]
 
         root = solution.construct(grid);
-        Assert.assertEquals("[0,1,1,0]", root.toString());
+        Assert.assertEquals("[1,[0,0,1,1],1,0]", root.toString());
     }
 }
