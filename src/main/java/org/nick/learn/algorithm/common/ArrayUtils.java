@@ -3,12 +3,27 @@ package org.nick.learn.algorithm.common;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 @Slf4j
 public class ArrayUtils {
+
+    public static void print(int[][] grid) {
+        for (int[] ints : grid) {
+            StringBuilder rowStr = new StringBuilder("[ ");
+            String columnSpilt = ", ";
+            for (int anInt : ints) {
+                if (Integer.toString(anInt).length() < 2) {
+                    rowStr.append(" ");
+                }
+                rowStr.append(anInt).append(columnSpilt);
+            }
+            rowStr.delete(rowStr.length() - columnSpilt.length(), rowStr.length());
+            rowStr.append(" ]");
+            log.info(rowStr.toString());
+        }
+    }
 
     public static int count(int[] arr) {
         int count = 0;
