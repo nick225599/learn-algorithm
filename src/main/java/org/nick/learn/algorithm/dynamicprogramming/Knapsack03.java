@@ -1,5 +1,9 @@
 package org.nick.learn.algorithm.dynamicprogramming;
 
+import lombok.extern.slf4j.Slf4j;
+import org.nick.learn.algorithm.utils.ArrayUtils;
+
+@Slf4j
 public class Knapsack03 {
     private int maxW = Integer.MIN_VALUE; // 结果放到maxW中
     private int[] weight = {2, 2, 4, 6, 3};  // 物品重量
@@ -36,7 +40,9 @@ public class Knapsack03 {
     public static void main(String[] args) {
         Knapsack03 knapsack = new Knapsack03();
         knapsack.f(0, 0);
-        System.out.println("Max Weight in Knapsack: " + knapsack.maxW);
+        log.info("Max Weight in Knapsack: " + knapsack.maxW);
+        log.info("memo: ");
+        ArrayUtils.print(knapsack.memo);
     }
 }
 
