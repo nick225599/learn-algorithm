@@ -51,7 +51,9 @@ public class Knapsack05 {
                 if (0 == i) {
                     status[i][0] = 1;
                 } else {
-                    status[i][j] = status[i - 1][j];
+                    if (1 != status[i][j]) {
+                        status[i][j] = status[i - 1][j];
+                    }
                 }
             }
             log.info("i: {}", i);
@@ -75,10 +77,6 @@ public class Knapsack05 {
     public static void main(String[] args) {
         int[] weight = {2, 2, 4, 6, 3}; // 物品重量
         int w = 9; // 背包承受的最大重量
-
-        //TODO sunchuansheng 哪里写错了，导致算出来不是 9 而是 6，调试看看, 像是两个 for 循环的条件没控制好
-
-
         Knapsack05 k = new Knapsack05();
         int maxW = k.knapsack(weight, w);
         log.info("maxW: {}", maxW);
