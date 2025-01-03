@@ -8,6 +8,18 @@ import java.util.Random;
 
 @Slf4j
 public class ArrayUtils {
+    public static void print(boolean[][] booleans) {
+        for (boolean[] bs : booleans) {
+            StringBuilder rowStr = new StringBuilder("[ ");
+            String columnSpilt = ", ";
+            for (boolean b : bs) {
+                rowStr.append(b ).append(columnSpilt);
+            }
+            rowStr.delete(rowStr.length() - columnSpilt.length(), rowStr.length());
+            rowStr.append(" ]");
+            log.info(rowStr.toString());
+        }
+    }
 
     public static void print(int[][] grid) {
         for (int[] ints : grid) {
@@ -56,12 +68,6 @@ public class ArrayUtils {
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    public static void main(String[] args) {
-        int[] arr = {2, 2, 1};
-        System.out.println(arrayIsAsc(arr));
-
-    }
-
     public static boolean arrayIsSorted(int[] array, String type) {
         if ("ASC".equals(type)) {
             for (int i = 0; i < array.length - 1; i++) {
@@ -95,5 +101,4 @@ public class ArrayUtils {
         arr[l] = arr[r];
         arr[r] = tmp;
     }
-
 }

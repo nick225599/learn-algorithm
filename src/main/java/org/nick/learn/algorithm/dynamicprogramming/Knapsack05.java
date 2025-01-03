@@ -51,6 +51,13 @@ public class Knapsack05 {
                 if (0 == i) {
                     status[i][0] = 1;
                 } else {
+                    //scs20240501
+                    // 其实可以写成王争老师那样，减少不必要的 if 判断
+                    // 不对，其实没有对错，取决于有效状态的多寡，
+                    // 但是就这个 01 背包问题而言，肯定是反过来写合适
+                    // if(status[i - 1][j] == 1){
+                    //    status[i][j] = 1;
+                    // }
                     if (1 != status[i][j]) {
                         status[i][j] = status[i - 1][j];
                     }
