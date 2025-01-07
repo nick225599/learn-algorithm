@@ -43,8 +43,8 @@ public class Knapsack06 {
     public static void main(String[] args) {
         int[] weight = {2, 2, 4, 6, 3}; // 物品重量
         int w = 9; // 背包承受的最大重量
-        Knapsack05 k = new Knapsack05();
-        int maxW = k.knapsack(weight, w);
+        Knapsack06 k = new Knapsack06();
+        int maxW = k.knapsack(weight,weight.length, w);
         log.info("maxW: {}", maxW);
     }
 }
