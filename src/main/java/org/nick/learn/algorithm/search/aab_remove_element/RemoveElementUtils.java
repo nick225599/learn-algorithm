@@ -1,4 +1,4 @@
-package org.nick.learn.algorithm.aab_remove_element;
+package org.nick.learn.algorithm.search.aab_remove_element;
 
 
 /**

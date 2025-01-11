@@ -1,4 +1,4 @@
-package org.nick.learn.algorithm.aaa_binary_search;
+package org.nick.learn.algorithm.search.aaa_binary_search;
 
 /**
  * 移除元素
