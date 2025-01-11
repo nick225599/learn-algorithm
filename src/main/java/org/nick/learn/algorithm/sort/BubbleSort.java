@@ -61,7 +61,7 @@ public class BubbleSort {
 //            System.out.println("array: " + Arrays.toString(array));
             bubbleSortFromGeekTime(array, array.length);
 //            System.out.println("array: " + Arrays.toString(array));
-//            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
+//            org.junit.jupiter.api.Assertions.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
 //            System.out.println();
         }
         long endTimeB = System.currentTimeMillis();
@@ -74,7 +74,7 @@ public class BubbleSort {
 //            System.out.println("array: " + Arrays.toString(array));
             bubbleSort(array);
 //            System.out.println("array: " + Arrays.toString(array));
-//            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
+//            org.junit.jupiter.api.Assertions.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
 //            System.out.println();
         }
         long endTimeA = System.currentTimeMillis();

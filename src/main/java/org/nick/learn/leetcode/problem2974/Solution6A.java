@@ -1,8 +1,6 @@
 package org.nick.learn.leetcode.problem2974;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.nick.learn.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
 
@@ -24,7 +22,7 @@ public class Solution6A {
         return nums;
     }
 
-    private void insertionSort(int[] nums) {
+    public void insertionSort(int[] nums) {
         for(int k = 1; k < nums.length; k++){
             int val = nums[k];
 
@@ -57,28 +55,7 @@ public class Solution6A {
 //        }
     }
 
-    public static void main(String[] args) {
-        Solution6A solutionInstance = new Solution6A();
 
-        int[] nums;
-        for (int i = 0; i < 10000; i++) {
-            nums = ArrayUtils.generateIntArray10();
-            log.info("before sort: {}", Arrays.toString(nums));
-
-
-            // 自己实现的插入排序
-            solutionInstance.insertionSort(nums);
-
-            // JDK 源码中的插入排序
-//            Solution6A.insertionSortJDKVariant(nums);
-
-            log.info("after sort: {}", Arrays.toString(nums));
-            Assert.assertTrue(ArrayUtils.arrayIsAsc(nums));
-            log.info("");
-        }
-
-
-    }
 
 
     /**

@@ -1,7 +1,7 @@
 package org.nick.learn.leetcode.problem427;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
+
 
 @Slf4j
 public class Solution {
@@ -46,27 +46,5 @@ public class Solution {
         return new Node(false, false, topLeft, topRight, bottomLeft, bottomRight);
     }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        int[][] grid;
-        Node root;
 
-        grid = new int[][]{new int[]{0, 1}, new int[]{1, 0}};
-        root = solution.construct(grid);
-        Assert.assertEquals("[0,1,1,0]", root.toString());
-
-        grid = new int[][]{
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 0, 0}
-        };
-
-        root = solution.construct(grid);
-        Assert.assertEquals("[1,[0,0,1,1],1,0]", root.toString());
-    }
 }

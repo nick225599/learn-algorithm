@@ -1,8 +1,5 @@
 package org.nick.learn.leetcode.problem88;
 
-import org.junit.Assert;
-
-import java.util.Arrays;
 
 public class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
@@ -24,16 +21,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
-        int[] nums1, nums2;
-        int m, n;
-
-        nums1 = new int[]{1, 2, 3, 0, 0, 0};
-        m = 3;
-        nums2 = new int[]{2, 5, 6};
-        n = 3;
-        solution.merge(nums1, m, nums2, n);
-        Assert.assertEquals("[1, 2, 2, 3, 5, 6]", Arrays.toString(nums1));
 
     }
 }

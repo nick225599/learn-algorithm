@@ -1,7 +1,7 @@
 package org.nick.learn.leetcode.problem427;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
+
 
 /**
  * 比较直观，拆（递归）和合都要执行 logN 次
@@ -34,30 +34,5 @@ public class SolutionC {
     }
 
 
-    public static void main(String[] args) {
-        SolutionC solution = new SolutionC();
-        int[][] grid;
-        Node root;
 
-        grid = new int[][]{
-                {0, 1},
-                {1, 0}
-        };
-        root = solution.construct(grid);
-        Assert.assertEquals("[0,1,1,0]", root.toString());
-
-        grid = new int[][]{
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 0, 0, 0}
-        };
-
-        root = solution.construct(grid);
-        Assert.assertEquals("[1,[0,0,1,1],1,0]", root.toString());
-    }
 }

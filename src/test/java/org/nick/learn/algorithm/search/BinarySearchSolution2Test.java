@@ -1,19 +1,11 @@
 package org.nick.learn.algorithm.search;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 public class BinarySearchSolution2Test {
 
-    @Before
-    public void setUp() throws Exception {
-    }
 
-    @After
-    public void tearDown() throws Exception {
-    }
 
     @Test
     public void binarySearch2() {
@@ -24,6 +16,6 @@ public class BinarySearchSolution2Test {
         // 比如下面这样一个有序数组，其中，a[5]，a[6]，a[7]的值都等于 8，是重复的数据。
         // 我们希望查找第一个等于 8 的数据，也就是下标是 5 的元素。
         int[] arr = new int[]{1, 3, 4, 5, 6, 8, 8, 8, 11, 18};
-        Assert.assertEquals(5, BinarySearchSolution2.binarySearch2(arr, 8));
+        org.junit.jupiter.api.Assertions.assertEquals(5, BinarySearchSolution2.binarySearch2(arr, 8));
     }
 }

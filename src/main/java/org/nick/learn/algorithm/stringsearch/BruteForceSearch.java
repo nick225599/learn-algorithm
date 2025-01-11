@@ -1,7 +1,7 @@
 package org.nick.learn.algorithm.stringsearch;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
+
 
 /**
  * TODO sunchuansheng 20241225 BF算法都写不好，拉几把倒，继续看下去吧
@@ -39,11 +39,6 @@ public class BruteForceSearch {
     }
 
     public static void main(String[] args) {
-        String mainStr = "abcdd";
-        Assert.assertEquals(0, BruteForceSearch.searchStr(mainStr, "abc"));
-        Assert.assertEquals(1, BruteForceSearch.searchStr(mainStr, "bcd"));
-        Assert.assertEquals(-1, BruteForceSearch.searchStr(mainStr, "foo"));
-        log.info("abcdd search d: {}", BruteForceSearch.searchStr(mainStr, "d"));
-        log.info("abcdd search d: {}", BruteForceSearch.searchStr(mainStr, "dd"));
+
     }
 }

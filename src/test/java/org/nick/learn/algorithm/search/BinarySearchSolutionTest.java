@@ -1,27 +1,19 @@
 package org.nick.learn.algorithm.search;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.nick.learn.algorithm.utils.ArrayUtils;
+import org.junit.jupiter.api.Test;
 import org.nick.learn.algorithm.search.aaa_binary_search.BinarySearchUtils;
+import org.nick.learn.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 @Slf4j
 public class BinarySearchSolutionTest {
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
 
     @Test
     public void binarySearch() {

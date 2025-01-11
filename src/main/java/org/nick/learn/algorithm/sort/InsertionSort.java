@@ -18,8 +18,8 @@ public class InsertionSort {
 
 //            System.out.println("array: " + Arrays.toString(array));
 //            int countB = ArrayUtils.count(array);
-//            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-//            Assert.assertEquals(countA, countB);
+//            org.junit.jupiter.api.Assertions.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
+//            org.junit.jupiter.api.Assertions.assertEquals(countA, countB);
 //            System.out.println();
         }
         long endTimeB = System.currentTimeMillis();
@@ -38,8 +38,8 @@ public class InsertionSort {
 
 //            System.out.println("array: " + Arrays.toString(array));
 //            int countB = ArrayUtils.count(array);
-//            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-//            Assert.assertEquals(countA, countB);
+//            org.junit.jupiter.api.Assertions.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
+//            org.junit.jupiter.api.Assertions.assertEquals(countA, countB);
 //            System.out.println();
         }
         long endTimeA = System.currentTimeMillis();

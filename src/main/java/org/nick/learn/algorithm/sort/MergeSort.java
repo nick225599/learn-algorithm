@@ -1,9 +1,5 @@
 package org.nick.learn.algorithm.sort;
 
-import org.junit.Assert;
-import org.nick.learn.algorithm.utils.ArrayUtils;
-
-import java.util.Arrays;
 
 public class MergeSort {
 
@@ -14,31 +10,10 @@ public class MergeSort {
     // p >= r 不用再继续分解
 
     public static void main(String[] args) {
-        int times = 1024;
-
-        long startTimeB = System.currentTimeMillis();
-        for (int i = 0; i < times; i++) {
-            int[] array = ArrayUtils.generateIntArray(times);
-
-            System.out.println("array: " + Arrays.toString(array));
-            int countA = ArrayUtils.count(array);
-
-            array = mergeSort(array);
-
-            System.out.println("array: " + Arrays.toString(array));
-            int countB = ArrayUtils.count(array);
-            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-            Assert.assertEquals(countA, countB);
-            System.out.println();
-        }
-        long endTimeB = System.currentTimeMillis();
-        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
-
-        System.out.println("-----------------------------------------------------------------------------------------");
 
     }
 
-    private static int[] mergeSort(int[] array) {
+    public static int[] mergeSort(int[] array) {
         if (array.length <= 1) {
             return array;
         }

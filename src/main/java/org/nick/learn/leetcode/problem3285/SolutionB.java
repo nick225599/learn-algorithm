@@ -1,6 +1,5 @@
 package org.nick.learn.leetcode.problem3285;
 
-import org.junit.Assert;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,24 +17,5 @@ public class SolutionB {
     }
 
 
-    public static void main(String[] args) {
-        SolutionB solution = new SolutionB();
-        int[] mountains;
-        List<Integer> indicesOfStableMountains;
 
-        mountains = new int[]{1, 2, 3, 4, 5};
-        indicesOfStableMountains = solution.stableMountains(mountains, 2);
-        Assert.assertEquals(2, indicesOfStableMountains.size());
-        Assert.assertTrue(indicesOfStableMountains.contains(3));
-        Assert.assertTrue(indicesOfStableMountains.contains(4));
-
-        mountains = new int[]{10, 1, 10, 1, 10};
-        indicesOfStableMountains = solution.stableMountains(mountains, 3);
-        Assert.assertEquals(2, indicesOfStableMountains.size());
-        Assert.assertTrue(indicesOfStableMountains.contains(1));
-        Assert.assertTrue(indicesOfStableMountains.contains(3));
-
-        indicesOfStableMountains = solution.stableMountains(mountains, 10);
-        Assert.assertEquals(0, indicesOfStableMountains.size());
-    }
 }

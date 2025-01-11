@@ -1,9 +1,7 @@
 package org.nick.learn.leetcode.problem2974;
 
-import org.junit.Assert;
-import org.nick.learn.algorithm.utils.ArrayUtils;
 
-import java.util.Arrays;
+import org.nick.learn.algorithm.utils.ArrayUtils;
 
 /**
  * 手搓双轴快排
@@ -19,7 +17,7 @@ public class Solution5 {
         return nums;
     }
 
-    private void dualPivotQuickSort(int[] nums) {
+    public void dualPivotQuickSort(int[] nums) {
         this.dualPivotQuickSort(nums, 0, nums.length - 1);
 
     }
@@ -94,19 +92,4 @@ public class Solution5 {
     }
 
 
-    public static void main(String[] args) {
-        int[] nums;
-
-        for (int i = 0; i < 10000; i++) {
-            nums = ArrayUtils.generateIntArray10();
-            System.out.println("before sort: " + Arrays.toString(nums));
-            new Solution5().dualPivotQuickSort(nums);
-            System.out.println("after sort: " + Arrays.toString(nums));
-            Assert.assertTrue(ArrayUtils.arrayIsAsc(nums));
-            System.out.println();
-        }
-
-        nums = new int[]{5, 4, 2, 3};
-        System.out.println(Arrays.toString(new Solution5().numberGame(nums)));
-    }
 }

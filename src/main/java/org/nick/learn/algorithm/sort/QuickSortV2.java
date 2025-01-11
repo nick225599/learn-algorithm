@@ -1,40 +1,21 @@
 package org.nick.learn.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.nick.learn.algorithm.utils.ArrayUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
 public class QuickSortV2 {
 
     public static void main(String[] args) {
-        int times = 10;
 
-        long startTimeB = System.currentTimeMillis();
-        int[] array = ArrayUtils.generateIntArray(times);
-
-        System.out.println("array: " + Arrays.toString(array));
-        int countA = ArrayUtils.count(array);
-
-        new QuickSortV2().sort(array);
-
-        System.out.println("array: " + Arrays.toString(array));
-        int countB = ArrayUtils.count(array);
-        Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-        Assert.assertEquals(countA, countB);
-        System.out.println();
-        long endTimeB = System.currentTimeMillis();
-        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
     }
 
     // 递推公示：quickSort(arr, l, r) = quickSort(arr, l, t), quickSort(arr, t + 1, r)
 
     // 结束条件：l <= r + 1
-    private void sort(int[] array) {
+    public void sort(int[] array) {
         this.quickSort(array, 0, array.length - 1);
     }
 
@@ -60,7 +41,7 @@ public class QuickSortV2 {
         resultList.add(baseNum);
         resultList.addAll(rightList);
 
-        for(int i = l, j = 0; i <= r && j < resultList.size(); i++, j++){
+        for (int i = l, j = 0; i <= r && j < resultList.size(); i++, j++) {
             arr[i] = resultList.get(j);
         }
 //        arr = resultList.stream().mapToInt(Integer::intValue).toArray();

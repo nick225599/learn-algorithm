@@ -1,10 +1,7 @@
 package org.nick.learn.algorithm.sort;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.nick.learn.algorithm.utils.ArrayUtils;
 
-import java.util.Arrays;
 import java.util.Random;
 
 @Slf4j
@@ -13,33 +10,13 @@ public class QuickSort {
     public static Random r = new Random(System.currentTimeMillis());
 
     public static void main(String[] args) {
-        int times = 10;
-
-        long startTimeB = System.currentTimeMillis();
-        for (int i = 0; i < times; i++) {
-            int[] array = ArrayUtils.generateIntArray(times);
-
-            System.out.println("array: " + Arrays.toString(array));
-            int countA = ArrayUtils.count(array);
-
-            new QuickSort().sort(array);
-
-            System.out.println("array: " + Arrays.toString(array));
-            int countB = ArrayUtils.count(array);
-            Assert.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
-            Assert.assertEquals(countA, countB);
-            System.out.println();
-        }
-        long endTimeB = System.currentTimeMillis();
-        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
-        System.out.println("-----------------------------------------------------------------------------------------");
 
     }
 
     // 递推公示：quickSort(arr, l, r) = quickSort(arr, l, t), quickSort(arr, t + 1, r)
 
     // 结束条件：l <= r + 1
-    private void sort(int[] array) {
+    public void sort(int[] array) {
         this.quickSort(array, 0, array.length - 1);
     }
 
