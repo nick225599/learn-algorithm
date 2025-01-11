@@ -1,4 +1,4 @@
-package org.nick.learn.leetcode.problems427;
+package org.nick.learn.leetcode.problem427;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;

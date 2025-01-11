@@ -1,4 +1,4 @@
-package org.nick.learn.leetcode.problems2807;
+package org.nick.learn.leetcode.problem2807;
 
 /**
  * Definition for singly-linked list.

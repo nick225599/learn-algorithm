@@ -1,11 +1,11 @@
-package org.nick.learn.leetcode.problems2974;
+package org.nick.learn.leetcode.problem2974;
 
 import java.util.Arrays;
 
 /**
- * 第 3 版，手写快排
+ * 第 3 版，手写快排，使用极客时间上的单向指针便利方案
  */
-public class Solution3 {
+public class Solution4 {
     public int[] numberGame(int[] nums) {
         this.quickSort(nums);
 //        Arrays.parallelSort(nums);
@@ -21,29 +21,29 @@ public class Solution3 {
         this.quickSort(nums, 0, nums.length - 1);
     }
 
-    private void quickSort(int[] nums, int startIndex, int endIndex) {
-        if (startIndex >= endIndex) {
+    private void quickSort(int[] arr, int l, int r) {
+        if (l >= r) {
             return;
         }
 
-        int baseValue = nums[endIndex];
+        int pivot = arr[r];
 
-        int lIndex = startIndex, rIndex = endIndex - 1;
-        while (lIndex <= rIndex) {
-            if (nums[lIndex] <= baseValue) {
-                lIndex += 1;
-            } else {
-                int temp = nums[rIndex];
-                nums[rIndex] = nums[lIndex];
-                nums[lIndex] = temp;
-                rIndex -= 1;
+        int i = l, j = l;
+        for (; j < r; j++) {
+            if (arr[j] <= pivot) {
+                // swap arr[i] <-> arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+
+                i++;
             }
         }
-        nums[endIndex] = nums[lIndex];
-        nums[lIndex] = baseValue;
+        arr[r] = arr[i];
+        arr[i] = pivot;
 
-        quickSort(nums, startIndex, lIndex - 1);
-        quickSort(nums, rIndex + 2, endIndex);
+        quickSort(arr, l, i - 1);
+        quickSort(arr, i + 1, r);
     }
 
 
@@ -52,32 +52,32 @@ public class Solution3 {
 
         nums = new int[]{5, 4, 2, 3};
         System.out.println("before sort: " + Arrays.toString(nums));
-        new Solution3().quickSort(nums);
+        new Solution4().quickSort(nums);
         System.out.println("after sort: " + Arrays.toString(nums));
         System.out.println();
 
 
         nums = new int[]{1, 3, 2, 5, 4};
         System.out.println("before sort: " + Arrays.toString(nums));
-        new Solution3().quickSort(nums);
+        new Solution4().quickSort(nums);
         System.out.println("after sort: " + Arrays.toString(nums));
         System.out.println();
 
         nums = new int[]{1, 3, 6, 2, 5, 4};
         System.out.println("before sort: " + Arrays.toString(nums));
-        new Solution3().quickSort(nums);
+        new Solution4().quickSort(nums);
         System.out.println("after sort: " + Arrays.toString(nums));
         System.out.println();
 
 
         nums = new int[]{3, 2, 5, 6, 4};
         System.out.println("before sort: " + Arrays.toString(nums));
-        new Solution3().quickSort(nums);
+        new Solution4().quickSort(nums);
         System.out.println("after sort: " + Arrays.toString(nums));
         System.out.println();
 
 
         nums = new int[]{5, 4, 2, 3};
-        System.out.println(Arrays.toString(new Solution3().numberGame(nums)));
+        System.out.println(Arrays.toString(new Solution4().numberGame(nums)));
     }
 }

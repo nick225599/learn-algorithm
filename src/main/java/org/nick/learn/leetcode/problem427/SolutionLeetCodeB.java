@@ -1,4 +1,4 @@
-package org.nick.learn.leetcode.problems427;
+package org.nick.learn.leetcode.problem427;
 
 /**
  * 作者：力扣官方题解

@@ -1,4 +1,4 @@
-package org.nick.learn.leetcode.problems3285;
+package org.nick.learn.leetcode.problem3285;
 
 import org.junit.Assert;
 

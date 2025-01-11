@@ -1,4 +1,4 @@
-package org.nick.learn.leetcode.problems2974;
+package org.nick.learn.leetcode.problem2974;
 
 import org.junit.Assert;
 import org.nick.learn.algorithm.utils.ArrayUtils;

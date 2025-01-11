@@ -1,32 +1,28 @@
-package org.nick.learn.leetcode.problems3285;
+package org.nick.learn.leetcode.problem3285;
 
 import org.junit.Assert;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.function.IntPredicate;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class SolutionB {
+public class Solution {
 
-    // 并发，数据量太小，不如单线程
+    // 最直观的方案
     public List<Integer> stableMountains(int[] height, int threshold) {
-        return IntStream.range(1, height.length)
-                .parallel()
-                .filter(i -> height[i - 1]> threshold)
-                .boxed()
-                .collect(Collectors.toList());
+        List<Integer> result = new ArrayList<>(height.length);
+        for (int i = 0; i < height.length - 1;) {
+            if (height[i] > threshold) {
+                result.add(++i);
+            }else{
+                i++;
+            }
+        }
+        return result;
     }
 
 
     public static void main(String[] args) {
-        SolutionB solution = new SolutionB();
+        Solution solution = new Solution();
         int[] mountains;
         List<Integer> indicesOfStableMountains;
 
