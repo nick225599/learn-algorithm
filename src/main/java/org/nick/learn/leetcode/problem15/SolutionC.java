@@ -12,17 +12,14 @@ public class SolutionC {
             for (int j = i + 1; j < nums.length - 1; j++) {
                 // 使用 nums[j]
                 int target = -nums[i] - nums[j];
-                for (int k = nums.length - 1; k > j; k--) {
-                    if (target == nums[k]) {
-                        int[] tmp = new int[3];
-                        tmp[0] = nums[i];
-                        tmp[1] = nums[j];
-                        tmp[2] = nums[k];
-                        Arrays.sort(tmp);
-                        tmpSet.add(tmp[0] + "," + tmp[1] + "," + tmp[2]);
-                    } else if (nums[k] < target) {
-                        break;
-                    }
+                int searchResult = Arrays.binarySearch(nums, j + 1, nums.length, target);
+                if(searchResult >= 0){
+                    int[] tmp = new int[3];
+                    tmp[0] = nums[i];
+                    tmp[1] = nums[j];
+                    tmp[2] = target;
+                    Arrays.sort(tmp);
+                    tmpSet.add(tmp[0] + "," + tmp[1] + "," + tmp[2]);
                 }
             }
         }
