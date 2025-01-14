@@ -62,7 +62,7 @@ public class ArrayUtils {
         List<Integer> list = new ArrayList<>();
         Random r = new Random(System.currentTimeMillis());
         while (list.size() < length) {
-            int tmpI = r.nextInt();
+            int tmpI = r.nextInt(length);
             list.add(tmpI);
         }
         return list.stream().mapToInt(Integer::intValue).toArray();
