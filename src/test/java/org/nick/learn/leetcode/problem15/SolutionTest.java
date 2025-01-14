@@ -17,12 +17,7 @@ class SolutionTest {
         List<List<Integer>> output = solution.threeSum(nums);
         assertEquals(2, output.size());
         for (List<Integer> l : output) {
-            l.sort(new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    return o1.compareTo(o2);
-                }
-            });
+            l.sort(Integer::compareTo);
         }
         output.sort((o1, o2) -> {
             for (int i = 0; i < o1.size(); i++) {
