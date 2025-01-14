@@ -3,7 +3,7 @@ package org.nick.learn.leetcode.problem15;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Solution {
+public class SolutionA {
 
     public List<List<Integer>> threeSum(int[] nums) {
         Set<String> tmpSet = new TreeSet<>();

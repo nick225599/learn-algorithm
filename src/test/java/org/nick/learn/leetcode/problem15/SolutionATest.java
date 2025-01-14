@@ -3,18 +3,17 @@ package org.nick.learn.leetcode.problem15;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SolutionTest {
-    private static final Solution solution = new Solution();
+class SolutionATest {
+    private static final SolutionA SOLUTION_A = new SolutionA();
 
     @Test
     void threeSum() {
         int[] nums = new int[]{-1, 0, 1, 2, -1, -4};
-        List<List<Integer>> output = solution.threeSum(nums);
+        List<List<Integer>> output = SOLUTION_A.threeSum(nums);
         assertEquals(2, output.size());
         for (List<Integer> l : output) {
             l.sort(Integer::compareTo);
@@ -39,14 +38,14 @@ class SolutionTest {
     @Test
     void case2() {
         int[] nums = new int[]{0,1,1};
-        List<List<Integer>> output = solution.threeSum(nums);
+        List<List<Integer>> output = SOLUTION_A.threeSum(nums);
         assertEquals(0, output.size());
     }
 
     @Test
     void case3() {
         int[] nums = new int[]{0,0,0};
-        List<List<Integer>> output = solution.threeSum(nums);
+        List<List<Integer>> output = SOLUTION_A.threeSum(nums);
         assertEquals(1, output.size());
         String str = Arrays.toString(output.getFirst().stream().mapToInt(Integer::intValue).toArray());
         assertEquals("[0, 0, 0]", str);
