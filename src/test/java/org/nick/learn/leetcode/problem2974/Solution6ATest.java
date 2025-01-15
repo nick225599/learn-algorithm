@@ -16,6 +16,7 @@ class Solution6ATest {
         int[] nums;
         for (int i = 0; i < 10000; i++) {
             nums = ArrayUtils.generateIntArray10();
+            int[] oriArr = Arrays.copyOf(nums, nums.length);
             log.info("before sort: {}", Arrays.toString(nums));
 
 
@@ -26,7 +27,7 @@ class Solution6ATest {
 //            Solution6A.insertionSortJDKVariant(nums);
 
             log.info("after sort: {}", Arrays.toString(nums));
-            org.junit.jupiter.api.Assertions.assertTrue(ArrayUtils.arrayIsAsc(nums));
+            org.junit.jupiter.api.Assertions.assertTrue(ArrayUtils.arrayIsAsc(oriArr, nums));
             log.info("");
         }
 

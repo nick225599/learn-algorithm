@@ -1,5 +1,7 @@
 package temp;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -9,6 +11,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * 递归
  */
+@Slf4j
 public class Temp002 {
 
     public static void demoMain1() {
@@ -19,7 +22,7 @@ public class Temp002 {
             try {
                 arg = arg << 1;
                 result = f(arg);
-                System.out.println("when arg is " + arg + ", result is " + result);
+                log.info("when arg is " + arg + ", result is " + result);
             } catch (StackOverflowError ignored) {
                 System.err.println("stack over flow while arg is " + arg);
                 return;
@@ -36,9 +39,9 @@ public class Temp002 {
         int[] cache = new int[1024];
         Random r = new Random(System.currentTimeMillis());
         for (int i = 0; i < 10; i++) {
-            System.out.println("i: " + i);
-            System.out.println("cache[" + i + "]: " + cache[i]);
-            System.out.println("---------------------------------------------");
+            log.info("i: " + i);
+            log.info("cache[" + i + "]: " + cache[i]);
+            log.info("---------------------------------------------");
         }
     }
 

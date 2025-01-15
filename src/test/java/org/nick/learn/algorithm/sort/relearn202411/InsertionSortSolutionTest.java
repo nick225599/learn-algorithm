@@ -15,11 +15,10 @@ public class InsertionSortSolutionTest {
     public void testInsertionSort() {
         for (int i = 0; i < 10; i++) {
             int[] arr = ArrayUtils.generateIntArray(10);
-            int tempCount = ArrayUtils.count(arr);
+            int[] oriArr = Arrays.copyOf(arr, arr.length);
             System.out.println(Arrays.toString(arr));
             InsertionSortSolution.insertionSort(arr);
-            assertTrue(ArrayUtils.arrayIsAsc(arr));
-            assertEquals(tempCount, ArrayUtils.count(arr));
+            assertTrue(ArrayUtils.arrayIsAsc(oriArr, arr));
             System.out.println();
         }
     }

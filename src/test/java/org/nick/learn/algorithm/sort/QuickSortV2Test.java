@@ -1,10 +1,14 @@
 package org.nick.learn.algorithm.sort;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.nick.learn.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@Slf4j
 class QuickSortV2Test {
     @Test
     public void test() {
@@ -12,19 +16,17 @@ class QuickSortV2Test {
 
         long startTimeB = System.currentTimeMillis();
         int[] array = ArrayUtils.generateIntArray(times);
+        int[] oriArray = Arrays.copyOf(array, array.length);
 
-        System.out.println("array: " + Arrays.toString(array));
-        int countA = ArrayUtils.count(array);
+        log.info("array: " + Arrays.toString(array));
 
         new QuickSortV2().sort(array);
 
-        System.out.println("array: " + Arrays.toString(array));
-        int countB = ArrayUtils.count(array);
-        org.junit.jupiter.api.Assertions.assertTrue(ArrayUtils.arrayIsAsc(array), "array is asc.");
-        org.junit.jupiter.api.Assertions.assertEquals(countA, countB);
+        log.info("array: " + Arrays.toString(array));
+        assertTrue(ArrayUtils.arrayIsAsc(oriArray, array));
         System.out.println();
         long endTimeB = System.currentTimeMillis();
-        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
+        log.info("geek time: " + (endTimeB - startTimeB) + " ms");
     }
 
 }

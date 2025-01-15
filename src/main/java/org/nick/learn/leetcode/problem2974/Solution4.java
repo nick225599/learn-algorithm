@@ -1,10 +1,13 @@
 package org.nick.learn.leetcode.problem2974;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
 
 /**
  * 第 3 版，手写快排，使用极客时间上的单向指针便利方案
  */
+@Slf4j
 public class Solution4 {
     public int[] numberGame(int[] nums) {
         this.quickSort(nums);
@@ -51,29 +54,29 @@ public class Solution4 {
         int[] nums;
 
         nums = new int[]{5, 4, 2, 3};
-        System.out.println("before sort: " + Arrays.toString(nums));
+        log.info("before sort: " + Arrays.toString(nums));
         new Solution4().quickSort(nums);
-        System.out.println("after sort: " + Arrays.toString(nums));
+        log.info("after sort: " + Arrays.toString(nums));
         System.out.println();
 
 
         nums = new int[]{1, 3, 2, 5, 4};
-        System.out.println("before sort: " + Arrays.toString(nums));
+        log.info("before sort: " + Arrays.toString(nums));
         new Solution4().quickSort(nums);
-        System.out.println("after sort: " + Arrays.toString(nums));
+        log.info("after sort: " + Arrays.toString(nums));
         System.out.println();
 
         nums = new int[]{1, 3, 6, 2, 5, 4};
-        System.out.println("before sort: " + Arrays.toString(nums));
+        log.info("before sort: " + Arrays.toString(nums));
         new Solution4().quickSort(nums);
-        System.out.println("after sort: " + Arrays.toString(nums));
+        log.info("after sort: " + Arrays.toString(nums));
         System.out.println();
 
 
         nums = new int[]{3, 2, 5, 6, 4};
-        System.out.println("before sort: " + Arrays.toString(nums));
+        log.info("before sort: " + Arrays.toString(nums));
         new Solution4().quickSort(nums);
-        System.out.println("after sort: " + Arrays.toString(nums));
+        log.info("after sort: " + Arrays.toString(nums));
         System.out.println();
 
 

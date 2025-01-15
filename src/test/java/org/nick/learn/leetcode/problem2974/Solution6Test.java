@@ -6,6 +6,8 @@ import org.nick.learn.algorithm.utils.ArrayUtils;
 
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @Slf4j
 class Solution6Test {
 
@@ -16,10 +18,12 @@ class Solution6Test {
         int[] nums;
         for (int i = 0; i < 10000; i++) {
             nums = ArrayUtils.generateIntArray10();
+            int[] oriArr = Arrays.copyOf(nums, nums.length);
             log.info("before sort: {}", Arrays.toString(nums));
             solutionInstance.insertionSort(nums);
             log.info("after sort: {}", Arrays.toString(nums));
-            org.junit.jupiter.api.Assertions.assertTrue(ArrayUtils.arrayIsAsc(nums));
+
+            assertTrue(ArrayUtils.arrayIsAsc(oriArr, nums));
             log.info("");
         }
 

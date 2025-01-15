@@ -18,9 +18,11 @@ public class BinarySearchSolutionTest {
     @Test
     public void binarySearch() {
         int[] arr = new int[]{1,2,3,4,5,6,7,8,9};
+        int[] oriArr = Arrays.copyOf(arr,arr.length);
+
         log.info("arr: {}", Arrays.toString(arr));
         arr = Arrays.stream(arr).sorted().toArray();
-        assertTrue(ArrayUtils.arrayIsAsc(arr));
+        assertTrue(ArrayUtils.arrayIsAsc(oriArr, arr));
 
         assertEquals(-1, BinarySearchSolution.binarySearch(arr, 1024));
         assertEquals(-1, BinarySearchUtils.binarySearchLeftIncludeRightInclude(arr, 1024));

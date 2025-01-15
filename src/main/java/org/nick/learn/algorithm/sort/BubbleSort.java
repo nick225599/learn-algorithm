@@ -1,7 +1,9 @@
 package org.nick.learn.algorithm.sort;
 
+import lombok.extern.slf4j.Slf4j;
 import org.nick.learn.algorithm.utils.ArrayUtils;
 
+@Slf4j
 public class BubbleSort {
 
     public static void bubbleSort(int[] array) {
@@ -48,37 +50,37 @@ public class BubbleSort {
 //        for(int i = 0; i < length; i++){
 //            times++;
 //        }
-//        System.out.println(" i++ 循环次数：" + times);
+//        log.info(" i++ 循环次数：" + times);
 //
 //        times = 0;
 //        for(int i = 0; i < length; ++i){
 //            times++;
 //        }
-//        System.out.println(" ++i 循环次数：" + times);
+//        log.info(" ++i 循环次数：" + times);
         long startTimeB = System.currentTimeMillis();
         for (int i = 0; i < 1000; i++) {
             int[] array = ArrayUtils.generateIntArray(1000);
-//            System.out.println("array: " + Arrays.toString(array));
+//            log.info("array: " + Arrays.toString(array));
             bubbleSortFromGeekTime(array, array.length);
-//            System.out.println("array: " + Arrays.toString(array));
+//            log.info("array: " + Arrays.toString(array));
 //            org.junit.jupiter.api.Assertions.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
 //            System.out.println();
         }
         long endTimeB = System.currentTimeMillis();
-        System.out.println("geek time: " + (endTimeB - startTimeB) + " ms");
+        log.info("geek time: " + (endTimeB - startTimeB) + " ms");
 
 
         long startTimeA = System.currentTimeMillis();
         for (int i = 0; i < 1000; i++) {
             int[] array = ArrayUtils.generateIntArray(1000);
-//            System.out.println("array: " + Arrays.toString(array));
+//            log.info("array: " + Arrays.toString(array));
             bubbleSort(array);
-//            System.out.println("array: " + Arrays.toString(array));
+//            log.info("array: " + Arrays.toString(array));
 //            org.junit.jupiter.api.Assertions.assertTrue("array is asc.", ArrayUtils.arrayIsAsc(array));
 //            System.out.println();
         }
         long endTimeA = System.currentTimeMillis();
-        System.out.println("my time: " + (endTimeA - startTimeA) + " ms");
+        log.info("my time: " + (endTimeA - startTimeA) + " ms");
 
         //sunchuansheng 20240614 谁的代码放前面谁就慢
     }

@@ -1,18 +1,21 @@
 package temp;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
 import java.util.Random;
 
 /**
  * 二分查找是不是压栈能出现栈溢出？
  */
+@Slf4j
 public class Temp001 {
 
     public static void main(String[] args) {
         int[] nums = generateIntArray(1024102410);
-//        System.out.println("nums[] : " + Arrays.toString(nums));
+//        log.info("nums[] : " + Arrays.toString(nums));
         int max = binarySearchMax(nums);
-        System.out.println("max in nums[]: " + max);
+        log.info("max in nums[]: " + max);
     }
 
     // 二叉树的前序、中序、后续遍历

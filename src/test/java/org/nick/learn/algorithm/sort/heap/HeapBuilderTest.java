@@ -47,7 +47,7 @@ class HeapBuilderTest {
         System.out.println();
 
         log.info("构建大顶堆：");
-        HeapBuilder.heapify(arr);
+        HeapBuilder.heapifyMaxTop(arr);
         HeapPrinter.printHeap(arr);
 
         System.out.println();

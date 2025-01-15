@@ -16,9 +16,10 @@ public class BubbleSortSolutionTest {
     public void bubbleSort() {
         for (int i = 0; i < 10; i++) {
             int[] arr = ArrayUtils.generateIntArray(10000);
+            int[] oriArr = Arrays.copyOf(arr,arr.length);
             System.out.println(Arrays.toString(arr));
             BubbleSortSolution.bubbleSort(arr);
-            assertTrue(ArrayUtils.arrayIsAsc(arr));
+            assertTrue(ArrayUtils.arrayIsAsc(oriArr, arr));
             System.out.println();
         }
     }

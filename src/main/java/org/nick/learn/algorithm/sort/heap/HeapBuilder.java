@@ -7,10 +7,10 @@ import static org.nick.learn.algorithm.utils.ArrayUtils.swap;
 
 public class HeapBuilder {
 
-    public static void heapify(int[] arr) {
+    public static void heapifyMaxTop(int[] arr) {
         int n = arr.length;
         for (int i = n / 2 - 1; i >= 0; i--) {
-            HeapBuilder.heapify(arr, n, i);
+            HeapBuilder.heapifyMaxTop(arr, n, i);
         }
     }
 
@@ -48,7 +48,7 @@ public class HeapBuilder {
 
     }
 
-    private static void heapify(int[] arr, int n, int i) {
+    private static void heapifyMaxTop(int[] arr, int n, int i) {
         while (true) {
             int maxIndex = i;
             int leftNode = i * 2 + 1;

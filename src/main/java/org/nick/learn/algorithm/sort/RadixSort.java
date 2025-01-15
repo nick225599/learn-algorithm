@@ -1,5 +1,7 @@
 package org.nick.learn.algorithm.sort;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,22 +9,23 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
+@Slf4j
 public class RadixSort {
     public static final DateFormat DF = new SimpleDateFormat("yyyy-MM-dd");
 
     public static void main(String[] args) throws Exception {
         Date[] dates = RadixSort.generateDate();
         RadixSort.printDates(dates);
-        System.out.println("original type 👆");
+        log.info("original type 👆");
         RadixSort.radixSort(dates);
     }
 
     private static void printDates(Date[] dates) {
-        System.out.println("-----------------------------------------------");
+        log.info("-----------------------------------------------");
         for (Date d : dates) {
             System.out.println(DF.format(d));
         }
-        System.out.println("-----------------------------------------------");
+        log.info("-----------------------------------------------");
         System.out.println();
 
     }
@@ -49,7 +52,7 @@ public class RadixSort {
             dateList.offer(d);
         }
         RadixSort.mergeBuckets(buckets, dates);
-        System.out.println("after sort by day-of-month");
+        log.info("after sort by day-of-month");
         RadixSort.printDates(dates);
 
         // 按照月排序
@@ -66,7 +69,7 @@ public class RadixSort {
             dateList.offer(d);
         }
         RadixSort.mergeBuckets(buckets, dates);
-        System.out.println("after sort by month");
+        log.info("after sort by month");
         RadixSort.printDates(dates);
 
         // 按照年排序
@@ -83,7 +86,7 @@ public class RadixSort {
             dateList.offer(d);
         }
         RadixSort.mergeBuckets(buckets, dates);
-        System.out.println("after sort by year");
+        log.info("after sort by year");
         RadixSort.printDates(dates);
 
 
