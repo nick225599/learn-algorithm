@@ -12,7 +12,7 @@ public class ArrayUtils {
         return isSorted && isConsistent;
     }
 
-    public static boolean arrIsDesc(int[] oriArr, int[] sortedArr){
+    public static boolean arrayIsDesc(int[] oriArr, int[] sortedArr){
         boolean isSorted = arrayIsDesc(sortedArr);
         boolean isConsistent = verifyElementConsistency(oriArr, sortedArr);
         return isSorted && isConsistent;
@@ -108,7 +108,7 @@ public class ArrayUtils {
         return true;
     }
 
-    public static boolean arrayIsDesc(int[] array) {
+    private static boolean arrayIsDesc(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] < array[i + 1]) {
                 return false;
