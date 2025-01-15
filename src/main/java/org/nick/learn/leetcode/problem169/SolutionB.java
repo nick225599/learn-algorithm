@@ -16,7 +16,11 @@ public class SolutionB {
         this.heapify(arr, arr.length);
 
         for (int i = arr.length - 1; i >= 0; i--) {
+
+            // 将第 0 位的最大值交换到最后面
             swap(arr, 0, i);
+
+            // 重新建大顶堆
             this.heapify(arr, i);
         }
 
