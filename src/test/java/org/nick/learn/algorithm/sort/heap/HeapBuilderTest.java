@@ -20,9 +20,20 @@ class HeapBuilderTest {
 
         log.info("构建大顶堆之后：");
         HeapPrinter.printHeap(arr);
+
     }
 
     @Test
     void buildMinHeap() {
+        CommonUtils.printLine();
+        int[] arr = ArrayUtils.generateIntArray10();
+        log.info("构建小顶堆之前的数组：");
+        HeapPrinter.printHeap(arr);
+        CommonUtils.printLine();
+
+        HeapBuilder.buildMinHeapForwards(arr);
+
+        log.info("构建小顶堆之后：");
+        HeapPrinter.printHeap(arr);
     }
 }
