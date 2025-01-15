@@ -6,7 +6,6 @@ public class SolutionB {
         // 堆排序 + 取中间数
         this.heapSort(nums);
         return nums[nums.length / 2];
-        //TODO sunchuansheng 怎么实现堆排序？
         //TODO sunchuansheng 随机法(2次尝试) + 分治法
         //TODO sunchuansheng Boyer-Moore投票算法 算法
     }
