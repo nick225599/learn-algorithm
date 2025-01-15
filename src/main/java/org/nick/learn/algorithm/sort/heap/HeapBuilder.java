@@ -8,7 +8,9 @@ import static org.nick.learn.algorithm.utils.ArrayUtils.swap;
 public class HeapBuilder {
 
     public static void heapifyMaxTop(int[] arr) {
-        int n = arr.length;
+        heapifyMaxTop(arr, arr.length);
+    }
+    public static void heapifyMaxTop(int[] arr, int n) {
         for (int i = n / 2 - 1; i >= 0; i--) {
             HeapBuilder.heapifyMaxTop(arr, n, i);
         }

@@ -1,10 +1,15 @@
 package org.nick.learn.algorithm.sort.heap;
 
+import static org.nick.learn.algorithm.utils.ArrayUtils.swap;
+
 public class HeapSort {
 
     public static void heapSort(int[] arr){
-        //TODO sunchuansheng 20250115 构建堆明白了，怎么堆排序？
-        HeapBuilder.heapifyMaxTop(arr);
-
+        HeapBuilder.heapifyMaxTop(arr, arr.length);
+        for(int i = arr.length - 1; i>=0; i--){
+            swap(arr, 0, i);
+            HeapBuilder.heapifyMaxTop(arr, i);
+        }
+        HeapPrinter.printHeap(arr);
     }
 }
