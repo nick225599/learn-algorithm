@@ -16,7 +16,7 @@ class HeapBuilderTest {
         HeapPrinter.printHeap(arr);
         CommonUtils.printLine();
 
-        HeapBuilder.buildMaxHeap(arr);
+        HeapBuilder.buildMaxHeapBackwards(arr);
 
         log.info("构建大顶堆之后：");
         HeapPrinter.printHeap(arr);

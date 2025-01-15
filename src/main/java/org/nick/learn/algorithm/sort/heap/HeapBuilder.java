@@ -5,6 +5,7 @@ import org.nick.learn.algorithm.utils.CommonUtils;
 
 public class HeapBuilder {
 
+    //TODO sunchuansheng 2024-01-15 12:07 从前往后遍历构建小顶堆咋构建？
     public static void buildMaxHeapBackwards(int[] arr) {
         // 从后往前处理
         for (int i = arr.length - 1; i > arr.length / 2; i--) {
