@@ -5,26 +5,30 @@ import org.nick.learn.algorithm.utils.CommonUtils;
 
 public class HeapBuilder {
 
-    public static void buildMaxHeap(int[] arr) {
+    public static void buildMaxHeapBackwards(int[] arr) {
         // 从后往前处理
         for (int i = arr.length - 1; i > arr.length / 2; i--) {
-
-            //TODO sunchuansheng 20240114 23:40 构建大顶堆的时候还需要重复排序
-            for (int t = i; t > 0; ) {
-                int top = (t - 1) / 2;
-                if (arr[top] < arr[t]) {
-                    ArrayUtils.swap(arr, top, t);
-                    HeapPrinter.printHeap(arr);
-                    CommonUtils.printLine();
+            for (int j = i; j > 0; ) {
+                boolean swapped = buildMaxHeapBackwardsCheckIfNeedSwap(arr, j);
+                if (swapped) {
+                    j = i;
                 } else {
-                    t = top;
+                    j = (j - 1) / 2;
                 }
             }
         }
     }
 
-    private static void buildMaxHeapCheckIfNeedSwap(int[] arr, int topIndex){
-
+    /**
+     * @return true: swapped; false: not swapped
+     */
+    private static boolean buildMaxHeapBackwardsCheckIfNeedSwap(int[] arr, int childNodeIndex) {
+        int parentNodeIndex = (childNodeIndex - 1) / 2;
+        if (arr[parentNodeIndex] < arr[childNodeIndex]) {
+            ArrayUtils.swap(arr, parentNodeIndex, childNodeIndex);
+            return true;
+        }
+        return false;
     }
 
     public static void buildMinHeap(int[] arr) {
