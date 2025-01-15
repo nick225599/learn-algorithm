@@ -27,7 +27,7 @@ class SolutionBTest {
 
     @Test
     void heapSort() {
-        int[] oriArr = ArrayUtils.generateIntArray(1024);
+        int[] oriArr = ArrayUtils.generateIntArray(4096);
         int[] newArr = Arrays.copyOf(oriArr, oriArr.length);
         instance.heapSort(newArr);
         ArrayUtils.arrayIsAsc(oriArr, newArr);
