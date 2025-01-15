@@ -57,17 +57,4 @@ public class HeapPrinter {
             System.out.println();
         }
     }
-
-    public static void main(String[] args) {
-        int[] arr = ArrayUtils.generateIntArray(11);
-        HeapPrinter ob = new HeapPrinter();
-        System.out.println("排序前的树状堆:");
-        ob.printHeap(arr);
-        System.out.println();
-
-        ob.heapSort(arr);
-
-        System.out.println("排序后的树状堆:");
-        ob.printHeap(arr);
-    }
 }
