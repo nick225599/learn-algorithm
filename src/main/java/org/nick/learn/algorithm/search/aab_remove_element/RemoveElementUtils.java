@@ -37,7 +37,7 @@ public class RemoveElementUtils {
         return slow; // slow 指向下一个要存储的位置，所以 return 新数组 length 时不需要再 + 1
     }
 
-    //TODO scs 20230903 相向双指针法
+    // scs 20230903 相向双指针法
     public static int removeElementZueinanderDoublePoint(int[] nums, int val) {
         return -1;
     }
