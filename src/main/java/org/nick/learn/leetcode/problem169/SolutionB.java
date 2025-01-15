@@ -21,7 +21,7 @@ public class SolutionB {
             swap(arr, 0, i);
 
             // 重新建大顶堆
-            this.heapify(arr, i);
+            this.heapify(arr, i); // 和方案 D 相比，方案 D 只需要对第 0 个数继续下沉操作
         }
 
     }
