@@ -3,6 +3,7 @@ package org.nick.learn.algorithm.sort.heap;
 import org.nick.learn.algorithm.utils.ArrayUtils;
 
 public class HeapBuilder {
+
     public static void buildMaxHeap(int[] arr) {
         // 从后往前处理
         for (int i = arr.length - 1; i > arr.length / 2; i--) {
