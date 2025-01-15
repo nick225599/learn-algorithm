@@ -16,10 +16,7 @@ public class HeapPrinter {
             largest = r;
 
         if (largest!= i) {
-            int swap = arr[i];
-            arr[i] = arr[largest];
-            arr[largest] = swap;
-
+            ArrayUtils.swap(arr, i, largest);
             heapify(arr, n, largest);
         }
     }
