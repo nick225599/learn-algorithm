@@ -26,31 +26,31 @@ public class SolutionB {
 
     }
 
-    private void heapify(int[] arr, int length) {
-        for (int i = length / 2 - 1; i >= 0; i--) {
-            while (true) {
-                int max = i;
+    private void heapify(int[] arr, int n) {
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(arr, n, i);
+        }
+    }
 
-                int leftNode = i * 2 + 1;
-                if (leftNode < length && arr[leftNode] > arr[max]) {
-                    max = leftNode;
-                }
+    private void heapify(int[] arr, int n, int i) {
+        int max = i;
 
-                int rightNode = leftNode + 1;
-                if (rightNode < length && arr[rightNode] > arr[max]) {
-                    max = rightNode;
-                }
-
-                if (i == max) {
-                    break;
-                } else {
-                    swap(arr, i, max);
-                    i = max;
-                }
-            }
+        int leftNode = i * 2 + 1;
+        if (leftNode < n && arr[leftNode] > arr[max]) {
+            max = leftNode;
         }
 
+        int rightNode = leftNode + 1;
+        if (rightNode < n && arr[rightNode] > arr[max]) {
+            max = rightNode;
+        }
+
+        if (i != max) {
+            swap(arr, i, max);
+            heapify(arr, n, max);
+        }
     }
+
     public static void swap(int[] arr, int l, int r) {
         int tmp = arr[l];
         arr[l] = arr[r];
