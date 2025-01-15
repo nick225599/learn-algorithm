@@ -36,4 +36,24 @@ class HeapBuilderTest {
         log.info("构建小顶堆之后：");
         HeapPrinter.printHeap(arr);
     }
+
+    @Test
+    void heapify() {
+        CommonUtils.printLine();
+        int[] arr = ArrayUtils.generateIntArray10();
+        HeapPrinter.printHeap(arr);
+        CommonUtils.printLine();
+
+        System.out.println();
+
+        log.info("构建大顶堆：");
+        HeapBuilder.heapify(arr);
+        HeapPrinter.printHeap(arr);
+
+        System.out.println();
+
+        log.info("构建小顶堆：");
+        HeapBuilder.heapifyMinTop(arr);
+        HeapPrinter.printHeap(arr);
+    }
 }

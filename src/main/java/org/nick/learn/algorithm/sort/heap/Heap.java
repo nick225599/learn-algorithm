@@ -46,7 +46,7 @@ public class Heap {
 //        }
 //    }
 
-    private static void buildHeap(int[] a, int n) {
+    public static void buildHeap(int[] a, int n) {
         // 从最后一个非叶子节点开始，向上构建堆
         for (int i = n / 2 - 1; i >= 0; --i) {
             heapify(a, n, i);
