@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Random;
 
+
 /**
  * 随机 3 次 + 分治
  * 时间复杂度 O(nlogn)
@@ -14,19 +15,19 @@ import java.util.Random;
 public class SolutionE {
     public int majorityElement(int[] nums) {
         // 随机 3 次
-//        for (int times = 1; times <= 3; times++) {
-//            int randomIndex = new Random().nextInt(nums.length);
-//            int candidate = nums[randomIndex];
-//            int count = 0;
-//            for (int num : nums) {
-//                if (num == candidate) {
-//                    count++;
-//                }
-//            }
-//            if (count > nums.length / 2) {
-//                return candidate;
-//            }
-//        }
+        for (int times = 1; times <= 3; times++) {
+            int randomIndex = new Random().nextInt(nums.length);
+            int candidate = nums[randomIndex];
+            int count = 0;
+            for (int num : nums) {
+                if (num == candidate) {
+                    count++;
+                }
+            }
+            if (count > nums.length / 2) {
+                return candidate;
+            }
+        }
 
         // 分治法
         return majorityElementRec(nums, 0, nums.length - 1);
