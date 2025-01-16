@@ -26,7 +26,7 @@ public class SolutionC {
                 return false;
             }
             tortoiseNode = tortoiseNode.next;
-            
+
             hareNode = hareNode.next.next;
         }
     }
