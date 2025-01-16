@@ -3,6 +3,11 @@ package org.nick.learn.leetcode.problem169;
 
 import org.nick.learn.algorithm.sort.heap.HeapPrinter;
 
+/**
+ * 堆排序
+ * 时间复杂度 O(nlogn)
+ * 空间复杂度 O(1)
+ */
 public class SolutionD {
     public int majorityElement(int[] nums) {
         // 堆排序 + 取中间数
