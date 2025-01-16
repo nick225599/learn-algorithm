@@ -1,8 +1,19 @@
 package org.nick.learn.algorithm.sort.heap;
 
 import org.nick.learn.algorithm.utils.ArrayUtils;
+import org.nick.learn.leetcode.problem23.ListNode;
 
 public class HeapPrinter {
+    public static void printHeap(ListNode[] heap) {
+        int[] intHeap = new int[heap.length];
+        for (int i = 0; i < heap.length; i++) {
+            if (null != heap[i]) {
+                intHeap[i] = heap[i].val;
+            }
+        }
+        HeapPrinter.printHeap(intHeap);
+    }
+
     // 堆化函数
     void heapify(int[] arr, int n, int i) {
         int largest = i;
@@ -15,7 +26,7 @@ public class HeapPrinter {
         if (r < n && arr[r] > arr[largest])
             largest = r;
 
-        if (largest!= i) {
+        if (largest != i) {
             ArrayUtils.swap(arr, i, largest);
             heapify(arr, n, largest);
         }
