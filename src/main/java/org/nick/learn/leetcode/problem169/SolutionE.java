@@ -1,11 +1,16 @@
 package org.nick.learn.leetcode.problem169;
 
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Random;
 
 /**
  * 随机 3 次 + 分治
+ * 时间复杂度 O(nlogn)
+ * 空间复杂度 O(logn)，分治的栈空间
  */
+@Slf4j
 public class SolutionE {
     public int majorityElement(int[] nums) {
         // 随机 3 次
@@ -32,7 +37,7 @@ public class SolutionE {
             return nums[low];
         }
         int midIndex = (high - low) / 2 + low;
-        int meL = majorityElementRec(nums, 0, midIndex);
+        int meL = majorityElementRec(nums, low, midIndex);
         int meR = majorityElementRec(nums, midIndex + 1, high);
         if (meL == meR) {
             return meL;
