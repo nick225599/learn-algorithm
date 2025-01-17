@@ -1,60 +1,84 @@
 package org.nick.learn.leetcode.problem23;
 
 import lombok.extern.slf4j.Slf4j;
-import org.nick.learn.algorithm.sort.heap.HeapPrinter;
 
+/**
+ * 自己拍脑袋想出来的利用小顶堆
+ * 时间复杂度 O(nlogk)
+ * 空间复杂度应该是 O(k)
+ *
+ * 看看官方题解呢。。。
+ */
 @Slf4j
 public class SolutionA {
-    public ListNode mergeKLists(ListNode[] heap) {
-        int k = heap.length;
+    public ListNode mergeKLists(ListNode[] lists) {
+        int k = lists.length;
         if (k == 0) {
             return null;
         }
         if (k == 1) {
-            return heap[0];
+            return lists[0];
         }
+
+        // 建堆的时候无法处理稀疏 lists 还是要进行一次 O(k) 的遍历
+        ListNode[] heap = new ListNode[k];
+        int indexOfHeap = 0;
+        for (int i = 0; i < k; i++) {
+            if (null != lists[i]) {
+                heap[indexOfHeap++] = lists[i];
+            }
+        }
+        k = indexOfHeap;
 
         // 将 k 个元素取出来建立一个小顶堆 O(logk)
         for (int i = k / 2 - 1; i >= 0; i--) {
             heapify(heap, k, i);
         }
 
-        HeapPrinter.printHeap(heap);
 
-        ListNode newList = null;
+        ListNode head = null;
+        ListNode tail = null;
+
 
         ListNode minNode;
-        while ((minNode = popTopNode(heap)) != null) {
+
+        // 取出元素要执行 O(n) 次
+        // 每次取出元素 + 放置新元素 2次 O(logk) 操作
+        // 综合起来就是 O(Nlogk)
+        while ((minNode = popTopNode(heap, k)) != null) {
+            k--;
             // 将堆顶元素移除，用来构建新的链
 
-            if (null == newList) {
-                newList = minNode;
+            if (null == head) {
+                head = minNode;
+                tail = minNode;
             } else {
-                newList.next = minNode;
+                tail.next = minNode;
+                tail = minNode;
             }
 
             // 将被移除元素的下一个节点（如果有的话），添加堆中
             if (null != minNode.next) {
-                addNode(heap, minNode.next);
+                addNode(heap, k, minNode.next);
+                k++;
             }
         }
-        return newList;
+        return head;
     }
 
     /**
      * O(logk)
      */
-    private void addNode(ListNode[] minHeap, ListNode newNode) {
-        int index = minHeap.length - 1;
-        minHeap[index] = newNode;
+    private void addNode(ListNode[] minHeap, int k, ListNode newNode) {
+        minHeap[k] = newNode;
 
-        index = (index - 1) / 2;
+        int parentIndex = (k - 1) / 2;
         while (true) {
-            heapify(minHeap, minHeap.length, index);
-            if (index == 0) {
+            heapify(minHeap, k + 1, parentIndex);
+            if (parentIndex == 0) {
                 return;
             }
-            index = (index - 1) / 2;
+            parentIndex = (parentIndex - 1) / 2;
         }
 
     }
@@ -62,49 +86,42 @@ public class SolutionA {
     /**
      * O(logk)
      */
-    private ListNode popTopNode(ListNode[] heap) {
-        if(null == heap[0]){
+    private ListNode popTopNode(ListNode[] heap, int k) {
+        if (null == heap[0]) {
             return null;
         }
         ListNode topNode = heap[0];
-        ListNode lastNode = heap[heap.length - 1];
+        ListNode lastNode = heap[k - 1];
 
         // 把最后一个元素放到最顶部，然后从上往下重新堆化
         heap[0] = lastNode;
-        heap[heap.length - 1] = null;
-        heapify(heap, heap.length - 1, 0);
-
-        HeapPrinter.printHeap(heap);
-
+        heap[k - 1] = null;
+        heapify(heap, k - 1, 0);
         return topNode;
     }
 
     private void heapify(ListNode[] heap, int k, int i) {
         int minIndex = i;
 
-        try {
-            int leftNodeIndex = 2 * i + 1;
-            if (leftNodeIndex < k && heap[leftNodeIndex] != null
-                    && heap[leftNodeIndex].val < heap[minIndex].val) {
-                minIndex = leftNodeIndex;
-            }
+        int leftNodeIndex = 2 * i + 1;
+        if (leftNodeIndex < k && heap[leftNodeIndex] != null
+                && heap[leftNodeIndex].val < heap[minIndex].val) {
+            minIndex = leftNodeIndex;
+        }
 
-            int rightNodeIndex = leftNodeIndex + 1;
-            if (rightNodeIndex < k && heap[rightNodeIndex] != null
-                    && heap[rightNodeIndex].val < heap[minIndex].val) {
-                minIndex = rightNodeIndex;
-            }
+        int rightNodeIndex = leftNodeIndex + 1;
+        if (rightNodeIndex < k && heap[rightNodeIndex] != null
+                && heap[rightNodeIndex].val < heap[minIndex].val) {
+            minIndex = rightNodeIndex;
+        }
 
-            if (minIndex != i) {
-                ListNode tmp = heap[i];
-                heap[i] = heap[minIndex];
-                heap[minIndex] = tmp;
+        if (minIndex != i) {
+            ListNode tmp = heap[i];
+            heap[i] = heap[minIndex];
+            heap[minIndex] = tmp;
 
-                heapify(heap, k, minIndex);
-            }
-        } catch (Exception e) {
-            log.error("minIndex: {}", minIndex);
-            log.error(e.getMessage(), e);
+
+            heapify(heap, k, minIndex);
         }
     }
 }
