@@ -1,7 +1,5 @@
 package org.nick.learn.algorithm.list;
 
-import lombok.Getter;
-
 public class ListNode {
     public int val;
     public ListNode next;
@@ -18,8 +16,7 @@ public class ListNode {
         this.next = next;
     }
 
-    @Override
-    public String toString() {
+    public String toStr() {
         StringBuilder sb = new StringBuilder("" + val);
         ListNode tail = this;
         while((tail = tail.next) != null){
