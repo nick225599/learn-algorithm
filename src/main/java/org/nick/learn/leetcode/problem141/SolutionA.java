@@ -1,5 +1,7 @@
 package org.nick.learn.leetcode.problem141;
 
+import org.nick.learn.algorithm.list.ListNode;
+
 import java.util.HashSet;
 import java.util.Set;
 

@@ -1,6 +1,7 @@
 package org.nick.learn.leetcode.problem23;
 
 import org.junit.jupiter.api.Test;
+import org.nick.learn.algorithm.list.ListNode;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,7 +1,7 @@
 package org.nick.learn.algorithm.sort.heap;
 
+import org.nick.learn.algorithm.list.ListNode;
 import org.nick.learn.algorithm.utils.ArrayUtils;
-import org.nick.learn.leetcode.problem23.ListNode;
 
 public class HeapPrinter {
     public static void printHeap(ListNode[] heap) {

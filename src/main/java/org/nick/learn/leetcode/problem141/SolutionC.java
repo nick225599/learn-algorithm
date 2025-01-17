@@ -1,5 +1,7 @@
 package org.nick.learn.leetcode.problem141;
 
+import org.nick.learn.algorithm.list.ListNode;
+
 /**
  * 怎么在空间复杂度 O(1) 下完成检查？
  * 完成了，

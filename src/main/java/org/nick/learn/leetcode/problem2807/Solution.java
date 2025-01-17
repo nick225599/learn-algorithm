@@ -1,5 +1,7 @@
 package org.nick.learn.leetcode.problem2807;
 
+import org.nick.learn.algorithm.list.ListNode;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -64,22 +66,4 @@ public class Solution {
         }
         return 1;
     }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
 }
