@@ -4,6 +4,9 @@ import org.nick.learn.algorithm.list.ListNode;
 
 /**
  * 官方题解，把空判断放在循环外
+ *
+ * 时间复杂度 O(n)
+ * 空间复杂度 O(1)
  */
 public class SolutionC {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
