@@ -1,4 +1,4 @@
 /**
- * TODO sunchuansheng 解决 23 题之前，先学习一下 21 题
+ * 力扣第 21 题，合并 2 个链表
  */
 package org.nick.learn.leetcode.problem21;
