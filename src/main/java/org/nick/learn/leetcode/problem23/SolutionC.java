@@ -11,8 +11,11 @@ public class SolutionC {
 
     // 分治思维解题
     public ListNode mergeKLists(ListNode[] lists) {
+        if (null == lists || lists.length == 0) {
+            return null;
+        }
+
         if (lists.length > 2) {
-            // TODO sunchuansheng 20250127 看看这段代码是不是可以优化一下
             ListNode[] left = new ListNode[lists.length / 2];
             ListNode[] right = new ListNode[lists.length - lists.length / 2];
             for (int i = 0; i < lists.length; i++) {
