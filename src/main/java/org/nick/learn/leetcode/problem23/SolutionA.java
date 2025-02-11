@@ -5,7 +5,7 @@ import org.nick.learn.algorithm.list.ListNode;
 
 /**
  * 自己拍脑袋想出来的利用小顶堆
- * 时间复杂度 O(nlogk)
+ * 时间复杂度 O(logk * N)
  * 空间复杂度应该是 O(k)
  * <p>
  * 看看官方题解呢。。。
