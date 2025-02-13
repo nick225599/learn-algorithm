@@ -14,6 +14,9 @@ class Solution1Test {
         str = "())";
         assertEquals(2, solution.longestValidParentheses(str));
 
+        str = "()(())";
+        assertEquals(6, solution.longestValidParentheses(str));
+
     }
 
 }

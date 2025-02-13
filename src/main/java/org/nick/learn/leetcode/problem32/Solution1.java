@@ -22,7 +22,7 @@ public class Solution1 {
                     if (dp[i - 1] > 0) {
                         boolean b1 = i - dp[i - 1] - 1 >= 0; // 上一个有效字符串的前一位有值
                         if(b1){
-                            boolean b2 = 'c' == s.charAt(i - dp[i - 1] - 1); // 上一位有效字符串的前一位值是 (
+                            boolean b2 = '(' == s.charAt(i - dp[i - 1] - 1); // 上一位有效字符串的前一位值是 (
                             if (b2) {
                                 dp[i] = 2 + dp[i - 1];
                                 if (i - dp[i - 1] - 2 >= 0) {
