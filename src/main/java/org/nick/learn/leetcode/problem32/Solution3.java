@@ -3,11 +3,14 @@ package org.nick.learn.leetcode.problem32;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class Solution3 {
+public class Solution3 implements Solution {
+
+
 
     /**
      * 暴力解法
      */
+    @Override
     public int longestValidParentheses(String s) {
         int result = 0;
         for (int i = 0; i < s.length(); i++) {

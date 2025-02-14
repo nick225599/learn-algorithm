@@ -1,10 +1,11 @@
 package org.nick.learn.leetcode.problem32;
 
-public class Solution1 {
+public class Solution1 implements Solution {
 
     /**
      * 解法错的，因为没想到 (()()) 也认为是有效的，有效长度 6 ......
      */
+    @Override
     public int longestValidParentheses(String s) {
         int result = 0;
         int[] dp = new int[s.length()];
@@ -21,7 +22,7 @@ public class Solution1 {
                 if (i - 1 >= 0 && ')' == s.charAt(i - 1)) {
                     if (dp[i - 1] > 0) {
                         boolean b1 = i - dp[i - 1] - 1 >= 0; // 上一个有效字符串的前一位有值
-                        if(b1){
+                        if (b1) {
                             boolean b2 = '(' == s.charAt(i - dp[i - 1] - 1); // 上一位有效字符串的前一位值是 (
                             if (b2) {
                                 dp[i] = 2 + dp[i - 1];

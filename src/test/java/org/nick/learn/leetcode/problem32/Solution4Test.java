@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Solution4Test {
-    Solution4 solution = new Solution4();
+//    Solution4 solution = new Solution4();
+    Solution5 solution = new Solution5();
 
     @Test
     void longestValidParentheses() {

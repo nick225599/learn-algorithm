@@ -1,14 +1,17 @@
 package org.nick.learn.leetcode.problem32;
 
+import org.springframework.context.annotation.ImportRuntimeHints;
+
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class Solution4 {
+public class Solution4 implements Solution{
 
     /**
      * Q: sunchuansheng 20250214 怎么用栈一次遍历解决问题？
      * A: 我们始终保持栈底元素为当前已经遍历过的元素中「最后一个没有被匹配的右括号的下标」
      */
+    @Override
     public int longestValidParentheses(String s) {
         int result = 0;
         Deque<Integer> deque = new LinkedList<>();

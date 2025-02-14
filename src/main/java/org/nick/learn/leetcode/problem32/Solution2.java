@@ -3,8 +3,9 @@ package org.nick.learn.leetcode.problem32;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class Solution2 {
+public class Solution2 implements Solution {
 
+    @Override
     public int longestValidParentheses(String s) {
         return 0;
 
