@@ -8,9 +8,6 @@ public class Solution5 implements Solution {
 
     /**
      * 官方题解，栈
-     *
-     * @param s
-     * @return
      */
     @Override
     public int longestValidParentheses(String s) {
