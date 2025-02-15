@@ -17,7 +17,8 @@ public class Solution5 implements Solution {
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '(') {
                 stack.push(i);
-            } else {
+            }
+            if (s.charAt(i) == ')') {
                 stack.pop();
                 if (stack.isEmpty()) {
                     stack.push(i);
