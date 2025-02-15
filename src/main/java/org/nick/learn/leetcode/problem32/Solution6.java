@@ -15,24 +15,44 @@ public class Solution6 implements Solution {
     public int longestValidParentheses(String s) {
         int result = 0;
         Deque<Integer> deque = new LinkedList<>();
-        deque.offerFirst(-1);
+        deque.push(-1);
+
+        // （），length = 1 - （-1） = 2
+        // （）（）,
+        //      length1 = 1 - （-1） = 2
+        //      length2 = 3 - (-1) = 4
+
+        // （）（（），
+        //    length1 = 1 - （-1） = 2
+        //    length2 = 4 - 2 = 2
+
+        // () ( ())
+        // length1 = 1 - -1 = 2
+        // length2 = 4 - 2 = 2
+        // length3 = 5 - -1 = 6
+
+        // 总结一下，把字符串里所有能够匹配的字符都清除掉，那么有效长度就是当前字符减去上一个未能匹配上的字符
+
 
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if ('(' == c) {
-                deque.offerFirst(i);
+                deque.push(i);
             }
             if (')' == c) {
                 deque.pop();
-                if (deque.isEmpty()) { // 前一个值是 (，且已被 pop
-                    deque.push(i);
 
-                } else { // 前一个值是 (，且已被 pop
+                if (deque.isEmpty()) {
+                    deque.push(i); // 更新最近一个未能被匹配的 ）的下标
 
-                    // 怎么计算出当前长度？
-                    // TODO sunchuansheng 20250214 不对啊 为啥不需要加 1 ？
-                    // TODO sunchuansheng 20250214 不对啊 ()(() 不就算成 4 了？ 应该是 2 啊
-                    result = Math.max(result, i - deque.peek() + 1);
+                } else {
+
+                    // 前面还有 （
+                    // 那此 ）对应的合法长度就是 i - deque.peek()
+                    result = Math.max(result, i - deque.peek());
+
+                    // 那 （）（（） 怎么能不被误认为是 4 ？而应该是 2
+                    // 那 （）（（）） 怎么能被正常记录成 6 而不是 4
                 }
 
 
