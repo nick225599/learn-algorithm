@@ -28,8 +28,4 @@ public class Solution8 implements Solution {
         return result;
     }
 
-    // 写对了，思想就是在堆栈里存没能被匹配的字符的下标，
-    // 一旦有字符被匹配，就用被匹配的字符下标减去最近一个未能被匹配的字符的下标，就能算出当前匹配的字符对应的有效长度了
-    //todo nick_sun 20250215 再把代码简洁一下
-
 }
