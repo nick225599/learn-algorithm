@@ -5,8 +5,9 @@ public class MyCircularDeque {
     int[] content;
     int length;
     int size = 0;
-    int index = 0; // 已使用的头部下标
+
     boolean hasBeenUsed = false;
+    int index = 0; // 已使用的头部下标
 
 
     public MyCircularDeque(int length) {
@@ -27,6 +28,8 @@ public class MyCircularDeque {
 
         size++;
 
+        hasBeenUsed = true;
+
         return true;
     }
 
@@ -45,6 +48,8 @@ public class MyCircularDeque {
         content[tmp] = value;
 
         size++;
+
+        hasBeenUsed = true;
 
         return true;
     }
