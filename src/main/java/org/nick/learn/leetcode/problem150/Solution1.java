@@ -28,6 +28,10 @@ public class Solution1 {
     }
 
     private boolean isOperator(String token) {
+
+        // 别用正则判断，耗时一下子就减少了
+//        return token.matches("[+\\-*/]");
+
         return "+".equals(token)
                 || "-".equals(token)
                 || "*".equals(token)
