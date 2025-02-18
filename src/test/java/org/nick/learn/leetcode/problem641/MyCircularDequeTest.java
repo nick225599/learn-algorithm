@@ -17,6 +17,18 @@ class MyCircularDequeTest {
         assertTrue(circularDeque.deleteLast());                           // 返回 true
         assertTrue(circularDeque.insertFront(4));                   // 返回 true
         assertEquals(4, circularDeque.getFront());               // 返回 4
+
+
+
+        circularDeque = new MyCircularDeque(3);    // 设置容量大小为3
+        assertTrue(circularDeque.insertLast(1));                    // 返回 true
+        assertTrue(circularDeque.insertLast(2));                    // 返回 true
+        assertEquals(1,circularDeque.getFront());
+        assertEquals(2, circularDeque.getRear());
+        assertFalse(circularDeque.isFull());
+        assertTrue(circularDeque.deleteLast());;
+        assertTrue(circularDeque.insertFront(4));;
+        assertEquals(4, circularDeque.getFront());
     }
 
 }
