@@ -11,7 +11,8 @@ public class MyCircularDeque4 {
 
     // 必须增加 size 来辅助判断 isEmpty 及 isFull
     // 避免不了在 insert 时对插入第一个元素时的特殊处理
-    // 避免不了在 delete 时对删除最后一个元素时的特殊处理
+
+    // java.util.ArrayDeque 用的是官方题解的方案
     int front,rear; // 假设此时为已使用的下标
 
     int size;
