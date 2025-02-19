@@ -94,8 +94,8 @@ public class MyCircularDeque1 {
     }
 
 /**
- * Your MyCircularDeque object will be instantiated and called as such:
- * MyCircularDeque obj = new MyCircularDeque(k);
+ * Your MyCircularDeque0 object will be instantiated and called as such:
+ * MyCircularDeque0 obj = new MyCircularDeque0(k);
  * boolean param_1 = obj.insertFront(value);
  * boolean param_2 = obj.insertLast(value);
  * boolean param_3 = obj.deleteFront();

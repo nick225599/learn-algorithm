@@ -1,6 +1,6 @@
 package org.nick.learn.leetcode.problem641;
 
-public class MyCircularDeque {
+public class MyCircularDeque0 {
 
     int[] content;
     int length;
@@ -10,7 +10,7 @@ public class MyCircularDeque {
     int index = 0; // 已使用的头部下标
 
 
-    public MyCircularDeque(int length) {
+    public MyCircularDeque0(int length) {
         this.length = length;
         this.content = new int[length];
     }
@@ -114,8 +114,8 @@ public class MyCircularDeque {
     }
 
 /**
- * Your MyCircularDeque object will be instantiated and called as such:
- * MyCircularDeque obj = new MyCircularDeque(k);
+ * Your MyCircularDeque0 object will be instantiated and called as such:
+ * MyCircularDeque0 obj = new MyCircularDeque0(k);
  * boolean param_1 = obj.insertFront(value);
  * boolean param_2 = obj.insertLast(value);
  * boolean param_3 = obj.deleteFront();

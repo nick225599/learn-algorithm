@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MyCircularDequeTest {
+class MyCircularDeque0Test {
     @Test
     public void test() {
-        MyCircularDeque circularDeque = new MyCircularDeque(3);    // 设置容量大小为3
+        MyCircularDeque0 circularDeque = new MyCircularDeque0(3);    // 设置容量大小为3
         assertTrue(circularDeque.insertLast(1));                    // 返回 true
         assertTrue(circularDeque.insertLast(2));                    // 返回 true
         assertTrue(circularDeque.insertFront(3));                   // 返回 true
@@ -20,7 +20,7 @@ class MyCircularDequeTest {
 
 
 
-        circularDeque = new MyCircularDeque(3);    // 设置容量大小为3
+        circularDeque = new MyCircularDeque0(3);    // 设置容量大小为3
         assertTrue(circularDeque.insertLast(1));                    // 返回 true
         assertTrue(circularDeque.insertLast(2));                    // 返回 true
         assertEquals(1,circularDeque.getFront());
