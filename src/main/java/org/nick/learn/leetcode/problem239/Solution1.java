@@ -3,6 +3,8 @@ package org.nick.learn.leetcode.problem239;
 public class Solution1 {
 
     // 暴力解法超时
+    // 时间复杂度 O(n k)
+    // 空间复杂度 O(n)
     public int[] maxSlidingWindow(int[] nums, int k) {
         if (nums.length == 1) {
             return nums;

@@ -2,6 +2,8 @@ package org.nick.learn.leetcode.problem239;
 
 public class Solution5 {
 
+    // 时间复杂度 O(n logn) 最坏情况下元素一直新增，不需要删除
+    // 空间复杂度 O(n)
     static class MaxHeap {
         private final int[] elements;
         private final int[] indexOfElements;
