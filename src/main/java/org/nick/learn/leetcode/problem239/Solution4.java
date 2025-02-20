@@ -3,9 +3,6 @@ package org.nick.learn.leetcode.problem239;
 
 public class Solution4 {
 
-    // AI 实现的大顶堆，只要 66ms
-
-    // 手动实现的最大堆类，使用数组模拟
     static class MaxHeap {
         private int[] heap; // 存储元素值
         private int[] indices; // 存储元素索引
@@ -22,7 +19,7 @@ public class Solution4 {
         // 插入元素
         public void push(int value, int index) {
             if (size == capacity) {
-                resize();
+                throw new RuntimeException("heap is full");
             }
             heap[size] = value;
             indices[size] = index;
@@ -82,17 +79,6 @@ public class Solution4 {
             indices[j] = tempIndex;
         }
 
-        // 动态扩容
-        private void resize() {
-            capacity *= 2;
-            int[] newHeap = new int[capacity];
-            int[] newIndices = new int[capacity];
-            System.arraycopy(heap, 0, newHeap, 0, size);
-            System.arraycopy(indices, 0, newIndices, 0, size);
-            heap = newHeap;
-            indices = newIndices;
-        }
-
         // 移除指定索引的元素（用于清理无效元素）
         public void removeInvalid(int left) {
             while (size > 0 && indices[0] < left) {
@@ -118,7 +104,7 @@ public class Solution4 {
             // 当窗口形成后开始计算最大值
             if (i >= k - 1) {
                 // 移除堆中不在窗口范围内的元素
-                maxHeap.removeInvalid(i - k + 1);
+                 maxHeap.removeInvalid(i - k + 1);
                 // 堆顶即为当前窗口的最大值
                 result[resIndex++] = maxHeap.peek()[0];
             }

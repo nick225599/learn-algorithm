@@ -2,17 +2,17 @@ package org.nick.learn.leetcode.problem239;
 
 public class Solution5 {
 
-    // 自己实现的大顶堆要 88 ms
-
-    // 参照 AI 生成的大顶堆解法，review 并优化一下自己的解法
     static class MaxHeap {
-        private int[][] elements;
+        private final int[] elements;
+        private final int[] indexOfElements;
+        private final int capacity; // 堆的最大容量
+
         private int size = 0; // 当前堆中元素个数
-        private int capacity; // 堆的最大容量
 
         public MaxHeap(int capacity) {
             this.capacity = capacity;
-            this.elements = new int[capacity][2];
+            this.elements = new int[capacity];
+            this.indexOfElements = new int[capacity];
         }
 
         public void add(int value, int indexOfValue) {
@@ -20,35 +20,38 @@ public class Solution5 {
                 throw new RuntimeException("max heap is full");
             }
 
-            elements[size] = new int[]{value, indexOfValue};
+            elements[size] = value;
+            indexOfElements[size] = indexOfValue;
+
             this.swim(size);
             size++;
         }
 
         public void pop() {
-            if (isEmpty()) {
+            if (size == 0) {
                 return;
             }
             size--;
-            this.swap(elements, 0, size);
+            elements[0] = elements[size];
+            indexOfElements[0]  = indexOfElements[size];
             this.sink(0);
         }
 
         public int[] peek() {
-            if(isEmpty()){
+            if(size == 0){
                 return null;
             }
-            return new int[]{elements[0][0], elements[0][1]};
+            return new int[]{elements[0], indexOfElements[0]};
         }
 
         // 上浮操作
         private void swim(int childIndex) {
             while((childIndex - 1)/2 >= 0){
                 int parentIndex = (childIndex - 1)/2;
-                if (elements[parentIndex][0] >= elements[childIndex][0]) {
+                if (elements[parentIndex] >= elements[childIndex]) {
                     break;
                 }
-                this.swap(elements, parentIndex, childIndex);
+                this.swap(parentIndex, childIndex);
                 childIndex = parentIndex; // 继续执行上一层
             }
         }
@@ -60,22 +63,26 @@ public class Solution5 {
             while (parentIndex * 2 + 1 < size) {
                 int childIndex = parentIndex * 2 + 1;
                 if (childIndex + 1 < size
-                        && (elements[childIndex][0] < elements[childIndex + 1][0])) {
+                        && (elements[childIndex] < elements[childIndex + 1])) {
                     childIndex = childIndex + 1;
                 }
-                if (elements[parentIndex][0] >= elements[childIndex][0]) {
+                if (elements[parentIndex] >= elements[childIndex]) {
                     break;
                 }
-                this.swap(elements, parentIndex, childIndex);
+                this.swap(parentIndex, childIndex);
                 parentIndex = childIndex; // 处理下一层
             }
 
         }
 
-        private void swap(int[][] arr, int l, int r) {
-            int[] tmp = arr[l];
-            arr[l] = arr[r];
-            arr[r] = tmp;
+        private void swap(int l, int r) {
+            int tmp = elements[l];
+            elements[l] = elements[r];
+            elements[r] = tmp;
+
+            int tmp2 = indexOfElements[l];
+            indexOfElements[l] = indexOfElements[r];
+            indexOfElements[r] = tmp2;
         }
 
         public boolean isFull() {
