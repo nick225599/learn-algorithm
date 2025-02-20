@@ -2,6 +2,7 @@ package org.nick.learn.leetcode.problem239;
 
 public class Solution3 {
 
+    // AI 优化了一下，自己再修复了一下错误，不会超时了，还是运行时间 96ms，基本垫底了
     static class MaxTopHeap {
         int[][] elements;
         int capacity;
