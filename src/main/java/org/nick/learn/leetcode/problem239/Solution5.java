@@ -2,6 +2,8 @@ package org.nick.learn.leetcode.problem239;
 
 public class Solution5 {
 
+    // 自己实现的大顶堆要 88 ms
+
     // 参照 AI 生成的大顶堆解法，review 并优化一下自己的解法
     static class MaxHeap {
         private int[][] elements;
