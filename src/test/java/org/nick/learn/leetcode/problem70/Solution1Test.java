@@ -20,14 +20,6 @@ class Solution1Test {
 
     @Test
     public void test21(){
-        System.out.println(solution.climbStairs(1));
-        System.out.println(solution.climbStairs(2));
-        System.out.println(solution.climbStairs(3));
-        System.out.println(solution.climbStairs(4));
-        System.out.println(solution.climbStairs(5));
-        System.out.println(solution.climbStairs(6));
-        System.out.println();
-
         System.out.println(solution.climbStairs(44));
     }
 

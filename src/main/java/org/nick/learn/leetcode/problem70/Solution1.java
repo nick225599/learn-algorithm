@@ -2,7 +2,7 @@ package org.nick.learn.leetcode.problem70;
 
 public class Solution1 {
 
-    // 回溯
+    // 递归
     public int climbStairs(int n) {
         if (n == 1) {
             return 1;
