@@ -231,7 +231,9 @@ public class Solution9 {
         for (int i = 0; i < nums.length; i++) {
             int element = nums[i];
             while (!deque.isEmpty() && nums[deque.peekFirst()] < element) {
-                deque.pollFirst();
+                deque.pollFirst(); // 为啥不会误删？
+                // 因为新加入的值注定有效期比删除的值更久，且值更大，
+                // 所以轮不到被踢出的值成为窗口最大值
             }
             deque.offerFirst(i);
             if (i - k + 1 >= 0) {
