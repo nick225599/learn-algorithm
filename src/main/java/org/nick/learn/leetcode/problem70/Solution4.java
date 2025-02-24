@@ -4,34 +4,23 @@ import lombok.Getter;
 
 @Getter
 public class Solution4 {
-    int[] cache;
-    int cacheUsedTimes = 0;
-    int recursionDepth = 0;
+    int[] cache; // 线程不安全
 
     // 用缓存优化递归？
     public int climbStairs(int n) {
-        recursionDepth++;
-        if (null == cache) {
-            cache = new int[n + 1];
+        if(n == 1 || n == 2){
+            return n;
         }
-        cache[1] = 1;
-        cache[2] = 2;
+        if (null == cache || cache.length < n + 1) {
+            cache = new int[n + 1]; // 多次调用时，复用缓存。而不是为每次调用，重新创建一份缓存
+            // 但如果 N 变化很大，也会造成内存资源浪费
+            // 而且也造成了方法不再线程安全
+        }
         if (cache[n] != 0) {
-            cacheUsedTimes++;
             return cache[n];
         }
-
-        // 先于 n-1 计算，能减少栈溢出的风险（虽然我觉得意义不大）
-        int n2 = 0;
-        if (n - 2 > 0) {
-            n2 = climbStairs(n - 2);
-        }
-
-        int n1 = 0;
-        if (n - 1 > 0) {
-            n1 = climbStairs(n - 1);
-        }
-
-        return n1 + n2;
+        int result = climbStairs(n - 1) + climbStairs(n - 2);
+        cache[n] = result;
+        return result;
     }
 }

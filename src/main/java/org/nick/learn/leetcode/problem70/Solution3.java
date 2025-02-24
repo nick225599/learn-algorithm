@@ -2,8 +2,6 @@ package org.nick.learn.leetcode.problem70;
 
 public class Solution3 {
 
-    // 迭代、递归 或 矩阵快速幂等方法
-
     // 迭代
     // 时间复杂度 O(n)
     // 空间复杂度 O(1)
