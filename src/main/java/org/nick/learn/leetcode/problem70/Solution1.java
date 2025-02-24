@@ -2,7 +2,7 @@ package org.nick.learn.leetcode.problem70;
 
 public class Solution1 {
 
-    // 力扣第 70 题
+    // 递归 超时了
     public int climbStairs(int n) {
         if (n == 1) {
             return 1;
