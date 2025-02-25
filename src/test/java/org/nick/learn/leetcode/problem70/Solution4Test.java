@@ -24,8 +24,6 @@ class Solution4Test {
         // 701408733
         // 1402817465
         System.out.println(solution.climbStairs(44));
-        System.out.println(solution.getCacheUsedTimes());
-        System.out.println(solution.getRecursionDepth());
 
         // 1134903170
         // 701408733
