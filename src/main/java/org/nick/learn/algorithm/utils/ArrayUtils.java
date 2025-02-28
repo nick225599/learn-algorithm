@@ -49,7 +49,7 @@ public class ArrayUtils {
         return true;
     }
 
-    public static void print(boolean[][] booleans) {
+    public static void printMatrix(boolean[][] booleans) {
         for (boolean[] bs : booleans) {
             StringBuilder rowStr = new StringBuilder("[ ");
             String columnSpilt = ", ";
@@ -62,7 +62,7 @@ public class ArrayUtils {
         }
     }
 
-    public static void print(int[][] grid) {
+    public static void printMatrix(int[][] grid) {
         for (int[] ints : grid) {
             StringBuilder rowStr = new StringBuilder("[ ");
             String columnSpilt = ", ";

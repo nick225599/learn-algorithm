@@ -66,7 +66,7 @@ public class Knapsack05 {
             log.info("i: {}", i);
             log.info("weight[i]: {}", weights[i]);
             log.info("status: ");
-            ArrayUtils.print(status);
+            ArrayUtils.printMatrix(status);
             System.out.println();
         }
 

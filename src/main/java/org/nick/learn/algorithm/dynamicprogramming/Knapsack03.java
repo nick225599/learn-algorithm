@@ -42,7 +42,7 @@ public class Knapsack03 {
         knapsack.f(0, 0);
         log.info("Max Weight in Knapsack: " + knapsack.maxW);
         log.info("memo: ");
-        ArrayUtils.print(knapsack.memo);
+        ArrayUtils.printMatrix(knapsack.memo);
     }
 }
 

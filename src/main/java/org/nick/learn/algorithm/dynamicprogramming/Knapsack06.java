@@ -31,7 +31,7 @@ public class Knapsack06 {
             log.info("i: {}", i);
             log.info("weight[i]: {}", weight[i]);
             log.info("states: ");
-            ArrayUtils.print(states);
+            ArrayUtils.printMatrix(states);
             System.out.println();
         }
         for (int i = w; i >= 0; --i) { // 输出结果
