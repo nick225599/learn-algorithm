@@ -3,8 +3,8 @@ package org.nick.learn.leetcode.problem70;
 public class Solution8 {
 
     // 矩阵快速幂解法
-    // 时间复杂度 Ologn
-    // 空间复杂度 Ologn 栈空间损耗
+    // 时间复杂度 O(logn)
+    // 空间复杂度 O(logn)
     public int climbStairs(int n) {
         if (n == 1 || n == 2) {
             return n;

@@ -2,7 +2,9 @@ package org.nick.learn.leetcode.problem70;
 
 public class Solution9 {
 
-    // 矩阵快速幂解法
+    // 矩阵快速幂解法，迭代代替递归
+    // 时间复杂度 O(logn)
+    // 空间复杂度 O(1)
     public int climbStairs(int n) {
         if (n == 1 || n == 2) {
             return n;
