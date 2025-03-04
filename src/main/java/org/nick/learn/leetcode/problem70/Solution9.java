@@ -20,9 +20,18 @@ public class Solution9 {
 
     // 矩阵快速幂
     public int[][] matrixPow(int[][] a, int power) {
-        int[][] result = new int[][]{{0, 1}, {1, 0}};
-
-        return null;
+        int[][] result = new int[][]{{1, 0}, {0, 1}};
+        while (true) {
+            if (power % 2 != 0) {
+                result = matrixMultiply(result, a);
+            }
+            power >>= 1;
+            if (power <= 0) {
+                break;
+            }
+            a = matrixMultiply(a, a);
+        }
+        return result;
     }
 
     // 矩阵乘法
@@ -123,11 +132,11 @@ public class Solution9 {
         }
         int result = 1;
         while (true) {
-            if(b % 2 != 0){
+            if (b % 2 != 0) {
                 result *= a;
             }
             b >>= 1;
-            if(b <= 0){
+            if (b <= 0) {
                 break;
             }
             a *= a;
