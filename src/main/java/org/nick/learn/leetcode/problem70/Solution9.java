@@ -1,5 +1,7 @@
 package org.nick.learn.leetcode.problem70;
 
+import javax.naming.OperationNotSupportedException;
+
 public class Solution9 {
 
     // 矩阵快速幂解法，迭代代替递归
@@ -16,41 +18,14 @@ public class Solution9 {
         return result[0][0];
     }
 
-//    public int[][] matrixPow(int[][] m, int power) {
-//        if(power == 1){
-//            return m;
-//        }
-//        int[][] result;
-//        if (power % 2 == 0) {
-//            int[][] tmp = matrixPow(m, power / 2);
-//            result = matrixMultiply(tmp, tmp);
-//        } else {
-//            int[][] tmp = matrixPow(m, (power - 1) / 2);
-//            result = matrixMultiply(tmp, tmp);
-//            result = matrixMultiply(result, m);
-//        }
-//        return result;
-//    }
+    // 矩阵快速幂
+    public int[][] matrixPow(int[][] a, int power) {
+        int[][] result = new int[][]{{0, 1}, {1, 0}};
 
-    //TODO nick 20250228 回去再说把
-    public int[][] pow(int[][] a, int power) {
-
-        int[][] ret = {{1, 0}, {0, 1}};
-        int n = power;
-        int[][] base = a;
-
-        while (n > 0) {
-            if ((n & 1) == 1) { // 奇数
-                ret = matrixMultiply(ret, base);
-            }
-            n >>= 1;
-            base = matrixMultiply(base, base);
-        }
-        return ret;
+        return null;
     }
 
-
-
+    // 矩阵乘法
     public int[][] matrixMultiply(int[][] matrixA, int[][] matrixB) {
         int rowsA = matrixA.length;
         int columnsA = matrixA[0].length;
@@ -74,7 +49,90 @@ public class Solution9 {
 
         return result;
     }
+
     //TODO 看看怎么通过分块矩阵乘法实现
     //TODO AI 查一下矩阵幂等怎么更快速地求解
     //TODO 再看看官方题解怎么写的
+
+    /**
+     * a^b = a ^ (k0 * 10^0 + k1 * 10^1 + k2 * 10^2 + .... kn * 10^n)
+     *
+     * @return a^b
+     */
+    public int fastPowBase10(int a, int b) throws OperationNotSupportedException {
+        if (0 > b) {
+            throw new OperationNotSupportedException();
+        }
+        if (0 == b) {
+            return 1;
+        }
+
+        int numA = a;
+        int numB = b;
+
+        int result = 1;
+        int base = numA;
+        while (numB > 0) {
+            int tmp = numB % 10;
+            switch (tmp) {
+                case 0 -> {
+                    result *= (1);
+                }
+                case 1 -> {
+                    result *= (base);
+                }
+                case 2 -> {
+                    result *= (base * base);
+                }
+                case 3 -> {
+                    result *= (base * base * base);
+                }
+                case 4 -> {
+                    result *= (base * base * base * base);
+                }
+                case 5 -> {
+                    result *= (base * base * base * base * base);
+                }
+                case 6 -> {
+                    result *= (base * base * base * base * base * base);
+                }
+                case 7 -> {
+                    result *= (base * base * base * base * base * base * base);
+                }
+                case 8 -> {
+                    result *= (base * base * base * base * base * base * base * base);
+                }
+                case 9 -> {
+                    result *= (base * base * base * base * base * base * base * base * base);
+                }
+            }
+
+            base = base * base * base * base * base * base * base * base * base * base;
+            numB = numB / 10;
+        }
+
+        return result;
+    }
+
+    public int fastPowBase2(int a, int b) throws OperationNotSupportedException {
+        if (0 > b) {
+            throw new OperationNotSupportedException();
+        }
+        if (0 == b) {
+            return 1;
+        }
+        int result = 1;
+        while (true) {
+            if(b % 2 != 0){
+                result *= a;
+            }
+            b >>= 1;
+            if(b <= 0){
+                break;
+            }
+            a *= a;
+        }
+        return result;
+    }
+
 }
