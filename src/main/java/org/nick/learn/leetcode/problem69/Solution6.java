@@ -4,6 +4,8 @@ public class Solution6 {
 
     // 试位法（二分法）
     // 尝试将官方题解改成递归
+
+    // 回过头来看看自己的解法，自己没有想到 mid * mid <= x 的处理技巧
     public int mySqrt(int x) {
         return mySqrt(x, 0, x);
     }
