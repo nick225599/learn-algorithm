@@ -22,7 +22,4 @@ public class Solution10 {
         return (int) Math.round(fibn / sqrt5);
     }
 
-
-
-
 }
