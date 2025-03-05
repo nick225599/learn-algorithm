@@ -72,7 +72,7 @@ class Solution7Test {
                 System.out.println("error! i: " + i + ", r5: " + r5 + ", r7: " + r7);
             }
 
-            if(i % 10000 == 0){
+            if(i % 1000000 == 0){
                 System.out.println("ok, i: " + i);
             }
         }
