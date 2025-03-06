@@ -2,15 +2,18 @@ package org.nick.learn.leetcode.problem69;
 
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Solution7Test {
     Solution7 solution = new Solution7();
+
     @Test
-    void test1(){
+    void test1() {
         int i = 0;
 
         assertEquals(1, solution.mySqrt(1));
@@ -62,21 +65,20 @@ class Solution7Test {
         Solution7 solution7 = new Solution7();
 
         ExecutorService es = Executors.newFixedThreadPool(2);
-        for(int i = 0; i < Integer.MAX_VALUE; i++){
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
             int finalI = i;
             Future<Integer> f5 = es.submit(() -> solution5.mySqrt(finalI));
             Future<Integer> f7 = es.submit(() -> solution7.mySqrt(finalI));
             Integer r5 = f5.get();
             Integer r7 = f7.get();
-            if(!r5.equals(r7)){
+            if (null != r5 && r5.equals(r7)) {
                 System.out.println("error! i: " + i + ", r5: " + r5 + ", r7: " + r7);
             }
 
-            if(i % 1000000 == 0){
+            if (i % 1000000 == 0) {
                 System.out.println("ok, i: " + i);
             }
         }
         es.shutdown();
     }
-
 }
