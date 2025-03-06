@@ -3,9 +3,9 @@ package org.nick.learn.leetcode.problem69;
 public class Solution8 {
 
     // 牛顿迭代法
-    // X(k+1) = 1/n * ( (n-1) * X(k) + a / ( (X(k)) ^ n ) )
+    // X(k+1) = 1/n * ( (n-1) * X(k) + a / ( (X(k)) ^ n-1 ) )
     // n = 2 时
-    // X(k+1) = 1/2 * (   X(k) + a /( X(K) * X(K) )   )
+    // X(k+1) = 1/2 * (   X(k) + a /( X(K) )   )
 
     // 0 <= x <= 231 - 1
     public int mySqrt(int x) {
@@ -41,10 +41,10 @@ public class Solution8 {
     /**
      * TODO 怎么避免浮点数运算的偏差影响结果？
      *
-     * X(k+1) = 1/2 * (   X(k) + a /( X(K) * X(K) )   )
+     * X(k+1) = 1/2 * (   X(k) + a /X(K)   )
      */
     public double getNextNum(long a, double curNum){
-        return 0.5 * (curNum + a/(curNum * curNum));
+        return 0.5 * (curNum + a/curNum);
     }
 
 }
