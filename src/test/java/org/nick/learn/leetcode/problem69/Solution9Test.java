@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Solution9Test {
-    Solution9 solution = new Solution9();
+    Solution10 solution = new Solution10();
 
     @Test
     void test1() {

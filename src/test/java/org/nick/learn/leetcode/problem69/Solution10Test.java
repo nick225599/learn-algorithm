@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Solution10Test {
 
-    Solution10 solution = new Solution10();
+    Solution9 solution = new Solution9();
 
     @Test
     void test1() {
