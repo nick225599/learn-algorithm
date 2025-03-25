@@ -1,7 +1,5 @@
 package org.nick.learn.leetcode.problem69;
 
-import org.nick.learn.algorithm.utils.IntegerUtils;
-
 public class Solution9 {
     public static void main(String[] args) {
         int x = 25;

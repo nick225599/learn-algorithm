@@ -56,6 +56,7 @@ class Solution9Test {
         System.out.println("ok" + ++i);
     }
 
+
     @Test
     void test2() throws ExecutionException, InterruptedException {
         // 二分法，绝对不会出现精度误差
@@ -81,5 +82,13 @@ class Solution9Test {
         }
         es.shutdown();
     }
+
+    @Test
+    void test3() throws Exception {
+        int x;
+
+        System.out.println(solution.mySqrt());
+    }
+
 
 }
