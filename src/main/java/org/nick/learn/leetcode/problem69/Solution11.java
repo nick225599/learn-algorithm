@@ -6,7 +6,7 @@ package org.nick.learn.leetcode.problem69;
  */
 public class Solution11 {
     public static void main(String[] args) {
-        int x = 25;
+        int x = 4;
         System.out.println(new Solution11().mySqrt(x));
     }
 
@@ -19,8 +19,8 @@ public class Solution11 {
         }
         while (dm > 0) {
             if (x >= cm + dm) {
-                x -= cm + dm;
-                cm = (cm >> 1) + dm;
+                x -= (cm + dm);
+                cm = (cm >> 1) + (dm >>1);
             } else {
                 cm >>= 1;
             }

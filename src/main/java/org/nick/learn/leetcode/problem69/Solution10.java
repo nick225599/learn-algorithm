@@ -8,8 +8,6 @@ public class Solution10 {
 
     public int mySqrt(int x) {
         int m = 0x40000000; // 0100 0000, 0000 0000, 0000 0000, 0000 0000
-        System.out.println("m: " + m);
-        System.out.println("Interger.MAX_VALUE: " + Integer.MAX_VALUE);
         int y = 0;
         int b;
 
