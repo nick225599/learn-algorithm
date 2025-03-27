@@ -20,7 +20,7 @@ public class Solution11 {
         while (dm > 0) {
             if (x >= cm + dm) {
                 x -= (cm + dm);
-                cm = (cm >> 1) + (dm >>1);
+                cm = (cm >> 1) + dm;
             } else {
                 cm >>= 1;
             }

@@ -2,7 +2,7 @@ package org.nick.learn.leetcode.problem69;
 
 public class Solution10 {
     public static void main(String[] args) {
-        int x = 25;
+        int x = 1234;
         System.out.println(new Solution10().mySqrt(x));
     }
 
