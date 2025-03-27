@@ -18,37 +18,68 @@ public class Solution13 {
 
     public int mySqrt(int n) {
         String strN = String.valueOf(n);
+        int lengthN = strN.length();
 
         // 数位分组，两位一组
-        int psi = 0; // pair start index
-        int pei = 1; // pair end index
-        if (strN.length() % 2 == 0) {
-            pei += 1;
-        }
+        int psi = 0; // 当前组的起始索引（包含）
+        int pei = (lengthN % 2 != 0) ? 1 : 2; // 当前组的结束索引（不包含）
 
-        int x = 0; // 被除数
+        int x = 0; // 当前被除数（含余数）
         int a = 0; // 已确定的平方根部分
-        for (; pei <= strN.length(); pei += 2, psi = pei - 2) {
+
+//        while (pei <= lengthN) {
+//            // 获取当前两位分组
+//            String strPair = strN.substring(psi, pei);
+//            int pair = Integer.parseInt(strPair);
+//
+//            // 更新被除数
+//            x = 100 * x + pair;
+//
+//            // 寻找最大 b，满足 (20 * a + b) * b <= x
+//            int b = 0;
+//            int maxTmp = 0;
+//            for (int candidate = 0; candidate < 10; candidate++) {
+//                int tmp = 20 * a * candidate + candidate * candidate;
+//                if (tmp <= x) {
+//                    b = candidate;
+//                    maxTmp = tmp;
+//                } else {
+//                    break;
+//                }
+//            }
+//
+//            // 更新平方根
+//            a = 10 * a + b;
+//            // 更新余数
+//            x = x - maxTmp;
+//
+//            pei += 2;
+//            psi = pei - 2;
+//        }
+
+        for (; pei <= lengthN; pei += 2, psi = pei - 2) {
             String pair = strN.substring(psi, pei);
             System.out.print(pair + " | ");
             int iPair = Integer.parseInt(pair);
             x = x * 100 + iPair;
 
             int rightB = 1;
-            int tmp = 0;
-            for(int b = 0; b < 10; b ++){
-                tmp = (20 * a * b + b * b);
-                if(tmp <= x){
-                    rightB  = b;
+            int maxTmp = 0;
+            for (int b = 0; b < 10; b++) {
+                int tmp = (20 * a * b + b * b);
+                if (tmp <= x) {
+                    rightB = b;
+                    maxTmp = tmp;
+                }else {
+                    break;
                 }
             }
 
             // 更新已确定的平方根
-            a = 10 * a +  rightB;
+            a = 10 * a + rightB;
 
             // 计算余数
-            x = x - tmp;
-
+            x = x - maxTmp;
             if(x == 0){
                 break;
             }
