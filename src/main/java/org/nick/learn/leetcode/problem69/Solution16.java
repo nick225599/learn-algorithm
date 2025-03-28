@@ -7,7 +7,7 @@ public class Solution16 {
         System.out.println();
         System.out.println("Binary sqrt: " + Integer.toBinaryString(sqrt));
         System.out.println("Decimal sqrt: " + sqrt);
-        System.out.println("n:" + n );
+        System.out.println("n:" + n);
     }
 
     /**
@@ -16,7 +16,7 @@ public class Solution16 {
      */
     public int mySqrt(int n) {
         int mask = 1 << 30;
-        while(mask > n){
+        while (mask > n) {
             mask >>= 2;
         }
 
