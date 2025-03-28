@@ -7,7 +7,7 @@ public class Solution10 {
     }
 
     public int mySqrt(int x) {
-        int m = 0x40000000; // 0100 0000, 0000 0000, 0000 0000, 0000 0000
+        int m = 1 << 30;
         int y = 0;
         int b;
 
