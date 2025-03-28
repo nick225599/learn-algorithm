@@ -16,18 +16,16 @@ public class Solution16 {
      */
     public int mySqrt(int n) {
         int mask = 1 << 30;
-        int result = 0;
-        int b;
-
         while(mask > n){
             mask >>= 2;
         }
 
+        int result = 0;
         while (mask != 0) {
-            b = result | mask;
+            int tmp = result | mask;
             result = result >> 1;
-            if (n >= b) {
-                n = n - b;
+            if (n >= tmp) {
+                n = n - tmp;
                 result = result | mask;
             }
             mask = mask >> 2;
