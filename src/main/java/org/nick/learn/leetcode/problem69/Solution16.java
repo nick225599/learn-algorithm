@@ -21,24 +21,28 @@ public class Solution16 {
         if (x == 0 || x == 1) {
             return x;
         }
-        
-        int mask = 1 << 30;
-        while (mask > x) {
-            mask >>= 2;
+
+        int pei = 1 << 30; // 两位一组分组，每一组的结束位置
+
+        // 计算出第 1 组的结束位置
+        while (pei > x) {
+            pei >>= 2;
         }
 
         int result = 0;
-        int remainder = x;
-        while (mask > 0) {
-            int tmp = result | mask;
-            if (remainder >= tmp) {
-                remainder = remainder - tmp;
-                result = (result >> 1) | mask;
+        int p = x;
+        while (pei > 0) {
+            int tmp = result | pei;
+            if (p >= tmp) {
+                p = p - tmp;
+                result = (result >> 1) | pei;
             } else {
                 result = result >> 1;
             }
-            mask = mask >> 2;
+
+            pei = pei >> 2; // 两两一组，准备开始评估下一组
         }
+
         return result;
     }
 }
