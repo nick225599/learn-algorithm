@@ -21,12 +21,14 @@ public class Solution16 {
         }
 
         int result = 0;
-        while (mask != 0) {
+        int remainder = x;
+        while (mask > 0) {
             int tmp = result | mask;
-            result = result >> 1;
-            if (x >= tmp) {
-                x = x - tmp;
-                result = result | mask;
+            if (remainder >= tmp) {
+                remainder = remainder - tmp;
+                result = (result >> 1) | mask;
+            } else {
+                result = result >> 1;
             }
             mask = mask >> 2;
         }
