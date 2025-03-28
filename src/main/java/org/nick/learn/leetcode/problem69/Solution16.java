@@ -14,9 +14,9 @@ public class Solution16 {
      * 整方根函数
      * 手算开平方方法（二进制） 并尝试简化
      */
-    public int mySqrt(int n) {
+    public int mySqrt(int x) {
         int mask = 1 << 30;
-        while (mask > n) {
+        while (mask > x) {
             mask >>= 2;
         }
 
@@ -24,8 +24,8 @@ public class Solution16 {
         while (mask != 0) {
             int tmp = result | mask;
             result = result >> 1;
-            if (n >= tmp) {
-                n = n - tmp;
+            if (x >= tmp) {
+                x = x - tmp;
                 result = result | mask;
             }
             mask = mask >> 2;
