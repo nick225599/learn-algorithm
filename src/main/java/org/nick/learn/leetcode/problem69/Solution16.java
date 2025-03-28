@@ -15,6 +15,13 @@ public class Solution16 {
      * 手算开平方方法（二进制） 并尝试简化
      */
     public int mySqrt(int x) {
+        if (x < 0) {
+            throw new IllegalArgumentException();
+        }
+        if (x == 0 || x == 1) {
+            return x;
+        }
+        
         int mask = 1 << 30;
         while (mask > x) {
             mask >>= 2;
