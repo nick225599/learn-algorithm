@@ -6,10 +6,13 @@ package org.nick.learn.leetcode.problem69;
  */
 public class Solution11 {
     public static void main(String[] args) {
-        int x = 4;
+        int x = 7;
         System.out.println(new Solution11().mySqrt(x));
     }
 
+    /**
+     * 求解 n 的平方根的整数部分
+     */
     public int mySqrt(int n) {
         int x = n;
         int cm = 0;
