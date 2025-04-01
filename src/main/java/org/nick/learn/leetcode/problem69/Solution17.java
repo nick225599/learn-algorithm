@@ -1,5 +1,7 @@
 package org.nick.learn.leetcode.problem69;
 
+import java.math.BigInteger;
+
 public class Solution17 {
     public static void main(String[] args) {
         int n = 25;
@@ -11,6 +13,7 @@ public class Solution17 {
     /**
      * 计算整方根函数
      * 采用手算开平方方法（二进制）
+     * https://www.cnblogs.com/Matrix_Yao/archive/2009/07/28/1532883.html
      */
     public int mySqrt(int x) {
         int temp;
