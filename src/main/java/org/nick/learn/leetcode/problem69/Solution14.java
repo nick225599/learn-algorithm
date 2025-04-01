@@ -32,11 +32,10 @@ public class Solution14 {
         int m = 1 << 30;
         while (m > 0) {
             int tmp = y | m;
+            y >>= 1;
             if (n >= tmp) {
                 n -= tmp;
-                y = (y >> 1) | m;
-            } else {
-                y >>= 1;
+                y = y | m;
             }
             m >>= 2;
         }
