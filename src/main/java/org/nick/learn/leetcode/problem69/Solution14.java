@@ -2,42 +2,46 @@ package org.nick.learn.leetcode.problem69;
 
 public class Solution14 {
     public static void main(String[] args) {
-        int n = 0b11;
-        System.out.println("Binary sqrt: " + Integer.toBinaryString(n));
-        System.out.println("Decimal sqrt: " + n);
-        int sqrt = new Solution14().mySqrt(n);
-        System.out.println("Binary sqrt: " + Integer.toBinaryString(sqrt));
-        System.out.println("Decimal sqrt: " + sqrt);
-    }
-
-    /**
-     * 整方根函数
-     * 手算开平方方法（二进制）
-     */
-    public int mySqrt(int n) {
-        if (n < 0) throw new IllegalArgumentException();
-        if (n == 0) return 0;
-
-        int result = 0; // 已确定的平方根
-        int bit = 1 << 30;
-
-        while (bit > n) {
-            bit >>= 2;
-            System.out.println("tmp bit: " + Integer.toBinaryString(bit));
-        }
-        System.out.println("Binary bit: " + Integer.toBinaryString(bit));
-        System.out.println("Decimal bit: " + bit);
-
-        while (bit != 0) {
-            int temp = result | bit;
-            if (n >= temp) {
-                n -= temp;
-                result = (result >> 1) | bit;
-            } else {
-                result >>= 1;
+        Solution14 solution = new Solution14();
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            if (solution.sqrt1(i) != solution.sqrt2(i)) {
+                System.err.println(i + ", error!!!");
             }
-            bit >>= 2;
+            if (i % 10_0000_0000 == 0) {
+                System.out.println("processed: " + i);
+            }
         }
-        return result;
     }
+
+    public int sqrt1(int n) {
+        int y = 0;
+        int m = 1 << 30;
+        while (m > 0) {
+            long tmp = (2L * y + m) * m;
+            if (n >= tmp) {
+                n -= (int) tmp;
+                y = y + m;
+            }
+            m >>= 1;
+        }
+        return y;
+    }
+
+    public int sqrt2(int n) {
+        int y = 0;
+        int m = 1 << 30;
+        while (m > 0) {
+            int tmp = y | m;
+            if (n >= tmp) {
+                n -= tmp;
+                y = (y >> 1) | m;
+            } else {
+                y >>= 1;
+            }
+            m >>= 2;
+        }
+        return y;
+    }
+
+    //TODO nick 20250401 为啥 sqrt1 和 sqrt2 是等价的？？？
 }
