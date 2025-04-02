@@ -17,7 +17,7 @@ public class Solution14 {
         int y = 0;
         int m = 1 << 30;
         while (m > 0) {
-            long tmp = (2L * y + m) * m;
+            long tmp = (long) ((y << 1) + m) * m;
             if (n >= tmp) {
                 n -= (int) tmp;
                 y = y + m;
