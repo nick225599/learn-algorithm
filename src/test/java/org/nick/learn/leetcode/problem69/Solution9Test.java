@@ -82,13 +82,4 @@ class Solution9Test {
         }
         es.shutdown();
     }
-
-    @Test
-    void test3() throws Exception {
-        int x;
-
-        System.out.println(solution.mySqrt());
-    }
-
-
 }
