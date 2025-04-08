@@ -22,7 +22,7 @@ public class Solution1 {
      * 递归解法
      * <p>
      * 时间复杂度 O(n)
-     * 空间复杂度 O(logn)
+     * 空间复杂度 O(logn)，错了，是 O(N) 最坏情况下二叉树变成了链表，树高度等于元素个数 N
      */
     public TreeNode invertTree(TreeNode root) {
         if (null == root) {
