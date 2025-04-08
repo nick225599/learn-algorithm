@@ -14,4 +14,5 @@ class Solution1Test {
         assertEquals("world hello", str2);
         System.out.println("测试通过");
     }
+
 }
