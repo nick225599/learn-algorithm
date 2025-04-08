@@ -8,11 +8,10 @@ public class Solution1 {
     public void reverseString(char[] s) {
         int n = s.length;
         for (int i = 0; i < (n / 2); i++) {
+            int j = n - 1 - i;
             char tmp = s[i];
-            s[i] = s[n - 1 - i];
-            s[n - 1 - i] = tmp;
+            s[i] = s[j];
+            s[j] = tmp;
         }
-        System.out.println("after reverse: " + new String(s));
-
     }
 }
