@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Solution1Test {
 
-    Solution2 solution = new Solution2();
+    Solution3 solution = new Solution3();
 
     @Test
     void isValidBST() {
