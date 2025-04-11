@@ -1,52 +1,64 @@
 package org.nick.learn.leetcode.problem200;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Solution2 {
 
     /**
      * 广度优先
      */
     public int numIslands(char[][] grid) {
-        int queueIdx = 0;
-        int[][] queue = new int[grid.length * grid[0].length][2];
+        int sum = 0;
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == '1') {
-                    queue[queueIdx++] = new int[]{i,j};
+                    grid[i][j] = 'x';
+                    bfs(grid, i, j);
+                    sum++;
                 }
-            }
-        }
-        int sum = 0;
-        for (int[] ints : queue) {
-            int x = ints[0];
-            int y = ints[1];
-            if (grid[x][y] == '1') {
-                tagIsland(grid, x, y);
-                sum++;
             }
         }
         return sum;
     }
 
-    private void tagIsland(char[][] grid, int i, int j) {
-        if (i < 0 || i >= grid.length
-                || j < 0 || j >= grid[0].length
-                || grid[i][j] != '1') {
-            return;
-        }
+    private void bfs(char[][] grid, int i, int j) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{i, j});
 
-        // 标记当前陆地
-        grid[i][j] = 'x';
+        do{
+            int[] xy = queue.poll();
+            int x = xy[0]; int y = xy[1];
+            int m, n;
+            // 左
+            m = x; n = y - 1;
+            if(m >= 0 && m < grid.length && n >= 0 && n < grid[0].length && grid[m][n] == '1'){
+                grid[m][n] = 'x';
+                queue.add(new int[]{m, n});
+            }
 
-        // 标记上边陆地
-        tagIsland(grid, i, j - 1);
+            // 右
+            m = x; n = y + 1;
+            if(m >= 0 && m < grid.length && n >= 0 && n < grid[0].length && grid[m][n] == '1'){
+                grid[m][n] = 'x';
+                queue.add(new int[]{m, n});
+            }
 
-        // 标记下边陆地
-        tagIsland(grid, i, j + 1);
+            // 上
+            m = x - 1; n = y;
+            if(m >= 0 && m < grid.length && n >= 0 && n < grid[0].length && grid[m][n] == '1'){
+                grid[m][n] = 'x';
+                queue.add(new int[]{m, n});
+            }
 
-        // 标记左边陆地
-        tagIsland(grid, i - 1, j);
+            // 下
+            m = x + 1; n = y;
+            if(m >= 0 && m < grid.length && n >= 0 && n < grid[0].length && grid[m][n] == '1'){
+                grid[m][n] = 'x';
+                queue.add(new int[]{m, n});
+            }
+        } while (!queue.isEmpty());
 
-        // 标记右边陆地
-        tagIsland(grid, i + 1, j);
     }
+
 }

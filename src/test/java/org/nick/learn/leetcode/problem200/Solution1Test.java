@@ -21,12 +21,24 @@ class Solution1Test {
 
     @Test
     void numIslands1() {
-        // [["1","1","1"],["0","1","0"],["1","1","1"]]
+        // [[1,1,1],[0,1,0],[1,1,1]]
         char[][] gird = new char[][]{
                 {'1', '1', '1'},
                 {'0', '1', '0'},
                 {'1', '1', '1'}
         };
         assertEquals(1, solution.numIslands(gird));
+    }
+
+    @Test
+    void numIslands2() {
+        char[][] gird = new char[][]{
+                {'1', '1', '0', '0', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '1', '0', '0'},
+                {'0', '0', '0', '1', '1'}
+        };
+        assertEquals(3, solution.numIslands(gird));
+
     }
 }
