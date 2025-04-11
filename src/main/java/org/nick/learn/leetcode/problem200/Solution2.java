@@ -1,21 +1,27 @@
 package org.nick.learn.leetcode.problem200;
 
-public class Solution1 {
+public class Solution2 {
 
     /**
-     * 深度优先
-     * <p>
-     * 时间复杂度 O(M * N)
-     * 空间复杂度 O(M * N)
+     * 广度优先
      */
     public int numIslands(char[][] grid) {
-        int sum = 0;
+        int queueIdx = 0;
+        int[][] queue = new int[grid.length * grid[0].length][2];
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == '1') {
-                    tagIsland(grid, i, j);
-                    sum++;
+                    queue[queueIdx++] = new int[]{i,j};
                 }
+            }
+        }
+        int sum = 0;
+        for (int[] ints : queue) {
+            int x = ints[0];
+            int y = ints[1];
+            if (grid[x][y] == '1') {
+                tagIsland(grid, x, y);
+                sum++;
             }
         }
         return sum;
