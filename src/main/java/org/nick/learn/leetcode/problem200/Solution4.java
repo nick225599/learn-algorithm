@@ -76,7 +76,7 @@ public class Solution4 {
 
         // 递归路径压缩
         public int find(int i) {
-            while (parents[i] != i) {
+            if (parents[i] != i) {
                 parents[i] = find(parents[i]);
             }
             return parents[i];
