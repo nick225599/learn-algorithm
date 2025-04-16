@@ -1,8 +1,8 @@
 package org.nick.learn.leetcode.problem36;
 
-public class Solution2 {
+public class Solution3 {
 
-    // 用位图 + 位运算来快速判重，思路跟 Solution2 一样的，只是尽可能降低常数系数
+    // 用位运算
     public boolean isValidSudoku(char[][] board) {
         int n = board.length;
 
