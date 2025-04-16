@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Solution1Test {
 
-    Solution2 solution = new Solution2();
+    Solution4 solution = new Solution4();
+//    Solution2 solution = new Solution2();
 
     @Test
     void numIslands() {

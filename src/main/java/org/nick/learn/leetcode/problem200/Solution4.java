@@ -1,6 +1,6 @@
 package org.nick.learn.leetcode.problem200;
 
-import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 public class Solution4 {
 
@@ -8,85 +8,116 @@ public class Solution4 {
      * 并查集
      */
     public int numIslands(char[][] grid) {
-        //TODO nick 20250415 怎么运用并查集？
+        DSU dsuInstance = new DSU(grid);
+
+        // 怎么运用并查集？
         // 怎么初始化整个并查集？
         // A： 将 (x, y) 二位坐标转换为一个数字 i = x * 列数 + y
         // 遍历每个元素，如果是 1 判断每个元素是否要和前面 N 个岛屿进行合并？
-        // 最后怎么统计岛屿数量？
+        // A： 如果是 1 则判断上下左右是不是也是 1 ，也是 1 的话就跟当前点进行合并
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1') {
+                    grid[i][j] = '0';
 
-        return -1;
-    }
-
-    @AllArgsConstructor
-    private static class DSUNode {
-        private  int x;
-        private  int y;
-
-        @Override
-        public boolean equals(Object obj) {
-            if (!(obj instanceof DSUNode node)) {
-                return false;
+                    // 上
+                    if (i - 1 >= 0 && grid[i - 1][j] == '1') {
+                        dsuInstance.union(i, j, i - 1, j);
+                    }
+                    // 下
+                    if (i + 1 < grid.length && grid[i + 1][j] == '1') {
+                        dsuInstance.union(i, j, i + 1, j);
+                    }
+                    // 左
+                    if (j - 1 >= 0 && grid[i][j - 1] == '1') {
+                        dsuInstance.union(i, j, i, j - 1);
+                    }
+                    // 右
+                    if (j + 1 < grid[0].length && grid[i][j + 1] == '1') {
+                        dsuInstance.union(i, j, i, j + 1);
+                    }
+                }
             }
-            return node.x == this.x && node.y == this.y;
         }
+        // 最后怎么统计岛屿数量？
+        // A： 初始岛屿数就是所有元素的数量，合并一次，数量减 1，太机智了。
+        return dsuInstance.islandsNum;
     }
 
-    static class DisjointSetUnion200 {
-        private DSUNode[][] parent;
+    static class DSU {
+        int[] parents;
+        int[] depths;
 
-        public DSUNode getNode(int x, int y){
-            return parent[x][y];
-        }
+        int islandsNum;
 
-        public boolean isRoot(int x, int y){
-            DSUNode node =  getNode(x,y);
-            return node.x == x && node.y == y;
-        }
+        int rowNum;
+        int columnNum;
 
-        public DisjointSetUnion200(char[][] gird) {
-            parent = new DSUNode[gird.length][gird[0].length];
-            for (int i = 0; i < gird.length; i++) {
-                for (int j = 0; j < gird[0].length; j++) {
-                    parent[i][j] = new DSUNode(i, j);
+        public DSU(char[][] grid) {
+            islandsNum = 0;
+
+            rowNum = grid.length;
+            columnNum = grid[0].length;
+
+            int n = rowNum * columnNum;
+
+            parents = new int[n];
+            depths = new int[n];
+
+            for (int i = 0; i < rowNum; i++) {
+                for (int j = 0; j < columnNum; j++) {
+                    int tmp = getIndex(i, j);
+                    parents[tmp] = tmp;
+                    depths[tmp] = 1;
+                    if (grid[i][j] == '1') {
+                        islandsNum++;
+                    }
                 }
             }
         }
 
-        // 查某个元素所在集合的代表元素
-        public DSUNode find(DSUNode element) {
-            // 优化： 路径压缩，将沿路所有节点直接挂到代表元素上
-            // 采用双迭代版本，不递归，也不额外使用内存空间
-            DSUNode curNode = element;
-            while(!isRoot(curNode.x, curNode.y)){
-                curNode = getNode(curNode.x, curNode.y);
-            }
-            DSUNode root = curNode;
-
-            // 路径优化
-            curNode = element;
-            while(!isRoot(curNode.x, curNode.y)){
-                curNode = parent[curNode.x][curNode.y];
-                parent[curNode.x][curNode.y] = root;
+        public int find(int i) {
+            int j = i;
+            while (parents[j] != j) {
+                j = parents[j];
             }
 
-            return root;
+            // 路径压缩优化
+            int k = i;
+            while (parents[k] != k) {
+                k = parents[k];
+                parents[k] = j;
+            }
+
+            return j;
         }
 
-        // 判断元素 A 和元素 B 是否是同一个集合中的元素
-        public boolean isSameSet(DSUNode elementA, DSUNode elementB) {
-            return find(elementA).equals(find(elementB));
+        public int getIndex(int rowIndex, int columnIndex) {
+            return rowIndex * columnNum + columnIndex;
         }
 
-        // 合并元素 A 与元素 B 所在的集合
-        public void unionSet(DSUNode elementA, DSUNode elementB) {
-            DSUNode rootA = find(elementA);
-            DSUNode rootB = find(elementB);
-            if(!rootA.equals(rootB)){
-                rootA.x = rootB.x;
-                rootA.y = rootB.y;
+        public void union(int x1, int y1, int x2, int y2) {
+            int a = getIndex(x1, y1);
+            int b = getIndex(x2, y2);
+            int parentA = find(a);
+            int parentB = find(b);
+
+            if (parentA == parentB) {
+                return;
             }
-            //TODO 优化: 小挂大
+
+            // 优化二、按秩合并
+            if (depths[parentA] <= depths[parentB]) {
+                // A 挂 B
+                parents[parentA] = parentB;
+                depths[parentB] = depths[parentA] + depths[parentB];
+            } else {
+                // B 挂 A
+                parents[parentB] = parentA;
+                depths[parentA] = depths[parentA] + depths[parentB];
+            }
+
+            islandsNum--;
         }
     }
-
 }
