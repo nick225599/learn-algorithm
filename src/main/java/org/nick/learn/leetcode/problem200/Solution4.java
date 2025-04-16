@@ -1,7 +1,5 @@
 package org.nick.learn.leetcode.problem200;
 
-import lombok.Getter;
-
 public class Solution4 {
 
     /**
@@ -46,7 +44,7 @@ public class Solution4 {
 
     static class DSU {
         int[] parents;
-        int[] depths;
+        int[] rank;
 
         int islandsNum;
 
@@ -62,34 +60,26 @@ public class Solution4 {
             int n = rowNum * columnNum;
 
             parents = new int[n];
-            depths = new int[n];
+            rank = new int[n];
 
             for (int i = 0; i < rowNum; i++) {
                 for (int j = 0; j < columnNum; j++) {
+                    if (grid[i][j] != '1') {
+                        continue;
+                    }
                     int tmp = getIndex(i, j);
                     parents[tmp] = tmp;
-                    depths[tmp] = 1;
-                    if (grid[i][j] == '1') {
-                        islandsNum++;
-                    }
+                    islandsNum++;
                 }
             }
         }
 
+        // 递归路径压缩
         public int find(int i) {
-            int j = i;
-            while (parents[j] != j) {
-                j = parents[j];
+            while (parents[i] != i) {
+                parents[i] = find(parents[i]);
             }
-
-            // 路径压缩优化
-            int k = i;
-            while (parents[k] != k) {
-                k = parents[k];
-                parents[k] = j;
-            }
-
-            return j;
+            return parents[i];
         }
 
         public int getIndex(int rowIndex, int columnIndex) {
@@ -107,14 +97,14 @@ public class Solution4 {
             }
 
             // 优化二、按秩合并
-            if (depths[parentA] <= depths[parentB]) {
-                // A 挂 B
-                parents[parentA] = parentB;
-                depths[parentB] = depths[parentA] + depths[parentB];
+            if (rank[parentA] < rank[parentB]) {
+                parents[parentA] = parentB; // A 挂 B
+            } else if (rank[parentA] > rank[parentB]) {
+                parents[parentB] = parentA; // B 挂 A
             } else {
-                // B 挂 A
-                parents[parentB] = parentA;
-                depths[parentA] = depths[parentA] + depths[parentB];
+                // 深度相同，任意选择一个方向合并
+                parents[parentA] = parentB;
+                rank[parentB]++;
             }
 
             islandsNum--;
