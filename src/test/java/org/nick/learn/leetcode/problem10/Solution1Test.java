@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Solution1Test {
 
-    Solution1 solution = new Solution1();
+    Solution2 solution = new Solution2();
 
     @Test
     void isMatch() {
