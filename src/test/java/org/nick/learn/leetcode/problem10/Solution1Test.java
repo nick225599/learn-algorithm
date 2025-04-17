@@ -45,7 +45,7 @@ class Solution1Test {
         assertEquals(Pattern.matches(p, s), solution.isMatch(s, p));
     }
 
-    // 自己穷举的写法无法处理这种需要回溯处理的情况
+    // nick 20250417 自己穷举的写法无法处理这种需要回溯处理的情况
     @Test
     void isMatch6() {
         String s = "aaa";
