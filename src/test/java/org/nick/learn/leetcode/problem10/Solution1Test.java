@@ -2,8 +2,9 @@ package org.nick.learn.leetcode.problem10;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.regex.Pattern;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class Solution1Test {
 
@@ -13,21 +14,42 @@ class Solution1Test {
     void isMatch() {
         String s = "aa";
         String p = "a";
-        assertFalse(solution.isMatch(s, p));
+        assertEquals(Pattern.matches(p, s), solution.isMatch(s, p));
     }
 
     @Test
     void isMatch2() {
         String s = "ab";
         String p = ".*";
-        assertFalse(solution.isMatch(s, p));
+        assertEquals(Pattern.matches(p, s), solution.isMatch(s, p));
     }
 
-    //TODO 20250416 nick这段代码调试失败了，再看看
     @Test
     void isMatch3() {
         String s = "aa";
         String p = "a*";
-        assertTrue(solution.isMatch(s, p));
+        assertEquals(Pattern.matches(p, s), solution.isMatch(s, p));
+    }
+
+    @Test
+    void isMatch4() {
+        String s = "aab";
+        String p = "c*a*b";
+        assertEquals(Pattern.matches(p, s), solution.isMatch(s, p));
+    }
+
+    @Test
+    void isMatch5() {
+        String s = "ab";
+        String p = ".*c";
+        assertEquals(Pattern.matches(p, s), solution.isMatch(s, p));
+    }
+
+    // 自己穷举的写法无法处理这种需要回溯处理的情况
+    @Test
+    void isMatch6() {
+        String s = "aaa";
+        String p = "a*a";
+        assertEquals(Pattern.matches(p, s), solution.isMatch(s, p));
     }
 }
