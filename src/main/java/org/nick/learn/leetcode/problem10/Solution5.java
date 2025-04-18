@@ -20,7 +20,7 @@ public class Solution5 {
                 if (i == 0) {
                     if (j == 0) {
                         dp[i][j] = 1;
-                    } else if (j > 2) {
+                    } else if (j >= 2 && p.charAt(j - 1) == '*') {
                         dp[i][j] = dp[i][j - 2];
                     } else {
                         dp[i][j] = 0;
