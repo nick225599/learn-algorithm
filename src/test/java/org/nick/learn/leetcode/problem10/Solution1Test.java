@@ -8,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Solution1Test {
 
-    Solution2 solution = new Solution2();
+    Solution3 solution = new Solution3();
 
     @Test
-    void isMatch() {
+    void isMatch1() {
         String s = "aa";
         String p = "a";
         assertEquals(Pattern.matches(p, s), solution.isMatch(s, p));

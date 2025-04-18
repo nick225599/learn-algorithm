@@ -6,24 +6,32 @@ public class Solution2 {
         int m = s.length();
         int n = p.length();
 
-        boolean[][] f = new boolean[m + 1][n + 1];
-        f[0][0] = true;
+        int[][] dp = new int[m + 1][n + 1];
+        for (int i = 0; i < dp.length; i++) {
+            for (int j = 0; j < dp[0].length; j++) {
+                dp[i][j] = -1;
+            }
+        }
+        dp[0][0] = 1;
 
         for (int i = 0; i <= s.length(); i++) {
             for (int j = 1; j <= p.length(); j++) {
-                if (p.charAt(j - 1) == '*') {
-                    f[i][j] = f[i][j - 2];
-                    if (match(s, p, i, j - 1)) {
-                        f[i][j] = f[i - 1][j] || f[i][j - 2];
+                if (p.charAt(j - 1) != '*') {
+                    if (match(s, p, i, j)) {
+                        dp[i][j] = dp[i - 1][j - 1];
+                    } else {
+                        dp[i][j] = 0; // 并没有提前终止
                     }
                 } else {
-                    if (match(s, p, i, j)) {
-                        f[i][j] = f[i - 1][j - 1];
+                    if (match(s, p, i, j - 1)) {
+                        dp[i][j] = (dp[i - 1][j] == 1 || dp[i][j - 2] == 1) ? 1 : 0;
+                    } else {
+                        dp[i][j] = dp[i][j - 2];
                     }
                 }
             }
         }
-        return f[m][n];
+        return dp[m][n] == 1;
     }
 
     private boolean match(String s, String p, int i, int j) {
