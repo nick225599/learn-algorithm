@@ -22,6 +22,6 @@ class Problem332Solution1Test {
     @Test
     void coinChange3() {
         int[] coins = new int[]{411,412,413,414,415,416,417,418,419,420,421,422};
-        assertEquals(20, solution.coinChange(coins, 9864));
+        assertEquals(24, solution.coinChange(coins, 9864));
     }
 }

@@ -21,6 +21,7 @@ public class Problem332Solution1 {
     }
 
     private void coinChange(int[] coins, int amount, int sum, int count, int start) {
+        callCount++;
         if (sum == amount) {
             minCount = count;
             return;
@@ -34,7 +35,7 @@ public class Problem332Solution1 {
         for (int i = start; i >= 0; i--) {
             if (sum <= amount - coins[i] && (minCount == -1 || minCount > count)) {
                 coinChange(coins, amount, sum + coins[i], count + 1, i);
-                callCount++;
+
             }
         }
     }
