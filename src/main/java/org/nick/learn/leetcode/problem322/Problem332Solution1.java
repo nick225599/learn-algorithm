@@ -1,32 +1,33 @@
 package org.nick.learn.leetcode.problem322;
 
+import java.util.Arrays;
+
 public class Problem332Solution1 {
 
+    private int minCount = -1;
+
     public int coinChange(int[] coins, int amount) {
-        return coinChange(coins, amount, 0, 0, 0);
+        Arrays.sort(coins);
+        coinChange(coins, amount, 0, 0);
+        return minCount;
     }
 
-
-    public int coinChange(int[] coins, int amount, int i, int sum, int count) {
-        if(sum == amount){
-            return count;
+    private void coinChange(int[] coins, int amount, int sum, int count) {
+        if (sum > amount || (minCount != -1 && count > minCount)) {
+            return;
         }
-
-        // 不放入
-        int notPut = count;
-        if (i < coins.length) {
-            notPut = coinChange(coins, amount, i + 1, sum, count);
+        if (sum == amount) {
+            if (minCount == -1) {
+                minCount = count;
+            } else {
+                minCount = Math.min(count, minCount);
+            }
         }
-
-        // 放入
-        int put = count;
-        if (sum + coins[i] <= amount) {
-            put = coinChange(coins, amount, i, sum + coins[i], count + 1);
+        for (int i = coins.length - 1; i >= 0; i--) {
+            if (sum <= amount - coins[i]) {
+                coinChange(coins, amount, sum + coins[i], count + 1);
+            }
         }
-
-        //TODO nick 不会写回溯，摊牌了
-        return -1;
     }
-
 
 }
