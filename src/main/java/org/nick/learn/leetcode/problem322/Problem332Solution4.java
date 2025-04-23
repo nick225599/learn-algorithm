@@ -17,6 +17,11 @@ public class Problem332Solution4 {
         }
 
         long[] dp = new long[amount + 1];
+
+        // nick 20250423 因为题目限制了 amount 范围：0 <= amount <= 10^4
+        // 所以不用填充 Integer.Max_value ，不然第 29 行会越界，为了避免越界我用了 long[]
+        // 而官方题解，用了 Arrays.fill(dp, amount + 1)， 官方题解更巧妙，
+        // 另外 return dp[amount] > amount ? -1 也比我的 == Integer.MAX_VAL 可读性更强
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
 
