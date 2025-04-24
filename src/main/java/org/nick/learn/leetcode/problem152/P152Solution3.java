@@ -4,6 +4,8 @@ public class P152Solution3 {
 
     /**
      * 评论区看到的“前后缀乘积法”
+     *
+     * 时间复杂度 O(n)，空间复杂度 O(1)，与 P152Solution2 动态规划一样
      */
     public int maxProduct(int[] nums) {
         int len = nums.length;
