@@ -17,16 +17,16 @@ public class P120Solution1 {
     public int minimumTotal(List<List<Integer>> triangle) {
         int[] dp = new int[triangle.getLast().size()];
         dp[0] = triangle.getFirst().getFirst();
-        for (int l = 1; l < triangle.size(); l++) {
-            List<Integer> level = triangle.get(l);
-            for (int i = level.size() - 1; i >= 0; i--) {
-                int val = level.get(i);
-                if (i == 0) {
-                    dp[i] = dp[i] + val;
-                } else if (i == level.size() - 1) {
-                    dp[i] = dp[i - 1] + val;
+        for (int i = 1; i < triangle.size(); i++) {
+            List<Integer> level = triangle.get(i);
+            for (int j = level.size() - 1; j >= 0; j--) {
+                int val = level.get(j);
+                if (j == 0) {
+                    dp[j] = dp[j] + val;
+                } else if (j == level.size() - 1) {
+                    dp[j] = dp[j - 1] + val;
                 } else {
-                    dp[i] = Math.min(dp[i - 1], dp[i]) + val;
+                    dp[j] = Math.min(dp[j - 1], dp[j]) + val;
                 }
             }
         }
