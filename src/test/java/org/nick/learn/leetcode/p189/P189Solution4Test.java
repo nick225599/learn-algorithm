@@ -6,8 +6,8 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class P189Solution3Test {
-    P189Solution3 solution = new P189Solution3();
+class P189Solution4Test {
+    P189Solution4 solution = new P189Solution4();
 
     @Test
     void rotate() {
