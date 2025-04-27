@@ -6,16 +6,17 @@ package org.nick.learn.leetcode.p122;
 public class P122Solution3 {
 
     /**
-     * 优化代码，将其优化成标准的贪心算法
+     * 动态规划
      */
     public int maxProfit(int[] prices) {
-        int sum = 0;
-        for (int i = 1; i < prices.length; i++) {
-            int tmp = prices[i] - prices[i - 1];
-            if (tmp > 0) {
-                sum += tmp;
-            }
+        int hold = -prices[0];  // 持股
+        int sell = 0;           // 抛售
+        for (int i = 0; i < prices.length; i++) {
+            int newHold = Math.max(hold, sell - prices[i]);
+            int newSell = Math.max(sell, hold + prices[i]);
+            hold = newHold;
+            sell = newSell;
         }
-        return sum;
+        return sell;
     }
 }
