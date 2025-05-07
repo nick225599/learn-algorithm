@@ -10,6 +10,7 @@ public class P274Solution2 {
      * 计数排序
      *
      * nick 20250507 有 BUG 看下官方题解怎么处理计数排序的结果的
+     * 倒序试错
      */
     public int hIndex(int[] citations) {
         int n = citations.length;
