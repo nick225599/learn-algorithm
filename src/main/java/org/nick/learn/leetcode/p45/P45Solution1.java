@@ -5,31 +5,23 @@ package org.nick.learn.leetcode.p45;
  * @see <a href="https://leetcode.cn/problems/jump-game-ii/?envType=study-plan-v2&envId=top-interview-150">力扣 45. 跳跃游戏 II</a>
  */
 public class P45Solution1 {
-    public int jump(int[] nums) {
-        int n = nums.length;
-        if(n <= 1){
-            return 1;
-        }
-
-        int rightEnd = 0;
-        int times = 0;
-        for (int i = 0; i < n; ) {
-            for (int j = 1; j < nums[i]; j++) {
-                int tmpI = i + j;
-                if (tmpI >= n) {
-                    return times;
-                }
-                int tmpRightEnd = tmpI + nums[tmpI];
-                if (tmpRightEnd > rightEnd) {
-                    rightEnd = tmpRightEnd;
+        public int jump(int[] nums) {
+            int length = nums.length;
+            int end = 0;
+            int maxPosition = 0;
+            int steps = 0;
+            for (int i = 0; i < length - 1; i++) {
+                maxPosition = Math.max(maxPosition, i + nums[i]);
+                if (i == end) {
+                    end = maxPosition;
+                    steps++;
                 }
             }
-            i = rightEnd;
-            rightEnd = 0;
-            times += 2;
-
+            return steps;
         }
-        return times;
-    }
-
+//
+//    作者：力扣官方题解
+//    链接：https://leetcode.cn/problems/jump-game-ii/solutions/230241/tiao-yue-you-xi-ii-by-leetcode-solution/
+//    来源：力扣（LeetCode）
+//    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 }
