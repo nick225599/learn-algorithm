@@ -18,13 +18,19 @@ public class P135Solution4 {
                 int cur = (ratings[i - 1] == ratings[i]) ? 1 : pre + 1;
                 sum += cur;
                 pre = cur;
-//                asc++; // asc 不用 == 0？
-                asc = cur; // 需要的，直接用 cur 的值赋值一下就行
+
+                //TODO nick 20250508 这段为啥这么写不对？
+//                if (ratings[i - 1] < ratings[i]) {
+//                    asc++;
+//                } else {
+//                    asc = 1;
+//                }
+                asc = cur;
             } else {
                 desc++;
-                if(desc == asc){
-                    desc++; // asc 不用 -- ？
-                    // 不用在 if(){} 中能够被正确地赋值为 1
+                if (desc == asc) {
+                    desc++;
+                    // asc--; // TODO NICK 20250508 这段为啥没必要？
                 }
                 sum += desc;
                 pre = 1;
