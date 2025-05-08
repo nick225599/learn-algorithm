@@ -1,5 +1,7 @@
 package org.nick.learn.leetcode.p380;
 
+import java.util.*;
+
 /**
  * 力扣 380. O(1) 时间插入、删除和获取随机元素
  *
@@ -7,24 +9,44 @@ package org.nick.learn.leetcode.p380;
  */
 public class P380Solution2 {
     class RandomizedSet {
-
+        private List<Integer> nums;
+        private Map<Integer, Integer> indices; // 不能换用 hashSet 因为要存下标 用来快速删除 和随机访问
+        private Random random;
 
         public RandomizedSet() {
-            //TODO nick 20250507 看下官方题解怎么做的
+            nums = new ArrayList<>();
+            indices = new HashMap<>();
+            random = new Random();
         }
 
         public boolean insert(int val) {
-            return false;
+            if (indices.containsKey(val)) {
+                return false;
+            }
+            nums.add(val);
+            indices.put(val, nums.size() - 1);
+            return true;
         }
 
         public boolean remove(int val) {
-            return false;
+            if (!indices.containsKey(val)) {
+                return false;
+            }
+
+            int index = indices.get(val);
+            int lastVal = nums.getLast();
+            nums.set(index, lastVal);
+            indices.put(lastVal, index);
+            nums.removeLast();
+            indices.remove(val);
+            return true;
         }
 
         public int getRandom() {
-            return -1;
+            return nums.get(random.nextInt(nums.size()));
         }
     }
+
 }
 
 
