@@ -21,4 +21,11 @@ class P135Solution4Test {
         assertEquals(13, sum);
     }
 
+    @Test
+    void candy3() {
+        int[] ratings = new int[]{5,3,7,3};
+        int sum = solution.candy(ratings);
+        assertEquals(6, sum);
+    }
+
 }
