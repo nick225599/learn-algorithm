@@ -11,29 +11,32 @@ public class P135Solution4 {
         int sum = 1;
         int asc = 1;
         int desc = 0;
-        int pre = 1;
+        int preNum = 1;
+        int curNum;
         for (int i = 1; i < n; i++) {
-            if (ratings[i - 1] <= ratings[i]) {
-                desc = 0;
-                int cur = (ratings[i - 1] == ratings[i]) ? 1 : pre + 1;
-                sum += cur;
-                pre = cur;
-
-                //TODO nick 20250508 这段为啥这么写不对？
-//                if (ratings[i - 1] < ratings[i]) {
-//                    asc++;
-//                } else {
-//                    asc = 1;
-//                }
-                asc = cur;
-            } else {
+            int preRate = ratings[i - 1];
+            int curRate = ratings[i];
+            if (preRate < curRate) {
+                curNum = preNum + 1;
+                sum += curNum;
+                asc++;
+                preNum = curNum;
+            } else if (preRate > curRate) {
+                curNum = 1;
+                sum += curNum;
                 desc++;
-                if (desc == asc) {
+                preNum = curNum;
+                if (asc == desc) {
                     desc++;
-                    // asc--; // TODO NICK 20250508 这段为啥没必要？
+                    asc--;
                 }
-                sum += desc;
-                pre = 1;
+                sum += (desc - 1);
+            } else {
+                curNum = 1;
+                sum += curNum;
+                asc = 1;
+                desc = 0;
+                preNum = curNum;
             }
         }
 
