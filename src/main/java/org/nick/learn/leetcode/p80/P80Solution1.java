@@ -1,9 +1,9 @@
-package org.nick.learn.leetcode.p28;
+package org.nick.learn.leetcode.p80;
 
 /**
  * 力扣 80. 删除有序数组中的重复项 II
  */
-public class P28Solution1 {
+public class P80Solution1 {
     public int removeDuplicates(int[] nums) {
         int n = nums.length;
         int rs = 0;

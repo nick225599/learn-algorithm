@@ -1,14 +1,13 @@
-package org.nick.learn.leetcode.p28;
+package org.nick.learn.leetcode.p80;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class P28Solution2Test {
-
-    P28Solution2 solution = new P28Solution2();
+class P80Solution1Test {
+    P80Solution1 solution = new P80Solution1();
 
     @Test
     void removeDuplicates() {

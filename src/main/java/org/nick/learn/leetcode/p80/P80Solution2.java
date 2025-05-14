@@ -1,9 +1,9 @@
-package org.nick.learn.leetcode.p28;
+package org.nick.learn.leetcode.p80;
 
 /**
  * 力扣 80. 删除有序数组中的重复项 II
  */
-public class P28Solution2 {
+public class P80Solution2 {
 
     /**
      * 经过官方题解的点拨，用两个指针就行了，代码更清晰了
