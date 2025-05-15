@@ -1,66 +1,72 @@
 package org.nick.learn.leetcode.p28;
 
 
-
 public class P28Solution3 {
+    // 计算 26 的乘方阶，用于后续快速计算 hash 值
+    long MOD = Integer.MAX_VALUE;
 
     /**
-     * TODO nick 20250514
      * RK 算法 + 取模，不再使用 BigDecimal 类，降低对内存的占用
      */
     public int strStr(String haystack, String needle) {
-        int n = haystack.length();
-        int m = needle.length();
-        java.math.BigDecimal[] arr26 = new java.math.BigDecimal[m];
-        arr26[0] = new java.math.BigDecimal(1);
-        java.math.BigDecimal tmp = new java.math.BigDecimal(1);
-        java.math.BigDecimal bd26 = new java.math.BigDecimal(26);
-        for (int i = 1; i < m; i++) {
-            tmp = tmp.multiply(bd26);
-            arr26[i] = tmp;
-        }
-
-        java.math.BigDecimal hashOfNeedle = this.calculateHash(needle, 0, m, arr26);
-
-        java.math.BigDecimal tmpHash = this.calculateHash(haystack, 0, m, arr26);
-        if(tmpHash.equals(hashOfNeedle)){
+        if (needle == null || needle.isEmpty()) {
             return 0;
         }
-        for(int i = 1; i <= n - m; i++){
+
+        int n = haystack.length();
+        int m = needle.length();
+
+        if(n < m){
+            return -1;
+        }
+
+        long[] arr26 = new long[m];
+        arr26[0] = 1;
+        for (int i = 1; i < m; i++) {
+            arr26[i] = (arr26[i - 1] * 26) % MOD;
+        }
+
+        long hashN = this.calculateHash(needle, m, arr26);
+        long hashH0 = this.calculateHash(haystack, m, arr26);
+        if (hashH0 == hashN) {
+            return 0;
+        }
+
+        long hashHI = hashH0;
+        for (int i = 1; i <= n - m; i++) {
             // 计算 i-1 位在上一次计算时的权重
-            char c0 = haystack.charAt(i - 1);
-            int intC0 = charToInt(c0);
-            java.math.BigDecimal bitWeight = arr26[m - 1].multiply(new java.math.BigDecimal(intC0));
+            char char0 = haystack.charAt(i - 1);
+            long long0 = charToInt(char0);
+            long bitHash0 = long0 * arr26[m - 1];
 
-            char c1 = haystack.charAt(i + m - 1);
-            int intC1 = charToInt(c1);
+            // 根据上一次计算的 hash 值，快速计算出当前位的hash值
+            char char1 = haystack.charAt(i + m - 1);
+            long long1 = charToInt(char1);
 
-            tmpHash = tmpHash
-                    .subtract(bitWeight)
-                    .multiply(new java.math.BigDecimal(26))
-                    .add(new java.math.BigDecimal(intC1));
-
-            if(tmpHash.equals(hashOfNeedle)){
-                return i;
+            hashHI = (hashHI - bitHash0) * 26 + long1;
+            if (hashHI == hashN) {
+                if (haystack.substring(i, i + m).equals(needle)) {
+                    return i;
+                }
             }
         }
 
         return -1;
     }
 
-    private java.math.BigDecimal calculateHash(String str, final int startIndex, final int length, java.math.BigDecimal[] arr26) {
-        java.math.BigDecimal hash = new java.math.BigDecimal(0);
+    private long calculateHash(String str, int length, long[] arr26) {
+        long hash = 0;
         for (int i = 0; i < length; i++) {
-            char c = str.charAt(startIndex + i);
-            int intC = charToInt(c);
-            java.math.BigDecimal bitWeight = arr26[length - i - 1];
-            java.math.BigDecimal bitHash = new java.math.BigDecimal(intC).multiply(bitWeight);
-            hash = hash.add(bitHash);
+            char cChar = str.charAt(i);
+            long cLong = charToInt(cChar);
+            long bitWeight = arr26[length - i - 1];
+            long bitHash = cLong * bitWeight;
+            hash = (hash + bitHash) % MOD;
         }
         return hash;
     }
 
-    private int charToInt(char c) {
+    private long charToInt(char c) {
         return switch (c) {
             case 'a' -> 1;
             case 'b' -> 2;
