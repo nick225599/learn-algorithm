@@ -7,6 +7,8 @@ public class P28Solution3 {
 
     /**
      * RK 算法 + 取模，不再使用 BigDecimal 类，降低对内存的占用
+     * 时间复杂度 O(n + m)，需要频繁的取模运算，常数系数高
+     * 空间复杂度 O(m)
      */
     public int strStr(String haystack, String needle) {
         if (needle == null || needle.isEmpty()) {
