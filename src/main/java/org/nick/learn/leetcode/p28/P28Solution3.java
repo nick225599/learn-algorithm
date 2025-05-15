@@ -43,7 +43,12 @@ public class P28Solution3 {
             char char1 = haystack.charAt(i + m - 1);
             long long1 = charToInt(char1);
 
-            hashHI = (hashHI - bitHash0) * 26 + long1;
+            if(hashHI < bitHash0){
+                hashHI = hashHI + MOD;
+            }
+            // String haystack = "ababcaababcaabc";
+            // String needle   = "      ababcaabc";
+            hashHI = ((hashHI - bitHash0) * 26 + long1) % MOD;
             if (hashHI == hashN) {
                 if (haystack.substring(i, i + m).equals(needle)) {
                     return i;
@@ -97,6 +102,5 @@ public class P28Solution3 {
             default -> throw new IllegalStateException("Unexpected value: " + c);
         };
     }
-
 
 }
