@@ -28,11 +28,6 @@ public class P28Solution4 {
             if (j < 0) {
                 return i;
             }
-
-            // aaabaaa
-            // baaa
-            //    baaa
-
             // 偏移量 = 失配符号在模式串中对应的位置 - 失配符号在模式串中的位置
             int shift = j - badChar[haystack.charAt(i + j)];
 

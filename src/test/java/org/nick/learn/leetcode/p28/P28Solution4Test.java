@@ -57,4 +57,11 @@ class P28Solution4Test {
         Assertions.assertEquals(3, solution.strStr(haystack, needle));
     }
 
+    @Test
+    void strStr8() {
+        String haystack = "aaaaa";
+        String needle = "bba";
+        Assertions.assertEquals(3, solution.strStr(haystack, needle));
+    }
+
 }
