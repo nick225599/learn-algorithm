@@ -2,147 +2,43 @@ package org.nick.learn.leetcode.p28;
 
 import java.util.Arrays;
 
-/**
- * BM 算法
- * 极客时间 王争 提供的实现版本
- */
 public class P28Solution4 {
-    private static final int SIZE = 256; // 全局变量或成员变量
-    private void generateBC(char[] b, int m, int[] bc) {
-        for (int i = 0; i < SIZE; ++i) {
-            bc[i] = -1; // 初始化bc
+
+    /**
+     * BM 算法，仅坏字符规则
+     */
+    public int strStr(String haystack, String needle) {
+        int n = haystack.length();
+        int m = needle.length();
+
+        if (n < m) return -1;
+
+        int[] badChar = new int[123];
+        Arrays.fill(badChar, -1);
+        for (int i = 0; i < m; i++) {
+            badChar[needle.charAt(i)] = i;
         }
-        for (int i = 0; i < m; ++i) {
-            int ascii = (int)b[i]; // 计算b[i]的ASCII值
-            bc[ascii] = i;
-        }
-    }
-    // b表示模式串，m表示长度，suffix，prefix数组事先申请好了
-    private void generateGS(char[] b, int m, int[] suffix, boolean[] prefix) {
-        for (int i = 0; i < m; ++i) { // 初始化
-            suffix[i] = -1;
-            prefix[i] = false;
-        }
-        for (int i = 0; i < m - 1; ++i) { // b[0, i]
-            int j = i;
-            int k = 0; // 公共后缀子串长度
-            while (j >= 0 && b[j] == b[m-1-k]) { // 与b[0, m-1]求公共后缀子串
-                --j;
-                ++k;
-                suffix[k] = j+1; //j+1表示公共后缀子串在b[0, i]中的起始下标
-            }
-            if (j == -1) prefix[k] = true; //如果公共后缀子串也是模式串的前缀子串
-        }
-    }
-    // a,b表示主串和模式串；n，m表示主串和模式串的长度。
-    public int bm(char[] a, int n, char[] b, int m) {
-        int[] bc = new int[SIZE]; // 记录模式串中每个字符最后出现的位置
-        generateBC(b, m, bc); // 构建坏字符哈希表
-        int[] suffix = new int[m];
-        boolean[] prefix = new boolean[m];
-        generateGS(b, m, suffix, prefix);
-        int i = 0; // j表示主串与模式串匹配的第一个字符
+
+        int i = 0;
         while (i <= n - m) {
-            int j;
-            for (j = m - 1; j >= 0; --j) { // 模式串从后往前匹配
-                if (a[i+j] != b[j]) break; // 坏字符对应模式串中的下标是j
+            int j = m - 1;
+            while (j >= 0 && haystack.charAt(i + j) == needle.charAt(j)) {
+                j--;
             }
             if (j < 0) {
-                return i; // 匹配成功，返回主串与模式串第一个匹配的字符的位置
+                return i;
             }
-            int x = j - bc[(int)a[i+j]];
-            int y = 0;
-            if (j < m-1) { // 如果有好后缀的话
-                y = moveByGS(j, m, suffix, prefix);
-            }
-            i = i + Math.max(x, y);
+
+            // aaabaaa
+            // baaa
+            //    baaa
+
+            // 偏移量 = 失配符号在模式串中对应的位置 - 失配符号在模式串中的位置
+            int shift = j - badChar[haystack.charAt(i + j)];
+
+            shift = Math.max(1, shift);
+            i += shift;
         }
         return -1;
     }
-
-    // j表示坏字符对应的模式串中的字符下标; m表示模式串长度
-    private int moveByGS(int j, int m, int[] suffix, boolean[] prefix) {
-        int k = m - 1 - j; // 好后缀长度
-        if (suffix[k] != -1) return j - suffix[k] +1;
-        for (int r = j+2; r <= m-1; ++r) {
-            if (prefix[m-r] == true) {
-                return r;
-            }
-        }
-        return m;
-    }
-
-    /**
-     * BM 算法
-     */
-    public int strStr(String haystack, String needle) {
-        return this.bm(haystack.toCharArray(), haystack.length(), needle.toCharArray(), needle.length());
-//        int n = haystack.length();
-//        int m = needle.length();
-//
-//        if (n < m) return -1;
-//
-//        // Preprocessing for bad character rule and good suffix rule
-//        int[] badChar = generateBadCharTable(needle);
-//        int[] goodSuffix = generateGoodSuffixTable(needle);
-//
-//        int i = 0; // Index in haystack
-//        while (i <= n - m) {
-//            // Compare from right to left
-//            int j = m - 1;
-//            while (j >= 0 && haystack.charAt(i + j) == needle.charAt(j)) {
-//                j--;
-//            }
-//            if (j < 0) {
-//                return i; // Match found
-//            }
-//
-//            // Calculate shift distance based on bad character rule and good suffix rule
-//            int shiftByBadChar = j - badChar[haystack.charAt(i + j)];
-//            int shiftByGoodSuffix = goodSuffix[j];
-//            if (shiftByGoodSuffix > shiftByBadChar) {
-//                System.out.println("引入好后缀规则后匹配速度更快了");
-//            }
-//            i += Math.max(shiftByBadChar, shiftByGoodSuffix);
-//        }
-//        return -1; // No match found
-    }
-
-    private int[] generateBadCharTable(String pattern) {
-        int[] table = new int[256]; // Assuming ASCII characters
-        Arrays.fill(table, -1);
-        for (int i = 0; i < pattern.length(); i++) {
-            table[pattern.charAt(i)] = i;
-        }
-        return table;
-    }
-
-    private int[] generateGoodSuffixTable(String pattern) {
-        int m = pattern.length();
-        int[] goodSuffix = new int[m];
-        int[] borderPosition = new int[m + 1];
-        int i = m, j = m + 1;
-        borderPosition[i] = j;
-
-        while (i > 0) {
-            while (j < m && pattern.charAt(i - 1) != pattern.charAt(j - 1)) {
-                if (goodSuffix[j] == 0) goodSuffix[j] = j - i;
-                j = borderPosition[j];
-            }
-            --i;
-            --j;
-            borderPosition[i] = j;
-        }
-
-        // Last step: fill remaining positions
-        j = borderPosition[0];
-        for (i = 0; i < m; i++) {
-            if (goodSuffix[i] == 0) goodSuffix[i] = j;
-            if (i == j) j = borderPosition[j];
-        }
-
-        return goodSuffix;
-    }
-
-
 }
