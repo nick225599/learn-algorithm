@@ -13,76 +13,66 @@ public class P28Solution4 {
 
         if (n < m) return -1;
 
-        int[] badChar = new int[123];
-        Arrays.fill(badChar, -1);
-        for (int i = 0; i < m; i++) {
-            badChar[needle.charAt(i)] = i;
-        }
+        // Preprocessing for bad character rule and good suffix rule
+        int[] badChar = generateBadCharTable(needle);
+        int[] goodSuffix = generateGoodSuffixTable(needle);
 
-        int[] goodSuffix = generateGoodSuffix(needle);
-
-        int i = 0;
+        int i = 0; // Index in haystack
         while (i <= n - m) {
+            // Compare from right to left
             int j = m - 1;
             while (j >= 0 && haystack.charAt(i + j) == needle.charAt(j)) {
                 j--;
             }
             if (j < 0) {
-                return i;
-            }
-            // 坏字符规则
-            // 偏移量 = 失配符号在模式串中对应的位置 - 失配符号在模式串中的从右往左第一次出现的位置
-            int shift1 = j - badChar[haystack.charAt(i + j)];
-
-            // 好后缀规则
-            // 偏移量 = 好后缀在模式串中从右往左第一次出现的位置
-            //  or 好后缀最长右子串在模式串前子串中出现的位置
-            //  or 直接跳过整个模式串的长度
-            int shift2 = goodSuffix[j + 1];
-
-            if(shift1 < shift2){
-                System.out.println("好后缀让匹配加速了");
+                return i; // Match found
             }
 
-            i += Math.max(shift1, shift2);
+            // Calculate shift distance based on bad character rule and good suffix rule
+            int shiftByBadChar = j - badChar[haystack.charAt(i + j)];
+            int shiftByGoodSuffix = goodSuffix[j];
+            if (shiftByGoodSuffix > shiftByBadChar) {
+                System.out.println("引入好后缀规则后匹配速度更快了");
+            }
+            i += Math.max(shiftByBadChar, shiftByGoodSuffix);
         }
-        return -1;
+        return -1; // No match found
     }
 
-    private int[] generateGoodSuffix(String pattern) {
-        int m = pattern.length();
-        int[] suffix = this.getSuffixArray(pattern);
-        return null;
+    private int[] generateBadCharTable(String pattern) {
+        int[] table = new int[256]; // Assuming ASCII characters
+        Arrays.fill(table, -1);
+        for (int i = 0; i < pattern.length(); i++) {
+            table[pattern.charAt(i)] = i;
+        }
+        return table;
     }
 
-    private int[] getSuffixArray(String pattern) {
+    private int[] generateGoodSuffixTable(String pattern) {
         int m = pattern.length();
-        int[] suffix = new int[m];
-        suffix[m - 1] = m;
-        int f = 0, g = m - 1;
+        int[] goodSuffix = new int[m];
+        int[] borderPosition = new int[m + 1];
+        int i = m, j = m + 1;
+        borderPosition[i] = j;
 
-        for (int p = m - 2; p >= 0; p--) {
-            if (p > f && suffix[p + m - 1 - g] < p - f) {
-                suffix[p] = suffix[p + m - 1 - g];
-            } else {
-                if (p < f) f = p;
-                g = p;
-                while (g >= 0 && pattern.charAt(g) == pattern.charAt(g + m - 1 - f)) {
-                    g--;
-                }
-                suffix[p] = f - g;
+        while (i > 0) {
+            while (j < m && pattern.charAt(i - 1) != pattern.charAt(j - 1)) {
+                if (goodSuffix[j] == 0) goodSuffix[j] = j - i;
+                j = borderPosition[j];
             }
+            --i;
+            --j;
+            borderPosition[i] = j;
         }
 
-        return suffix;
-    }
+        // Last step: fill remaining positions
+        j = borderPosition[0];
+        for (i = 0; i < m; i++) {
+            if (goodSuffix[i] == 0) goodSuffix[i] = j;
+            if (i == j) j = borderPosition[j];
+        }
 
-    public static void main(String[] args) {
-        String pattern = "banana";
-        // b a n a n a
-        // 0 1 2 1 2 1
-        int[] suffix = new P28Solution4().getSuffixArray(pattern);
-        System.out.println(Arrays.toString(suffix));
+        return goodSuffix;
     }
 
 
