@@ -36,13 +36,49 @@ public class P28Solution6 {
 
             // 偏移量 = 失配符号在模式串中对应的位置 - 失配符号在模式串中的位置
             int shift1 = j - badChar[haystack.charAt(i + j)];
-            int shift2 = this.shiftByGoodSuffix();
+            int shift2 = this.shiftByGoodSuffix(needle);
             i += Math.max(shift1, shift2);
         }
         return -1;
     }
 
-    private int shiftByGoodSuffix() {
+    // suffix 数组。suffix 数组的下标 k，表示后缀子串的长度，下标对应的数组值存储的是，在模式串中跟好后缀{u}相匹配的子串{u*}的起始下标值。
+    int[] suffix;
+
+    private int shiftByGoodSuffix(String pattern) {
+        if (null == suffix) {
+            suffix = this.buildSuffix(pattern);
+        }
         return 0;
+    }
+
+    private int[] buildSuffix(String pattern) {
+        suffix = new int[pattern.length()];
+        int m = pattern.length();
+        for (int i = m - 2; i >= 0; i--) {
+            int j = i;
+            while (j >= 0 && pattern.charAt(j) == pattern.charAt(m - 2 - j + i)) {
+                j--;
+            }
+            if (j < 0) {
+                suffix[i + 1] = 0;
+            } else {
+                suffix[i - j] = j;
+            }
+        }
+        return suffix;
+    }
+
+    public static void main(String[] args) {
+        String pattern = "cabcab";
+        // cabcab
+        //      b suffix[1]=2
+        //     ab suffix[2]=1
+        //    cab suffix[3]=0
+        //   bcab suffix[4]=-1
+        //  abcab suffix[5]=-1
+        //TODO nick 20250516 看下 suffix 数组怎么没算对
+        int[] suffix = new P28Solution6().buildSuffix(pattern);
+        System.out.println(Arrays.toString(suffix));
     }
 }
