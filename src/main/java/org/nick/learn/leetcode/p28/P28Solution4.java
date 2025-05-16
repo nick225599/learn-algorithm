@@ -2,6 +2,10 @@ package org.nick.learn.leetcode.p28;
 
 import java.util.Arrays;
 
+/**
+ * BM 算法
+ * 极客时间 王争 提供的实现版本
+ */
 public class P28Solution4 {
     private static final int SIZE = 256; // 全局变量或成员变量
     private void generateBC(char[] b, int m, int[] bc) {
