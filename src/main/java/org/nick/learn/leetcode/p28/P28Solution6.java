@@ -54,16 +54,16 @@ public class P28Solution6 {
 
     private int[] buildSuffix(String pattern) {
         suffix = new int[pattern.length()];
+        Arrays.fill(suffix, -1);
         int m = pattern.length();
-        for (int i = m - 2; i >= 0; i--) {
-            int j = i;
-            while (j >= 0 && pattern.charAt(j) == pattern.charAt(m - 2 - j + i)) {
-                j--;
-            }
-            if (j < 0) {
-                suffix[i + 1] = 0;
-            } else {
-                suffix[i - j] = j;
+        for (int i = 1; i <= suffix.length; i++) {
+            String tmpSuffix = pattern.substring(m - i, m);
+            for (int j = m - i; j - i >= 0; j--) {
+                String left = pattern.substring(j - i, j);
+                if (left.equals(tmpSuffix)) {
+                    suffix[i] = j - i;
+                    break;
+                }
             }
         }
         return suffix;
