@@ -13,7 +13,7 @@ public class P28Solution9 {
 
     // a, b分别是主串和模式串；n, m分别是主串和模式串的长度。
     public static int kmp(char[] a, int n, char[] b, int m) {
-        int[] next = getNexts(b, m);
+        int[] next = getNexts(b);
         int j = 0;
         for (int i = 0; i < n; ++i) {
             while (j > 0 && a[i] != b[j]) { // 一直找到a[i]和b[j]
@@ -30,7 +30,8 @@ public class P28Solution9 {
     }
 
     // b表示模式串，m表示模式串的长度
-    private static int[] getNexts(char[] b, int m) {
+    private static int[] getNexts(char[] b) {
+        int m = b.length;
         int[] next = new int[m];
         next[0] = -1;
         int k = -1;
@@ -43,9 +44,16 @@ public class P28Solution9 {
             }
             next[i] = k;
         }
+        System.out.println("needle: " + new String(b));
+        System.out.println("int[] pi: " );
+        System.out.println(Arrays.toString(next));
+        System.out.println();
         return next;
     }
 
 
+    public static void main(String[] args) {
+        int[] nullArr = getNexts("ababacd".toCharArray());
+    }
 
 }
