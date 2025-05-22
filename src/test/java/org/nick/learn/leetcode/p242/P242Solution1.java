@@ -15,7 +15,6 @@ public class P242Solution1 {
         for (int i = 0; i < t.length(); i++) {
             char c = t.charAt(i);
             chars[c - 'a']--;
-
             if (chars[c - 'a'] < 0) {
                 return false;
             }
