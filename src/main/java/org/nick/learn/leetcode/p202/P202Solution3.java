@@ -1,23 +1,22 @@
 package org.nick.learn.leetcode.p202;
 
-import java.util.HashSet;
-
 public class P202Solution3 {
 
     // 快慢指针法
     public boolean isHappy(int n) {
-        HashSet<Integer> set = new HashSet<>();
-        set.add(n);
-        while (true) {
-            if (n == 1) {
+        int slow = n;
+        int fast = powSelf(n);
+        while (slow != fast) {
+            slow = powSelf(slow);
+            if (slow == 1) {
                 return true;
             }
-            n = powSelf(n);
-            if (set.contains(n)) {
-                return false;
+            fast = powSelf(powSelf(fast));
+            if (fast == 1) {
+                return true;
             }
-            set.add(n);
         }
+        return slow  == 1;
     }
 
 //    private int powSelf(int n) {
@@ -35,9 +34,9 @@ public class P202Solution3 {
 //        return sum;
 //    }
 
-    private int powSelf(int n){
+    private int powSelf(int n) {
         int sum = 0;
-        while(n > 0){
+        while (n > 0) {
             int d = n % 10;
             sum += (d * d);
             n = n / 10;
