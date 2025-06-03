@@ -2,6 +2,8 @@ package org.nick.learn.leetcode.p101;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class P101Solution1Test {
     P101Solution1 solution = new P101Solution1();
 
@@ -13,6 +15,6 @@ class P101Solution1Test {
         TreeNode root = new TreeNode(1,
                 new TreeNode(2, new TreeNode(3), new TreeNode(4)),
                 new TreeNode(2, new TreeNode(4), new TreeNode(3)));
-        solution.isSymmetric(root);
+        assertTrue(solution.isSymmetric(root));
     }
 }
