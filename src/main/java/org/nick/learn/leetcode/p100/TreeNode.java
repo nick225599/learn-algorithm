@@ -1,9 +1,9 @@
 package org.nick.learn.leetcode.p100;
 
 public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
     public TreeNode() {
     }
