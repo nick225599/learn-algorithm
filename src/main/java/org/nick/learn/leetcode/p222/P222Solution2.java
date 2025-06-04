@@ -7,6 +7,10 @@ public class P222Solution2 {
 
 
     public int countNodes(TreeNode root) {
+        if(null == root){
+            return 0;
+        }
+
         // 1. 求出层数
         int level = 0;
         TreeNode tmpN = root;
@@ -33,7 +37,7 @@ public class P222Solution2 {
 
     public boolean exist(TreeNode node, int level, int index) {
         level-=2;
-        while (level > 0) {
+        while (level >= 0) {
             if ((index >> level) % 2 == 0) {
                 node = node.left;
             } else {
@@ -41,6 +45,6 @@ public class P222Solution2 {
             }
             level--;
         }
-        return null == node;
+        return null != node;
     }
 }
