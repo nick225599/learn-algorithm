@@ -19,7 +19,7 @@ public class P222Solution2 {
         int min = 1 << (level - 1);
         int max = (1 << (level)) - 1;
         while (min < max) {
-            int mid = min + (max - min + 1) >> 1;
+            int mid = min + ((max - min + 1) >> 1);
             if (exist(root, level, mid)) {
                 min = mid;
             } else {
@@ -31,10 +31,8 @@ public class P222Solution2 {
 
     }
 
-    public boolean exist(TreeNode root, int level, int index) {
-        index++;
+    public boolean exist(TreeNode node, int level, int index) {
         level-=2;
-        TreeNode node = root;
         while (level > 0) {
             if ((index >> level) % 2 == 0) {
                 node = node.left;
@@ -45,6 +43,4 @@ public class P222Solution2 {
         }
         return null == node;
     }
-
-
 }
