@@ -1,7 +1,6 @@
 package org.nick.learn.leetcode.p647;
 
 import org.nick.learn.leetcode.p100.TreeNode;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

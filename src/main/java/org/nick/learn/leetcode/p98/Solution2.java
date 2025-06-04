@@ -1,7 +1,6 @@
 package org.nick.learn.leetcode.p98;
 
-import org.nick.learn.leetcode.p226.TreeNode;
-
+import org.nick.learn.leetcode.p100.TreeNode;
 public class Solution2 {
 
     // 官方题解能将每个节点的遍历次数降低到 1

@@ -1,7 +1,6 @@
 package org.nick.learn.leetcode.p98;
 
-import org.nick.learn.leetcode.p226.TreeNode;
-
+import org.nick.learn.leetcode.p100.TreeNode;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;

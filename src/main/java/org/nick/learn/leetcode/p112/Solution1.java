@@ -1,7 +1,6 @@
 package org.nick.learn.leetcode.p112;
 
-import org.nick.learn.leetcode.p226.TreeNode;
-
+import org.nick.learn.leetcode.p100.TreeNode;
 public class Solution1 {
     // 深度优先，回溯算法
 

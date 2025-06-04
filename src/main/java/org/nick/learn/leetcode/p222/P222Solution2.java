@@ -1,6 +1,7 @@
 package org.nick.learn.leetcode.p222;
 
 import lombok.extern.slf4j.Slf4j;
+import org.nick.learn.leetcode.p100.TreeNode;
 
 @Slf4j
 public class P222Solution2 {

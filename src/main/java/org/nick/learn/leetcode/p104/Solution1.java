@@ -1,7 +1,7 @@
 package org.nick.learn.leetcode.p104;
 
-import org.nick.learn.leetcode.p226.TreeNode;
 
+import org.nick.learn.leetcode.p100.TreeNode;
 public class Solution1 {
 
     /**

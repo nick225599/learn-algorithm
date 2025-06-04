@@ -1,6 +1,8 @@
 package org.nick.learn.leetcode.p226;
 
 
+import org.nick.learn.leetcode.p100.TreeNode;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
