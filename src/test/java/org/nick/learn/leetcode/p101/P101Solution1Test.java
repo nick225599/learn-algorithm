@@ -1,6 +1,7 @@
 package org.nick.learn.leetcode.p101;
 
 import org.junit.jupiter.api.Test;
+import org.nick.learn.leetcode.p100.TreeNode;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
