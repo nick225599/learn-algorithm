@@ -20,7 +20,7 @@ public class P35Solution1 {
             }
             return searchInsert(nums, target, startIndex, midIndex - 1);
         } else {
-            if(midIndex == endIndex){
+            if(midIndex == endIndex){ //TODO nick 20250604 看下官方题解为啥不需要这种特殊逻辑处理
                 return midIndex + 1;
             }
             return searchInsert(nums, target, midIndex + 1, endIndex);
