@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class P3Solution1Test {
-    P3Solution1 solution = new P3Solution1();
+class P3Solution2Test {
+    P3Solution2  solution = new P3Solution2();
 
     @Test
     void lengthOfLongestSubstring() {
-        assertEquals(2, solution.lengthOfLongestSubstring("aab"));
+        assertEquals(3, solution.lengthOfLongestSubstring("pwwkew"));
     }
 
     @Test
