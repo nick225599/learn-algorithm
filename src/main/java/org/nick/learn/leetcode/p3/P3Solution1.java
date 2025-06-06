@@ -5,6 +5,9 @@ import java.util.Set;
 
 public class P3Solution1 {
     public int lengthOfLongestSubstring(String s) {
+        if(s.isEmpty()){
+            return 0;
+        }
         Set<Character> charSet = new HashSet<>();
         int n = s.length();
 
@@ -22,38 +25,5 @@ public class P3Solution1 {
             }
         }
         return maxLength;
-
-//        int n = s.length();
-//
-//        Set<Character> charSet = new HashSet<>();
-//        int i = 0;
-//        charSet.add(s.charAt(i));
-//        int j = 1;
-//        int length = 1;
-//        int maxLength = 1;
-//        while (j < n) {
-//            boolean b = charSet.add(s.charAt(j));
-//            if (b) {
-//                length++;
-//                maxLength = Math.max(maxLength, length);
-//                j++;
-//            } else {
-//                while(s.charAt(i) != s.charAt(j)){
-//                    charSet.remove(s.charAt(i));
-//                    i++;
-//                    length--;
-//                }
-//                charSet.remove(s.charAt(i));
-//                i++;
-//                length--;
-////                do {
-////                    charSet.remove(s.charAt(i));
-////                    length--;
-////                    i++;
-////                } while (s.charAt(i - 1) != s.charAt(j));
-//            }
-//
-//        }
-//        return maxLength;
     }
 }
