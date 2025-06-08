@@ -15,7 +15,8 @@ public class P73Solution4 {
                 }
             }
         }
-        //TODO nick 第一行还是处理不好，咋整？
+        // 处理逻辑有点晦涩，自己看了答案尝试写才写出来，
+        // 要是让自己凭空想，肯定想不出来可以这么写
         for (int i = n - 1; i >= 0; i--) {
             for (int j = 1; j < m; j++) {
                 if (matrix[i][0] == 0 || matrix[0][j] == 0) {
