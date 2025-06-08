@@ -1,6 +1,6 @@
 package org.nick.learn.leetcode.p48;
 
-public class p48Solution1 {
+public class P48Solution1 {
 
     public void rotate(int[][] matrix) {
         int n = matrix.length;
