@@ -6,12 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-public class P54Solution4 {
-    // 上一个题解用  String direction 和 boolean[][] visited ， 是否需要转向
-    // 但其实可以通过计算直接算出来，简化这个 O(nm) 的空间损耗
-    // 一圈圈往里获取元素并写入 List<Integer>
-    // 这也是我第一反应的解法，
-    // 只是不会写成代码，写着写着就自然而言想用标记来替代坐标换算逻辑
+public class P54Solution6 {
+
+    // 看了官方题解后进行一下优化
     public List<Integer> spiralOrder(int[][] matrix) {
         int n = matrix.length;
         int m = matrix[0].length;
@@ -22,7 +19,7 @@ public class P54Solution4 {
         int right = m - 1;
 
         List<Integer> result = new ArrayList<>();
-        while (result.size() < n * m) {
+        while (left <= right && top <= bottom) {
             int i, j;
             for (i = top, j = left; j <= right; j++) {
                 result.add(matrix[i][j]);
@@ -37,18 +34,10 @@ public class P54Solution4 {
                 result.add(matrix[i][j]);
             }
 
-            if (left == right && top == bottom) {
-                break;
-            }
-
-            if (top + 1 <= bottom - 1) {
-                top++;
-                bottom--;
-            }
-            if (left + 1 <= right - 1) {
-                left++;
-                right--;
-            }
+            top++;
+            bottom--;
+            left++;
+            right--;
         }
 
         return result;
