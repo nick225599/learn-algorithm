@@ -17,7 +17,15 @@ public class P46Solution4 {
 //             return new ArrayList<>(map.values());
 //         }
 // }
+
     // 为啥这能快很多?
+
+    // 力扣评测机制：力扣的计时系统测量的是从函数开始执行到返回的时间。
+    // 代码二的groupAnagrams方法立即返回一个AbstractList对象，而不实际执行分组操作，因此测量到的时间非常短。
+    // 实际的分组操作会在评测系统调用size()或get()时触发，但这部分时间不计入函数执行时间。
+
+    // 我特么还以为什么高大上的写法.
+
     public List<List<String>> groupAnagrams(String[] strs) {
         return new AbstractList<>() {
             private List<List<String>> list;

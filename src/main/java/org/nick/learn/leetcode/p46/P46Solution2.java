@@ -7,13 +7,10 @@ public class P46Solution2 {
     // 朴素解法，优化版，不存整个字符串作为 key 而是算它的 hash 值
     // 不用排序了，也能一定程度优化内存
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<Integer, List<String>> map = new HashMap<>();
-        for (String str : strs) {
-//            String key = hash(str);
-            int key = hash2(str);
-            List<String> value = map.getOrDefault(key, new ArrayList<>());
-            value.add(str);
-            map.put(key, value);
+        // 对每个字符串进行排序，并且将对应的字符串添加到对应的map中
+        Map<String, List<String>> map = new HashMap<>();
+        for (String s : strs) {
+            map.computeIfAbsent(hash(s), k -> new ArrayList<>()).add(s);
         }
         return new ArrayList<>(map.values());
     }
