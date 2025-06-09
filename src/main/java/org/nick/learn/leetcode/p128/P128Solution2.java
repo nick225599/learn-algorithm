@@ -20,7 +20,7 @@ public class P128Solution2 {
         // 看似 O(n^2) 实则 O(n)
         int maxCount = Integer.MIN_VALUE;
         for (int num : set) {
-            if (!set.contains(num - 1)) {
+            if (!set.contains(num - 1)) { // 当前数字是一个区间的起始位置
                 int i = 1;
                 while (set.contains(num + i)) {
                     i++;
