@@ -6,7 +6,7 @@ import java.util.Set;
 public class P128Solution2 {
 
     // 时间复杂度 O(n)
-    // 但是实际运行市场不如 Solution1 推测可能是 Arrays.sort() 运用了多线程排序
+    // 但是实际运行市场不如 Solution1 推测可能是 Arrays.sort() 运用了多线程排序,或者 hash 表的常数操作太多了
     public int longestConsecutive(int[] nums) {
         int n = nums.length;
         if (n <= 1) {
