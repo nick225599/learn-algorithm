@@ -1,6 +1,7 @@
 package org.nick.learn.leetcode.p56;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class P56Solution2 {
 
@@ -11,6 +12,7 @@ public class P56Solution2 {
             return intervals;
         }
 
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
 
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
@@ -19,15 +21,6 @@ public class P56Solution2 {
                 }
             }
         }
-
-        for (int i = n - 1; i >= 0; i--) {
-            for (int j = i - 1; j >= 0; j--) {
-                if (needMerge(intervals, i, j)) {
-                    merge(intervals, i, j);
-                }
-            }
-        }
-
 
         return Arrays.stream(intervals)
                 .filter(ints -> ints[0] != -1)
@@ -45,7 +38,7 @@ public class P56Solution2 {
         }
         // []
         //     []
-        if (intervals[i][1] < intervals[j][1]) {
+        if (intervals[i][1] < intervals[j][0]) {
             return false;
         }
         return true;
