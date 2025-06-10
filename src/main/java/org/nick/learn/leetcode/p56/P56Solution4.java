@@ -1,9 +1,11 @@
 package org.nick.learn.leetcode.p56;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
-public class P56Solution2 {
+public class P56Solution4 {
 
     // 有啥好的解法???
     // 排序后合并
@@ -15,17 +17,17 @@ public class P56Solution2 {
 
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
 
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                if (needMerge(intervals, i, j)) {
-                    merge(intervals, i, j);
-                }
+        List<int[]> merged = new ArrayList<>();
+        merged.add(intervals[0]);
+        for(int i = 1; i < n; i++){
+            if(merged.getLast()[1] < intervals[i][0]){
+                merged.add(intervals[i]);
+            }else{
+                merged.getLast()[1] = Math.max(merged.getLast()[1], intervals[i][1]);
             }
         }
 
-        return Arrays.stream(intervals)
-                .filter(ints -> ints[0] != -1)
-                .toArray(int[][]::new); // 使用 int[][]::new 作为数组构造器
+        return merged.toArray(int[][]::new);
     }
 
     private boolean needMerge(int[][] intervals, int i, int j) {
