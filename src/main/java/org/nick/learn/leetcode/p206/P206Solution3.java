@@ -2,11 +2,22 @@ package org.nick.learn.leetcode.p206;
 
 import org.nick.learn.algorithm.list.ListNode;
 
+import java.util.List;
+
 public class P206Solution3 {
 
-    // 递归
+    // 迭代，精简版本
     public ListNode reverseList(ListNode head) {
-        return null;
-
+        ListNode pre = null;
+        ListNode cur = head;
+        while (null != cur) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
     }
+
+
 }
