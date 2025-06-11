@@ -10,4 +10,15 @@ public class Node {
         this.next = null;
         this.random = null;
     }
+
+    public static void printNode(Node n){
+        StringBuilder sb = new StringBuilder();
+        while(null != n){
+            sb.append(n.val).append(", ");
+            n = n.next;
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.deleteCharAt(sb.length() - 1);
+        System.out.println(sb.toString());
+    }
 }
