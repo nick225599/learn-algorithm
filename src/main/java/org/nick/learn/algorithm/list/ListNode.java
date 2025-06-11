@@ -16,12 +16,16 @@ public class ListNode {
         this.next = next;
     }
 
-    public String toStr() {
-        StringBuilder sb = new StringBuilder("" + val);
-        ListNode tail = this;
-        while((tail = tail.next) != null){
-            sb.append(",").append(tail.val);
-        }
-        return sb.toString();
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder("[");
+//        ListNode node = this;
+//        while (node != null) {
+//            sb.append(node.val).append(", ");
+//            node = node.next;
+//        }
+//        sb.delete(sb.length() - 2, sb.length());
+//        sb.append("]");
+//        return sb.toString();
+//    }
 }

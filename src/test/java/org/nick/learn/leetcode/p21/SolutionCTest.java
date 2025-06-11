@@ -13,6 +13,6 @@ class SolutionCTest {
         ListNode list1 = new ListNode(1, new ListNode(2));
         ListNode list2 = new ListNode(1, new ListNode(3));
         ListNode merged = solution.mergeTwoLists(list1, list2);
-        assertEquals("1,1,2,3", merged.toStr());
+        assertEquals("1,1,2,3", merged.toString());
     }
 }

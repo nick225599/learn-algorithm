@@ -14,7 +14,7 @@ class SolutionATest {
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
         ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
         ListNode merged = solution.mergeTwoLists(list1, list2);
-        assertEquals("1,1,2,3,4,4", merged.toStr());
+        assertEquals("1,1,2,3,4,4", merged.toString());
     }
 
     @Test
@@ -22,7 +22,7 @@ class SolutionATest {
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
         ListNode list2 = new ListNode(1, new ListNode(3));
         ListNode merged = solution.mergeTwoLists(list1, list2);
-        assertEquals("1,1,2,3,4", merged.toStr());
+        assertEquals("1,1,2,3,4", merged.toString());
     }
 
 }

@@ -15,7 +15,7 @@ class SolutionCTest {
         ListNode list1 = new ListNode(1, new ListNode(2));
         ListNode list2 = new ListNode(1, new ListNode(3));
         ListNode merged = solution.mergeTwoLists(list1, list2);
-        assertEquals("1,1,2,3", merged.toStr());
+        assertEquals("1,1,2,3", merged.toString());
     }
 
     @SuppressWarnings("deprecation")
@@ -24,7 +24,7 @@ class SolutionCTest {
         ListNode list1 = new ListNode(1, new ListNode(2));
         ListNode list2 = new ListNode(1, new ListNode(3));
         ListNode merged = solution.mergeTwoListsV2(list1, list2);
-        assertEquals("1,1,2,3", merged.toStr());
+        assertEquals("1,1,2,3", merged.toString());
     }
 
     @Test
@@ -32,7 +32,7 @@ class SolutionCTest {
         ListNode list1 = new ListNode(1, new ListNode(2));
         ListNode list2 = new ListNode(1, new ListNode(3));
         ListNode merged = solution.mergeTwoListsV3(list1, list2);
-        assertEquals("1,1,2,3", merged.toStr());
+        assertEquals("1,1,2,3", merged.toString());
     }
 
 
