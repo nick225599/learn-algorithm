@@ -2,8 +2,6 @@ package org.nick.learn.leetcode.p206;
 
 import org.nick.learn.algorithm.list.ListNode;
 
-import java.util.List;
-
 public class P206Solution3 {
 
     // 迭代，精简版本
