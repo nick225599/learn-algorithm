@@ -22,7 +22,9 @@ public class ListNode {
             sb.append(node.val).append(", ");
             node = node.next;
         }
-        sb.delete(sb.length() - 2, sb.length());
+        if (sb.length() > 2) {
+            sb.delete(sb.length() - 2, sb.length());
+        }
         sb.append("]");
         System.out.println(sb);
     }
