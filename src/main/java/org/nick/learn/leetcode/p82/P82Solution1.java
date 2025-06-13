@@ -11,45 +11,34 @@ public class P82Solution1 {
     //预期结果
     //[1,2,5]
     public ListNode deleteDuplicates(ListNode head) {
-        if (null == head || head.next == null) {
-            return head;
-        }
-        ListNode pre = head;
-        ListNode cur = pre.next;
-        while (null != pre && null != cur && pre.val == cur.val) {
-            pre = cur.next;
-            if (null != pre) {
-                cur = pre.next;
-            } else {
-                cur = null;
-            }
-        }
-
-        if (null == cur) {
-            return head;
-        }
-
-        while (null != cur) {
-            ListNode succ = cur.next;
-            while (null != succ) {
-                if (cur.val == succ.val) {
-                    succ = succ.next;
-                } else {
-                    pre = cur;
-                    cur = succ;
-                    succ = succ.next;
-                }
-            }
-            pre.next = succ;
-
-            pre = succ;
-            if (null != pre) {
-                cur = pre.next;
-            } else {
-                cur = null;
-            }
-        }
-
-        return head;
+//        if (null == head || null == head.next) {
+//            return head;
+//        }
+//        ListNode pre = head;
+//        ListNode cur = pre.next;
+//        while (pre.val == cur.val) {
+//            ListNode succ = cur.next;
+//            if (null == succ) {
+//                return null;
+//            }
+//            while (null != succ && cur.val == succ.val) {
+//                succ = succ.next;
+//            }
+//            pre = succ;
+//            if (null != pre) {
+//                cur = pre.next;
+//            } else {
+//                cur = null;
+//            }
+//        }
+        // * 先确认 pre cur 是否是值相同
+        //  * 如果 pre cur 位值相同
+        //   * 往后找与 cur 值不同的 succ
+        //    * 找得到，则 pre = succ, cur = succ.next;
+        //      * 重新判断 pre cur 值是否相同
+        //    * 找不到，则直接返回 null
+        //
+        //  * 如果 pre cur 值不同，则评估 pre cur 位值是否相同
+        return null;
     }
 }
