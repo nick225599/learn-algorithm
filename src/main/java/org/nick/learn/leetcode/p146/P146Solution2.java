@@ -54,10 +54,46 @@ public class P146Solution2 {
             return node.value;
         }
 
+        // O(1) 时间复杂度
+        public void put(int key, int value) {
+
+            // 如果已有，则更新元素，并放置到队首
+            DequeNode node = map.get(key);
+            if (null == node) {
+
+                // 如果未有，则插入新元素，并置顶
+                node = new DequeNode(key, value);
+
+                // 插入元素
+                map.put(key, node);
+                size++;
+
+                // 置顶
+                this.putToHead(node);
+
+                // 如果超员，则删除队尾
+                if (size > capacity) {
+                    map.remove(tail.pre.key);
+                    size--;
+
+                    tail.pre.pre.next = tail;
+                    tail.pre = tail.pre.pre;
+                }
+            } else {
+                // 更新元素
+                node.value = value;
+
+                // 放置到队首
+                this.putToHead(node);
+
+                return;
+            }
+        }
+
         private void putToHead(DequeNode node) {
             // 修改 node 前元素的后指针
             // 修改 node 后元素的前指针
-            if(null != node.pre && null != node.next) {
+            if (null != node.pre && null != node.next) {
                 node.pre.next = node.next;
                 node.next.pre = node.pre;
             }
@@ -73,40 +109,7 @@ public class P146Solution2 {
             head.next = node;
         }
 
-        // O(1) 时间复杂度
-        public void put(int key, int value) {
 
-            // 如果已有，则更新元素，并放置到队首
-            DequeNode node = map.get(key);
-            if(null != node){
-                // 更新元素
-                node.value = value;
-
-                // 放置到队首
-                this.putToHead(node);
-
-                return;
-            }
-
-            // 如果未有，则插入新元素，并置顶
-            node = new DequeNode(key, value);
-
-            // 插入元素
-            map.put(key, node);
-            size++;
-
-            // 置顶
-            this.putToHead(node);
-
-            // 如果超员，则删除队尾
-            if(size > capacity){
-                map.remove(tail.pre.key);
-                size--;
-
-                tail.pre.pre.next = tail;
-                tail.pre = tail.pre.pre;
-            }
-        }
 
     }
 
