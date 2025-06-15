@@ -4,6 +4,10 @@ import org.nick.learn.leetcode.p100.TreeNode;
 
 public class P105Solution1 {
 
+    // 时间复杂度 O(n^2)
+    // 空间复杂度 O(1)
+    // 可以换用官方题解的方式，预处理一遍二叉树，用 O(n) 的空间复杂度，将时间复杂度降低到 O(n)
+
     // pre-order val, left, right
     // in-order left, val, right
     public TreeNode buildTree(int[] preorder, int[] inorder) {
