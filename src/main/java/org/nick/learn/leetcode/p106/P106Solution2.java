@@ -26,12 +26,13 @@ public class P106Solution2 {
                 stack.peek().right = node;
             }else{
                 TreeNode parent = null;
-                while(inorder[inorderIndex] != stack.peek().val){
+                while(inorder[inorderIndex] == stack.peek().val){
                     parent = stack.pop();
                     inorderIndex--;
                 }
                 parent.left = node;
             }
+            stack.push(node);
         }
 
         return root;
