@@ -23,6 +23,8 @@ public class P105Solution5 {
 
     // pre-order: val, [L.val, L.left, L.right], [R.val, R.left, R.right][parent.val, parent.left, parent.right][p.p.val, p.p.left, p.p.right]
     // in-order: [L.left, L.val, L.right], val, [R.left, R.val, R.right], parent.val, [parent.R.left, parent.R.val, parent.R.right ]
+
+    // 自己参照着官方题解努力写出来的
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         TreeNode root = new TreeNode(preorder[0]);
 

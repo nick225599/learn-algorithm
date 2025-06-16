@@ -8,6 +8,7 @@ import java.util.Deque;
 public class P105Solution4 {
 
 
+    // AI 写出来的
         public TreeNode buildTree(int[] preorder, int[] inorder) {
             if (preorder == null || preorder.length == 0) {
                 return null;
