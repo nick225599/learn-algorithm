@@ -7,33 +7,37 @@ import java.util.Deque;
 
 public class P105Solution4 {
 
-    public static void main(String[] args) {
-        new P105Solution4().buildTree(
-                new int[]{3, 9, 8, 5, 4, 10, 20, 15, 7},
-                new int[]{4, 5, 8, 10, 9, 3, 15, 20, 7});
-    }
 
+        public TreeNode buildTree(int[] preorder, int[] inorder) {
+            if (preorder == null || preorder.length == 0) {
+                return null;
+            }
 
-    // 自己一开始直觉需要用栈的解法是可行的
+            TreeNode root = new TreeNode(preorder[0]);
+            Deque<TreeNode> stack = new ArrayDeque<>();
+            stack.push(root);
+            int inorderIndex = 0;
 
-    // pre-order: 父父节点, 父节点, [ 根节点,               [左子树的前序遍历结果], [右子树的前序遍历结果] ], [父节点的右子树的前序遍历结果], [父父节点的右子树的前序遍历结果]
-    // in-order :  [ [左子树的中序遍历结果], 根节点,               [右子树的中序遍历结果] ], 父节点, [父节点的右子树的中序遍历结果]
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
+            for (int i = 1; i < preorder.length; i++) {
+                TreeNode node = new TreeNode(preorder[i]);
+                TreeNode parent = null;
 
-        Deque<TreeNode> stack = new ArrayDeque<>();
-        stack.push(new TreeNode(preorder[0]));
+                while (!stack.isEmpty() && stack.peek().val == inorder[inorderIndex]) {
+                    parent = stack.pop();
+                    inorderIndex++;
+                }
 
-        int indexOfPreorder = 1;
-        int indexOfInorder = 0;
+                if (parent != null) {
+                    parent.right = node;
+                } else {
+                    stack.peek().left = node;
+                }
 
-        // 左子树为空？
+                stack.push(node);
+            }
 
-        //TODO nick 好好看下迭代法是怎么对问题进行迭代模型的建模的
-        return null;
-
-
-
-    }
+            return root;
+        }
 
 
 }
