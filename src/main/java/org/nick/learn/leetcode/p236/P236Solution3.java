@@ -8,6 +8,9 @@ public class P236Solution3 {
     private TreeNode ans = null;
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (null == root) {
+            return null;
+        }
         this.dfs(root, p, q);
         return this.ans;
     }
