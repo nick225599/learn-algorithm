@@ -9,17 +9,40 @@ import java.util.Map;
 public class P133Solution1 {
 
     public Node cloneGraph(Node node) {
+        if(node == null){
+            return node;
+        }
 
         // 第一次 copy 只将值复制
         Map<Integer, Node> buff = new HashMap<>();
-        this.copy1(node, buff);
+        return cloneGraph(node, buff);
 
 //        // 第二次 copy 将引用复制
 //        Map<Integer, Node> buff2 = new HashMap<>();
 //        this.copy2(node, buff, buff2);
 //
 //        return buff2.get(node.val);
-        return null;
+//        return null;
+    }
+
+    private Node cloneGraph(Node node, Map<Integer, Node> buff) {
+        Node newNode = buff.get(node.val);
+        if(newNode != null){
+            return newNode;
+        }
+
+        newNode = new Node(node.val);
+        buff.put(newNode.val, newNode);
+
+
+        List<Node> newNeighbors = new ArrayList<>(node.neighbors.size());
+        for(Node neighbor : node.neighbors){
+            Node newNeighbor = this.cloneGraph(neighbor, buff);
+            newNeighbors.add(newNeighbor);
+        }
+        newNode.neighbors = newNeighbors;
+
+        return newNode;
     }
 
     private void copy1(Node node, Map<Integer, Node> buff) {
