@@ -49,7 +49,7 @@ public class P399Solution1 {
                 if (ia == ib) {
                     result = 1.0;
                 } else {
-                    Queue<Integer> points = new LinkedList<Integer>();
+                    Queue<Integer> points = new LinkedList<>();
                     points.offer(ia);
                     double[] ratios = new double[nvars];
                     Arrays.fill(ratios, -1.0);
