@@ -8,7 +8,7 @@ import java.util.Map;
 
 // 力扣第 399 题
 @Slf4j
-public class P399Solution5 {
+public class P399Solution15 {
 
     // 带权并查集
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
