@@ -2,85 +2,84 @@ package org.nick.learn.leetcode.p399;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+// 力扣第 399 题
 @Slf4j
 public class P399Solution5 {
 
     // 带权并查集
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
-        Map<String,Integer> str2int = new HashMap<>();
-        int count = 0;
-        for (List<String> equation : equations) {
-            String start = equation.getFirst();
-            if(!str2int.containsKey(start)){
-                str2int.put(start, count++);
-            }
-            String end = equation.getLast();
-            if(!str2int.containsKey(end)){
-                str2int.put(end, count++);
-            }
-        }
-
-        int[] parents = new int[count]; // 并查集
-        double[] weights = new double[count]; // 并查集的权重
-
-        // 初始化并查集
-        for(int i = 0; i < parents.length; i++){
-            parents[i] = i;
-            weights[i] = 1;
-        }
-
-        for(int i = 0; i < equations.size(); i++){
+        Map<String, String> roots = new HashMap<>();
+        Map<String, Double> weights = new HashMap<>();
+        for (int i = 0; i < values.length; i++) {
             List<String> equation = equations.get(i);
-            String x = equation.getFirst();
-            String y = equation.getLast();
-            int xIndex = str2int.get(x);
-            int yIndex = str2int.get(y);
-            double weightOfXY = values[i];
-                this.union(parents, weights, xIndex, yIndex, weightOfXY);
+
+            String a = equation.getFirst();
+            roots.putIfAbsent(a, a);
+            weights.putIfAbsent(a, 1.0);
+
+            String b = equation.getLast();
+            roots.putIfAbsent(b, b);
+            weights.putIfAbsent(b, 1.0);
         }
 
+        for (int i = 0; i < values.length; i++) {
+            List<String> equation = equations.get(i);
+            String a = equation.getFirst();
+            String b = equation.getLast();
+            Double quotient = values[i];
+            this.union(roots, weights, a, b, quotient);
+        }
 
-
-
-
-        return null;
+        double[] results = new double[queries.size()];
+        for (int i = 0; i < results.length; i++) {
+            List<String> query = queries.get(i);
+            String x = query.getFirst();
+            String y = query.getLast();
+            if(!roots.containsKey(x) || !roots.containsKey(y)){
+                results[i] = -1;
+                continue;
+            }
+            if(!roots.get(x).equals(roots.get(y))){
+                results[i] = -1;
+                continue;
+            }
+            results[i] = weights.get(x) / weights.get(y);
+        }
+        return results;
 
     }
 
-    private void union(int[] parents, double[] weights, int xIndex, int yIndex, double weightOfXY) {
-        if(xIndex == yIndex){
+    private void union(Map<String, String> roots, Map<String, Double> weights,
+                       String a, String b, Double quotient) {
+        // 把 a 的 root 节点的根值从它自己改成 b 点的 root 节点
+        String rootOfA = this.find(roots, weights, a);
+        String rootOfB = this.find(roots, weights, b);
+        if(rootOfA.equals(rootOfB)){
             return;
         }
 
-        int rootOfX = find(parents, xIndex);
-        int rootOfY = find(parents, yIndex);
+        roots.put(a, rootOfB);
 
-        if(rootOfX == rootOfY){
-            return;
-        }
+        // weight[a] = a / rootOfA
+        // weight[b] = b / rootOfB
+        // quotient = a / b
+        // new weight[a] = a / rootOfB = (a / b)  * (b / rootOfB) = a / rootOfB
+        weights.put(a, quotient * weights.get(b));
 
-        parents[rootOfY] = rootOfX;
-        //TODO  先计算 rootOfX 到 rootOfY 的倍率
-        //TODO  再算 x 到 rootOfY 的倍率
-        //TODO 无法提前更新其他跟 X 同根同源的其他节点的权重了......只能在查询的时候更新了
-
-        // n 个元素 怎么想都会有 n^2 个权重啊
-        // 要么查询的时候现算？ 那不就跟 bfs dfs 一样了么？
-        // 先用并查集判断连通性？ 然后用二位数组来返回权重？ 那跟带权图没啥区别了啊？？
-        // Q: 怎么给它带权？
-        // A: weights[] 存储阶段对应根节点的权重
-
+        //TODO 其他原本锚定 rootOfA 的元素的 weight 怎么更新？
     }
 
-    private int find(int[] parents, int xIndex) {
-        int rootOfX = parents[xIndex];
-        while(rootOfX != xIndex){
-            xIndex = rootOfX;
-            rootOfX = parents[xIndex];
+    private String find(Map<String, String> roots, Map<String, Double> weights, String b) {
+        String parent = roots.get(b);
+        while (!parent.equals(b)) {
+            parent = find(roots, weights, parent);
         }
-        return rootOfX;
+        return parent;
     }
+
 
 }
