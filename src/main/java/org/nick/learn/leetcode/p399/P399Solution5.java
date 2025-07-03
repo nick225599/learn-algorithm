@@ -43,7 +43,9 @@ public class P399Solution5 {
                 results[i] = -1;
                 continue;
             }
-            if(!roots.get(x).equals(roots.get(y))){
+            String rootOfX = find(roots, weights, x);
+            String rootOfY = find(roots, weights, y);
+            if(!rootOfX.equals(rootOfY)){
                 results[i] = -1;
                 continue;
             }
@@ -68,9 +70,17 @@ public class P399Solution5 {
         // weight[b] = b / rootOfB
         // quotient = a / b
         // new weight[a] = a / rootOfB = (a / b)  * (b / rootOfB) = a / rootOfB
-        weights.put(a, quotient * weights.get(b));
+//        weights.put(a, quotient * weights.get(b));
 
-        //TODO 其他原本锚定 rootOfA 的元素的 weight 怎么更新？
+
+        // 其他原本锚定 rootOfA 的元素的 weight 怎么更新？
+        // 不可能一次性全算好，
+        // 只能算好 weight[ rootOfA ] 作为一个锚定 rootOfA 元素们的一个基准汇率，
+        // 然后所有锚定 rootOfA 元素的 weight 准确值，放到 find 方法里更新，
+        // 这样主函数求 x y 的 root 元素时就不能通过 roots 直接查，而是得用 find 方法
+
+        // new weight[rootOfA] = rootOfA / rootOfB = (a / b) * (b / rootOfB) / (a / rootOfA)
+        weights.put(rootOfA, quotient * weights.get(rootOfB) / weights.get(rootOfA));
     }
 
     private String find(Map<String, String> roots, Map<String, Double> weights, String b) {
@@ -78,6 +88,11 @@ public class P399Solution5 {
         while (!parent.equals(b)) {
             parent = find(roots, weights, parent);
         }
+
+        // 延迟更新 b 的 weight
+        // new weight[b] = old weight[b] * weight[root of b]
+        weights.put(b, weights.get(b) * weights.get(parent));
+
         return parent;
     }
 
