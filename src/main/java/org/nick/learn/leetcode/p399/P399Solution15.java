@@ -39,13 +39,13 @@ public class P399Solution15 {
             List<String> query = queries.get(i);
             String x = query.getFirst();
             String y = query.getLast();
-            if(!roots.containsKey(x) || !roots.containsKey(y)){
+            if (!roots.containsKey(x) || !roots.containsKey(y)) {
                 results[i] = -1;
                 continue;
             }
             String rootOfX = find(roots, weights, x);
             String rootOfY = find(roots, weights, y);
-            if(!rootOfX.equals(rootOfY)){
+            if (!rootOfX.equals(rootOfY)) {
                 results[i] = -1;
                 continue;
             }
@@ -60,7 +60,7 @@ public class P399Solution15 {
         // 把 a 的 root 节点的根值从它自己改成 b 点的 root 节点
         String rootOfA = this.find(roots, weights, a);
         String rootOfB = this.find(roots, weights, b);
-        if(rootOfA.equals(rootOfB)){
+        if (rootOfA.equals(rootOfB)) {
             return;
         }
 
@@ -85,8 +85,13 @@ public class P399Solution15 {
 
     private String find(Map<String, String> roots, Map<String, Double> weights, String b) {
         String parent = roots.get(b);
-        while (!parent.equals(b)) {
-            parent = find(roots, weights, parent);
+        while (true) {
+            String grandParent = roots.get(parent);
+            if (!grandParent.equals(parent)) {
+                parent = grandParent;
+            } else {
+                break;
+            }
         }
 
         // 延迟更新 b 的 weight
