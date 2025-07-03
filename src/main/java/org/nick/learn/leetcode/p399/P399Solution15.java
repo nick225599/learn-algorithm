@@ -81,6 +81,8 @@ public class P399Solution15 {
 
         // new weight[rootOfA] = rootOfA / rootOfB = (a / b) * (b / rootOfB) / (a / rootOfA)
         weights.put(rootOfA, quotient * weights.get(rootOfB) / weights.get(rootOfA));
+
+        //TODO nick 20250703 没有路径压缩的版本，测试用例不通过，查下为啥
     }
 
     private String find(Map<String, String> roots, Map<String, Double> weights, String b) {
