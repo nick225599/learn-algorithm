@@ -93,8 +93,8 @@ public class P399Solution15 {
             String root = find(roots, weights, parent);
 
             // 路径压缩
-            // new weight[b] = old weight[b] * weight[root of b]
-            double tmp = weights.get(node) * weights.get(root);
+            // new weight[b] = old weight[b] * weight[parent]
+            double tmp = weights.get(node) * weights.get(parent);
             weights.put(node, tmp);
             roots.put(node, root);
 
