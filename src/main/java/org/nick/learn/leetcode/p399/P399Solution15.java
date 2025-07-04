@@ -87,16 +87,16 @@ public class P399Solution15 {
 
     }
 
-    private String find(Map<String, String> roots, Map<String, Double> weights, String b) {
-        String parent = roots.get(b);
-        if(!parent.equals(b)){
+    private String find(Map<String, String> roots, Map<String, Double> weights, String node) {
+        String parent = roots.get(node);
+        if(!parent.equals(node)){
             String root = find(roots, weights, parent);
 
             // 路径压缩
             // new weight[b] = old weight[b] * weight[root of b]
-            double tmp = weights.get(b) * weights.get(root);
-            weights.put(b, tmp);
-            roots.put(b, root);
+            double tmp = weights.get(node) * weights.get(root);
+            weights.put(node, tmp);
+            roots.put(node, root);
 
             return root;
         }
