@@ -8,7 +8,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class P399Solution15Test {
-    P399Solution15 solution = new P399Solution15();
+    P399Solution9 solution = new P399Solution9();
 
     @Test
     void calcEquation() {
