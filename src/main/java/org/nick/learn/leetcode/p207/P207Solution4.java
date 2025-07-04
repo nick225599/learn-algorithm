@@ -10,7 +10,9 @@ public class P207Solution4 {
         for (int[] prerequisite : prerequisites) {
             int cur = prerequisite[0];
             int prereq = prerequisite[1];
-            if(cur == prereq){ return false; }
+            if (cur == prereq) {
+                return false;
+            }
             List<Integer> ableList = graph.computeIfAbsent(prereq, k -> new ArrayList<>());
             ableList.add(cur);
         }
@@ -32,74 +34,38 @@ public class P207Solution4 {
     }
 
     private boolean pathExist(Map<Integer, List<Integer>> graph, Integer start, Integer end) {
-        for (Map.Entry<Integer, List<Integer>> entry : graph.entrySet()) {
-            Integer key = entry.getKey();
-            List<Integer> value = entry.getValue();
 
-            if (key.equals(start)) {
-                // 在 value 以及 value 衍生 sub-value 中找 end
-                Queue<List<Integer>> valueQueue = new LinkedList<>();
-                valueQueue.add(value);
+        Set<Integer> visited = new HashSet<>();
+        visited.add(start);
 
-                while (true) {
-                    value = valueQueue.poll();
-                    if (value == null) {
+        List<Integer> value = graph.get(start);
+        if (value == null || value.isEmpty()) {
+            return false;
+        }
+
+        // 在 value 以及 value 衍生 sub-value 中找 end
+        Queue<List<Integer>> valueQueue = new LinkedList<>();
+        valueQueue.add(value);
+
+        while (true) {
+            value = valueQueue.poll();
+            if (value == null) {
+                return false;
+            }
+            if (value.contains(end)) {
+                return true;
+            }
+            for (Integer val : value) {
+                if (graph.containsKey(val)) {
+                    // 存在环
+                    if (visited.contains(val)) {
                         return false;
-                    }
-                    if (value.contains(end)) {
-                        return true;
-                    }
-                    for (Integer val : value) {
-                        if (graph.containsKey(val)) {
-                            valueQueue.add(graph.get(val));
-                        }
-                    }
-                }
-
-            } else {
-                // 在 value 以及 value 衍生 sub-value 中找 start
-                // 在 value 以及 value 衍生 sub-value 中找 end
-                Queue<List<Integer>> valueQueue = new LinkedList<>();
-                valueQueue.add(value);
-
-                while (true) {
-                    value = valueQueue.poll();
-                    if (value == null) {
-                        return false;
-                    }
-                    if (value.contains(start)) {
-
-                        // 在 start 对应的 value 及 sub-val 中找 end
-                        valueQueue.clear();
-                        value = graph.get(start);
-                        valueQueue.add(value);
-
-                        while(true){
-                            value = valueQueue.poll();
-                            if (value == null) {
-                                return false;
-                            }
-                            if (value.contains(end)) {
-                                return true;
-                            }
-                            for (Integer val : value) {
-                                if (graph.containsKey(val)) {
-                                    valueQueue.add(graph.get(val));
-                                }
-                            }
-                        }
-
-
-
-                    }
-                    for (Integer val : value) {
-                        if (graph.containsKey(val)) {
-                            valueQueue.add(graph.get(val));
-                        }
+                    } else {
+                        valueQueue.add(graph.get(val));
+                        visited.add(val);
                     }
                 }
             }
         }
-        return false;
     }
 }
