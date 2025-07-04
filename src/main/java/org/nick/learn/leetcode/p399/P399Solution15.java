@@ -64,7 +64,8 @@ public class P399Solution15 {
             return;
         }
 
-        roots.put(a, rootOfB);
+        // 把 a 的根节点的父节点从自己，更新为 b 的根节点
+        roots.put(rootOfA, rootOfB);
 
         // weight[a] = a / rootOfA
         // weight[b] = b / rootOfB
@@ -80,16 +81,20 @@ public class P399Solution15 {
         // 这样主函数求 x y 的 root 元素时就不能通过 roots 直接查，而是得用 find 方法
 
         // new weight[rootOfA] = rootOfA / rootOfB = (a / b) * (b / rootOfB) / (a / rootOfA)
-        weights.put(rootOfA, quotient * weights.get(rootOfB) / weights.get(rootOfA));
+        // = quotient * weight[b] / weight[a]
+        double tmp = quotient * weights.get(b) / weights.get(a);
+        weights.put(rootOfA, tmp);
 
         //TODO nick 20250703 没有路径压缩的版本，测试用例不通过，查下为啥
     }
 
     private String find(Map<String, String> roots, Map<String, Double> weights, String b) {
+        double tmp = weights.get(b);
         String parent = roots.get(b);
         while (true) {
             String grandParent = roots.get(parent);
             if (!grandParent.equals(parent)) {
+                tmp *= weights.get(parent);
                 parent = grandParent;
             } else {
                 break;
@@ -98,7 +103,8 @@ public class P399Solution15 {
 
         // 延迟更新 b 的 weight
         // new weight[b] = old weight[b] * weight[root of b]
-        weights.put(b, weights.get(b) * weights.get(parent));
+        tmp *= weights.get(parent);
+        weights.put(b, tmp);
 
         return parent;
     }
