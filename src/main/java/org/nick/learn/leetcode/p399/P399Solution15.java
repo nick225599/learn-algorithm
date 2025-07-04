@@ -88,22 +88,18 @@ public class P399Solution15 {
     }
 
     private String find(Map<String, String> roots, Map<String, Double> weights, String b) {
-        double tmp = weights.get(b);
         String parent = roots.get(b);
-        while (true) {
-            String grandParent = roots.get(parent);
-            if (!grandParent.equals(parent)) {
-                tmp *= weights.get(parent);
-                parent = grandParent;
-            } else {
-                break;
-            }
-        }
+        if(!parent.equals(b)){
+            String root = find(roots, weights, parent);
 
-        // 延迟更新 b 的 weight
-        // new weight[b] = old weight[b] * weight[root of b]
-        tmp *= weights.get(parent);
-        weights.put(b, tmp);
+            // 路径压缩
+            // new weight[b] = old weight[b] * weight[root of b]
+            double tmp = weights.get(b) * weights.get(root);
+            weights.put(b, tmp);
+            roots.put(b, root);
+
+            return root;
+        }
 
         return parent;
     }
