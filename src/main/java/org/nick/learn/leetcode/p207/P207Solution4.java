@@ -4,7 +4,6 @@ import java.util.*;
 
 public class P207Solution4 {
 
-    // 尝试根据 ai 的建议来完善代码
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         Map<Integer, List<Integer>> graph = new HashMap<>();
         for (int[] prerequisite : prerequisites) {
@@ -33,6 +32,7 @@ public class P207Solution4 {
 
     }
 
+    // bfs
     private boolean pathExist(Map<Integer, List<Integer>> graph, Integer start, Integer end) {
 
         Set<Integer> visited = new HashSet<>();
