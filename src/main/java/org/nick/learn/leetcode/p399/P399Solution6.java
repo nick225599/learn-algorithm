@@ -18,7 +18,7 @@ public class P399Solution6 {
     //    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         int nvars = 0;
-        Map<String, Integer> variables = new HashMap<String, Integer>();
+        Map<String, Integer> variables = new HashMap<>();
 
         int n = equations.size();
         for (int i = 0; i < n; i++) {
