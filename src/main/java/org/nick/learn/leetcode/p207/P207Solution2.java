@@ -5,6 +5,7 @@ import java.util.*;
 public class P207Solution2 {
 
 
+    // 尝试失败，监测不出两链或三链的环
     public boolean canFinish(int numCourses, int[][] prerequisites) {
 
         // 无语......
