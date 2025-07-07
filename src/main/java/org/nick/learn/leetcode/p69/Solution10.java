@@ -9,7 +9,7 @@ public class Solution10 {
     // https://blog.csdn.net/Poo_Chai/article/details/101976547
     // 代码来自《Hacker's Delight》(高效程序的奥秘)一书的第11章.
     public int mySqrt(int x) {
-        int m = 1 << 30;
+        int m = 0x40000000;
         int y = 0;
         int b;
 
