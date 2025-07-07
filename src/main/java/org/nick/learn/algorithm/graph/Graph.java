@@ -123,7 +123,7 @@ public class Graph {
     // ---------------------- 拓扑排序 DFS START --------------------------------
     public void topoSortByDFS() {
         // 先构建逆邻接表，边s->t表示，s依赖于t，t先于s
-        LinkedList<Integer> inverseAdj[] = new LinkedList[v];
+        LinkedList<Integer>[] inverseAdj = new LinkedList[v];
         for (int i = 0; i < v; ++i) { // 申请空间
             inverseAdj[i] = new LinkedList<>();
         }
@@ -135,18 +135,17 @@ public class Graph {
         }
         boolean[] visited = new boolean[v];
         for (int i = 0; i < v; ++i) { // 深度优先遍历图
-            if (visited[i] == false) {
+            if (!visited[i]) {
                 visited[i] = true;
                 dfs(i, inverseAdj, visited);
             }
         }
     }
 
-    private void dfs(
-            int vertex, LinkedList<Integer> inverseAdj[], boolean[] visited) {
+    private void dfs(int vertex, LinkedList<Integer>[] inverseAdj, boolean[] visited) {
         for (int i = 0; i < inverseAdj[vertex].size(); ++i) {
             int w = inverseAdj[vertex].get(i);
-            if (visited[w] == true) continue;
+            if (visited[w]) continue;
             visited[w] = true;
             dfs(w, inverseAdj, visited);
         } // 先把vertex这个顶点可达的所有顶点都打印出来之后，再打印它自己
