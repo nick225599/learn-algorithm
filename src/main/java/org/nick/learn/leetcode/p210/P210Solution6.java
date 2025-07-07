@@ -1,9 +1,6 @@
 package org.nick.learn.leetcode.p210;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class P210Solution6 {
 
@@ -13,7 +10,7 @@ public class P210Solution6 {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         List<List<Integer>> graph = new ArrayList<>(numCourses);
         for (int i = 0; i < numCourses; i++) {
-            graph.add(new ArrayList<>(numCourses));
+            graph.add(new ArrayList<>());
         }
         int[] degree = new int[numCourses];
         for (int[] prerequisite : prerequisites) {
@@ -25,7 +22,7 @@ public class P210Solution6 {
             degree[a]++;
         }
 
-        Queue<Integer> queue = new ArrayDeque<>(numCourses);
+        Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < numCourses; i++) {
             if (degree[i] == 0) {
                 queue.add(i);
@@ -36,7 +33,12 @@ public class P210Solution6 {
         while (!queue.isEmpty()) {
             int i = queue.remove();
             result[index++] = i;
-            this.kahn(graph, i, degree, queue);
+            for(int j : graph.get(i)){
+                degree[j]--;
+                if (degree[j] == 0) {
+                    queue.add(j);
+                }
+            }
         }
 
         if (index != numCourses) {
@@ -47,13 +49,5 @@ public class P210Solution6 {
 
     }
 
-    private void kahn(List<List<Integer>> graph , int value, int[] degree, Queue<Integer> queue) {
-        for(int i : graph.get(value)){
-            degree[i]--;
-            if (degree[i] == 0) {
-                queue.add(i);
-            }
-        }
-    }
 
 }
