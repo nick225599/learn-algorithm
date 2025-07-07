@@ -28,4 +28,15 @@ class P210Solution1Test {
         int[] result = solution.findOrder(numCourses, prerequisites);
         assertEquals("[0, 1]", Arrays.toString(result));
     }
+
+    @Test
+    void findOrder3() {
+        int numCourses = 2;
+        int[][] prerequisites = new int[][]{
+                new int[]{1, 0}, // 1 依赖 0
+                new int[]{0, 1} // 1 依赖 0
+        };
+        int[] result = solution.findOrder(numCourses, prerequisites);
+        assertEquals("[0, 1]", Arrays.toString(result));
+    }
 }
