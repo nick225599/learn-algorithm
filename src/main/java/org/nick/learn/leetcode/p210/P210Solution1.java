@@ -26,8 +26,9 @@ public class P210Solution1 {
     private int[] dfs(boolean[][] graph, boolean[] visited, int[] result, int value) {
         if (visited[value]) {
             return new int[0];
+        } else {
+            visited[value] = true;
         }
-        visited[value] = true;
         for (int i = 0; i < graph.length; i++) {
             // 如果 value 依赖其他值，则需要先处理其他值
             if (graph[value][i]) {
