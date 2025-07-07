@@ -37,6 +37,6 @@ class P210Solution1Test {
                 new int[]{0, 1} // 1 依赖 0
         };
         int[] result = solution.findOrder(numCourses, prerequisites);
-        assertEquals("[0, 1]", Arrays.toString(result));
+        assertEquals("[]", Arrays.toString(result));
     }
 }

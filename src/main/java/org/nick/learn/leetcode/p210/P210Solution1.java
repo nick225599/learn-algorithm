@@ -14,25 +14,34 @@ public class P210Solution1 {
             int b = prerequisite[1];
             graph[a][b] = true;
         }
-        boolean[] visited = new boolean[numCourses];
+        int[] visiteStatus = new int[numCourses]; // 0 未访问过，1 遍历中，2 遍历完成
         int[] result = new int[numCourses];
         for (int i = 0; i < numCourses; i++) {
-            this.dfs(graph, visited, result, i);
+            try {
+                this.dfs(graph, visiteStatus, result, i);
+            } catch (IllegalArgumentException e) {
+                return new int[0];
+            }
         }
         return result;
     }
 
-    private void dfs(boolean[][] graph, boolean[] visited, int[] result, int value) {
-        if (visited[value]) {
+    private void dfs(boolean[][] graph, int[] visiteStatus, int[] result, int value) {
+        if (visiteStatus[value] == 3) {
             return;
+        } else {
+            visiteStatus[value] = 1;
         }
         for (int i = 0; i < graph.length; i++) {
             // 如果 value 依赖其他值，则需要先处理其他值
             if (graph[value][i]) {
-                this.dfs(graph, visited, result, i);
+                if (visiteStatus[i] == 1) {
+                    throw new IllegalArgumentException("cycle");
+                }
+                this.dfs(graph, visiteStatus, result, i);
             }
         }
         result[index++] = value;
-        visited[value] = true;
+        visiteStatus[value] = 3;
     }
 }
