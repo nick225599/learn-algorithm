@@ -32,7 +32,7 @@ public class P210Solution6 {
         int[] result = new int[numCourses];
         while (!queue.isEmpty()) {
             int i = queue.remove();
-            result[index++] = i;
+            result[index++] = i; // 贪心算法，采用局部最优解就可以推出全局最优解
             for(int j : graph.get(i)){
                 degree[j]--;
                 if (degree[j] == 0) {
