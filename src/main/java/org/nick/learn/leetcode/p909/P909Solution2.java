@@ -24,13 +24,12 @@ public class P909Solution2 {
         Queue<MoveStatus> queue = new LinkedList<>();
         queue.offer(new MoveStatus(1, 0));
 
-        int minSteps = Integer.MAX_VALUE;
         boolean[] visited = new boolean[total + 1];
         while (!queue.isEmpty()) {
             MoveStatus cur = queue.poll();
             visited[cur.cur] = true;
             if (cur.cur == total) {
-                minSteps = Math.min(minSteps, cur.steps);
+                return cur.steps;
             } else {
                 for(int i = 1; i <= 6; i++){
                     int next = cur.cur + i;
@@ -50,9 +49,7 @@ public class P909Solution2 {
             }
         }
 
-        return minSteps == Integer.MAX_VALUE ? -1 : minSteps;
-
-
+        return  -1;
     }
 
     private int[] index2coordinate(int widthOfBoard, int index) {
@@ -71,6 +68,7 @@ public class P909Solution2 {
         }
         return new int[]{row, column};
     }
+
 
 
 
