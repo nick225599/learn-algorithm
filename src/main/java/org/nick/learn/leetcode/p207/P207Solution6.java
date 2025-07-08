@@ -9,7 +9,6 @@ public class P207Solution6 {
 
 
     // BFS
-    // 8ms，击败 24.79%
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         List<List<Integer>> graph = new ArrayList<>(numCourses);
         for (int i = 0; i < numCourses; i++) {
