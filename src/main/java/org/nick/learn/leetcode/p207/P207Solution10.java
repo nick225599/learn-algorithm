@@ -5,8 +5,8 @@ import java.util.LinkedList;
 public class P207Solution10 {
     private LinkedList<Integer>[] graph;
     //    private int[] visited;
+    boolean[] finished;
     boolean[] visited;
-    boolean[] visiting;
     private boolean invalid;
 
     // DFS = 改为延迟创建，也只能优化到 3ms
@@ -27,32 +27,28 @@ public class P207Solution10 {
             graph[course0].add(course1);
         }
 
+        finished = new boolean[numCourses];
         visited = new boolean[numCourses];
-        visiting = new boolean[numCourses];
         for (int i = 0; i < numCourses && !invalid; i++) {
-            if (!visited[i]) {
                 this.dfs(i);
-            }
         }
         return !invalid;
     }
 
     private void dfs(int i) {
-        if (visited[i]) {
+        if (finished[i]) {
             return;
         }
-        if (visiting[i]) {
+        if (visited[i]) {
             invalid = true;
             return;
         }
-        if (graph[i] == null) {
-            visited[i] = true;
-            return;
-        }
-        visiting[i] = true;
-        for (int value : graph[i]) {
-            this.dfs(value);
-        }
         visited[i] = true;
+        if (graph[i] != null) {
+            for (int value : graph[i]) {
+                this.dfs(value);
+            }
+        }
+        finished[i] = true;
     }
 }
