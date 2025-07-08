@@ -34,8 +34,8 @@ public class P207Solution6 {
 
         int count = 0;
         while (!queue.isEmpty()) {
-            int i = queue.poll();
             count++;
+            int i = queue.poll();
             // graph.get(i): 学了课程 i 之后可以学的其他课程
             for (int value : graph.get(i)) {
                 degree[value]--;
