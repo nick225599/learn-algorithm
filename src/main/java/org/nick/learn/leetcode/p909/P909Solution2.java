@@ -52,19 +52,19 @@ public class P909Solution2 {
         return -1;
     }
 
-    private int[] index2coordinate(int widthOfBoard, int index) {
+    private int[] index2coordinate(int n, int index) {
         index--;
 
         int a, b; // index = n * a + b
-        a = index / widthOfBoard;
-        b = index - a * widthOfBoard;
+        a = index / n;
+        b = index - a * n;
 
         int row, column;
-        row = widthOfBoard - 1 - a;
-        if ((widthOfBoard - 1 - row) % 2 == 0) {
+        row = n - 1 - a;
+        if ((n - 1 - row) % 2 == 0) {
             column = b;
         } else {
-            column = widthOfBoard - 1 - b;
+            column = n - 1 - b;
         }
         return new int[]{row, column};
     }
