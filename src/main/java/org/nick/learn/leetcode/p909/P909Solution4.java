@@ -3,49 +3,41 @@ package org.nick.learn.leetcode.p909;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class P909Solution2 {
+public class P909Solution4 {
 
-    static class MoveStatus {
-        public int cur;
-        public int steps;
 
-        public MoveStatus(int cur, int steps) {
-            this.cur = cur;
-            this.steps = steps;
-        }
-    }
-
-    // 让 AI 优化一下，5ms
+    // 根据官方题解来，还是 5ms
     public int snakesAndLadders(int[][] board) {
         int n = board.length;
         int total = n * n;
 
         boolean[] visited = new boolean[total + 1];
 
-        Queue<MoveStatus> queue = new LinkedList<>();
-        queue.offer(new MoveStatus(1, 0));
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{1, 0});
         visited[1] = true;
 
         while (!queue.isEmpty()) {
-            MoveStatus cur = queue.poll();
-            if (cur.cur == total) {
-                return cur.steps;
+            int[] cur = queue.poll();
+            if (cur[0] == total) {
+                return cur[1];
             }
             for (int i = 1; i <= 6; i++) {
-                int next = cur.cur + i;
+                int next = cur[0] + i;
                 if (next > total) {
                     break;
                 }
-                int[] arr = index2coordinate1(n, next); // 5ms
+//                int[] arr = index2coordinate1(n, next); // 5ms
 //                int[] arr = index2coordinate2(n, next); // 5ms
 //                int[] arr = index2coordinate3(n, next); // 5ms
+                int[] arr = index2coordinate4(n, next); // 5ms
                 int x = arr[0];
                 int y = arr[1];
                 if (board[x][y] != -1) {
                     next = board[x][y];
                 }
                 if (!visited[next]) {
-                    queue.add(new MoveStatus(next, cur.steps + 1));
+                    queue.add(new int[]{next,cur[1] + 1 });
                     visited[next] = true;
                 }
             }
@@ -88,5 +80,13 @@ public class P909Solution2 {
             column = n - 1 - column;
         }
         return new int[]{row, column};
+    }
+
+    private int[] index2coordinate4(int n, int id) {
+        int r = (id - 1) / n, c = (id - 1) % n;
+        if (r % 2 == 1) {
+            c = n - 1 - c;
+        }
+        return new int[]{n - 1 - r, c};
     }
 }
