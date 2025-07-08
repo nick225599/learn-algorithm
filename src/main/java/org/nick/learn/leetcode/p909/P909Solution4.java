@@ -19,9 +19,7 @@ public class P909Solution4 {
 
         while (!queue.isEmpty()) {
             int[] cur = queue.poll();
-            if (cur[0] == total) {
-                return cur[1];
-            }
+
             for (int i = 1; i <= 6; i++) {
                 int next = cur[0] + i;
                 if (next > total) {
@@ -35,6 +33,10 @@ public class P909Solution4 {
                 int y = arr[1];
                 if (board[x][y] != -1) {
                     next = board[x][y];
+                }
+                // 提前 return 能把时间从 5ms 提升到 4ms
+                if (next == total) {
+                    return cur[1] + 1;
                 }
                 if (!visited[next]) {
                     queue.add(new int[]{next,cur[1] + 1 });
