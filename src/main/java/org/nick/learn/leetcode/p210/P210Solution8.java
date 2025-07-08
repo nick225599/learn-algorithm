@@ -1,5 +1,14 @@
 package org.nick.learn.leetcode.p210;
 
+/**
+ * 结论
+ *
+ * P210Solution8 性能更高的核心原因是：用数组模拟邻接表和队列，
+ * 避免了动态数据结构（ArrayList、LinkedList）的扩容、对象创建、方法调用等额外开销，
+ * 使得内存访问更高效、操作更接近底层，从而在大规模数据下表现更优。
+ *
+ * 这种优化思路在算法竞赛中很常见 —— 用静态数组替代动态数据结构，以空间换时间，减少不必要的开销。
+ */
 public class P210Solution8 {
     // 1ms 解法
     public int[] findOrder(int n, int[][] prerequisites) {
