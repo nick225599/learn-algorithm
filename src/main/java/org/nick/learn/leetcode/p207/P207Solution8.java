@@ -37,16 +37,15 @@ public class P207Solution8 {
     }
 
     private void dfs(int i) {
-        if (visited[i] == 2) {
-            return;
-        }
         visited[i] = 1;
         for (int value : graph.get(i)) {
-            if(visited[value] == 1){
+            if (visited[value] == 1) {
                 invalid = true;
                 return;
             }
-            dfs(value);
+            if (visited[value] == 0) {
+                dfs(value);
+            }
         }
         visited[i] = 2;
     }
