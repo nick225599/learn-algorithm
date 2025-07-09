@@ -23,7 +23,9 @@ class WordDictionary {
             if (!cur.sub.containsKey(c)) {
                 WordDictionary next = new WordDictionary();
                 cur.sub.put(c, next);
-                curAny.sub.put(c, next);
+                curAny.sub.put(c, next); // 这个思路走不通，
+                // a -> b -> c 和 a -> d -> c 时，第 2 层的 .
+                // 需要下挂两个不同的 c，而现在只允许下挂一个 c
 
                 if(!curAny.sub.containsKey('.')){
                     WordDictionary nextAny = new WordDictionary();
