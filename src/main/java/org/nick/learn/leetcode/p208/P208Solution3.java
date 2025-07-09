@@ -2,7 +2,7 @@ package org.nick.learn.leetcode.p208;
 
 public class P208Solution3 {
 
-    // 31ms 击败 99.89%
+    // 31ms 击败 99.89%，跟官方题解一样的
     static class Trie {
         private Trie[] children;
         private boolean isEnd;
