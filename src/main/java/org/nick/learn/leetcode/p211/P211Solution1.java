@@ -1,15 +1,18 @@
 package org.nick.learn.leetcode.p211;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class P211Solution1 {
 
 }
 
 class WordDictionary {
-    public WordDictionary[] sub;
+    public Map<Character, WordDictionary> sub;
     public boolean isEnd;
 
     public WordDictionary() {
-        sub = new WordDictionary[27];
+        sub = new HashMap<>();
         isEnd = false;
     }
 
@@ -17,12 +20,22 @@ class WordDictionary {
         WordDictionary cur = this;
         WordDictionary curAny = this;
         for (char c : word.toCharArray()) {
-            if (cur.sub[c - 'a'] == null) {
-                cur.sub[c - 'a'] = curAny.sub[c - 'a'] = new WordDictionary();
-                cur.sub[26] = curAny.sub[26] = new WordDictionary();
+            if (!cur.sub.containsKey(c)) {
+                WordDictionary next = new WordDictionary();
+                cur.sub.put(c, next);
+                curAny.sub.put(c, next);
+
+                if(!curAny.sub.containsKey('.')){
+                    WordDictionary nextAny = new WordDictionary();
+                    cur.sub.put('.', nextAny);
+                    curAny.sub.put('.', nextAny);
+                }else{
+                    cur.sub.put('.', curAny.sub.get('.'));
+                }
+
             }
-            cur = cur.sub[c - 'a'];
-            curAny = curAny.sub[26];
+            cur = cur.sub.get(c);
+            curAny = curAny.sub.get('.');
         }
         cur.isEnd = true;
         curAny.isEnd = true;
@@ -31,17 +44,10 @@ class WordDictionary {
     public boolean search(String word) {
         WordDictionary cur = this;
         for (char c : word.toCharArray()) {
-            if (c == '.') {
-                if (cur.sub[26] != null) {
-                    cur = cur.sub[26];
-                } else {
-                    return false;
-                }
-            } else if (cur.sub[c - 'a'] != null) {
-                cur = cur.sub[c - 'a'];
-            } else {
+            if(!cur.sub.containsKey(c)){
                 return false;
             }
+            cur = cur.sub.get(c);
         }
         return cur.isEnd;
     }
