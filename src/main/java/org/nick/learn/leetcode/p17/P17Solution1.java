@@ -27,8 +27,7 @@ public class P17Solution1 {
     }
 
     private void dfs(String digits, int index, List<String> result, String tmp) {
-        int t = Integer.parseInt(digits.charAt(index) + "");
-        char[] chars = phone[t];
+        char[] chars = phone[digits.charAt(index) - '0'];
         for (char c : chars) {
             if (index == digits.length() - 1) {
                 result.add(tmp + c);
