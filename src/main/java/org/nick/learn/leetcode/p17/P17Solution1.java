@@ -1,5 +1,6 @@
 package org.nick.learn.leetcode.p17;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,21 +19,25 @@ public class P17Solution1 {
     };
 
     public List<String> letterCombinations(String digits) {
-        if(digits == null || digits.isEmpty()){
+        if (digits == null || digits.isEmpty()) {
             return new LinkedList<>();
         }
         List<String> result = new LinkedList<>();
-        this.dfs(digits, 0, result, "");
+        this.dfs(digits, 0, result, new char[digits.length()]);
         return result;
     }
 
-    private void dfs(String digits, int index, List<String> result, String tmp) {
+    // 以 String 作为入参，GC 压力有点大啊
+    private void dfs(String digits, int index, List<String> result, char[] tmp) {
         char[] chars = phone[digits.charAt(index) - '0'];
         for (char c : chars) {
             if (index == digits.length() - 1) {
-                result.add(tmp + c);
+                tmp[index] = c;
+                result.add(new String(tmp));
             } else {
-                this.dfs(digits, index + 1, result, tmp + c);
+                char[] newTmp = Arrays.copyOf(tmp, tmp.length);
+                newTmp[index] = c;
+                this.dfs(digits, index + 1, result, newTmp);
             }
         }
     }
