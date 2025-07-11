@@ -1,5 +1,6 @@
 package org.nick.learn.leetcode.p77;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class P77Solution6 {
     // 24ms 击败30%
     public List<List<Integer>> combine(int n, int k) {
         this.result = new LinkedList<>();
-        this.list = new LinkedList<>();
+        this.list = new ArrayList<>(k);
         this.n = n;
         this.k = k;
         this.dfs(1);
@@ -31,7 +32,7 @@ public class P77Solution6 {
         // 放
         list.add(i);
         if (list.size() == k) {
-            result.add(new LinkedList<>(list));
+            result.add(new ArrayList<>(list));
         } else {
             this.dfs(i + 1);
         }
