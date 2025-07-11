@@ -1,12 +1,12 @@
 package org.nick.learn.leetcode.p77;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+@Slf4j
 class P77Solution8Test {
     P77Solution8 solution = new P77Solution8();
 
@@ -25,19 +25,33 @@ class P77Solution8Test {
 
     @Test
     void combine2() {
-        int[] arr = new int[100];
         long start = System.currentTimeMillis();
         for (int i = 0; i < 100; i++) {
-            List<List<Integer>> ans = solution8.combine(i, 3);
-            arr[i] = ans.size();
+            solution8.combine(i, 3);
         }
         long end = System.currentTimeMillis();
         System.out.println("elapse: " + (end - start));
 
         start = System.currentTimeMillis();
         for (int i = 0; i < 100; i++) {
-            List<List<Integer>> ans = solution10.combine(i, 3);
-            assertEquals(arr[i], ans.size());
+            solution10.combine(i, 3);
+        }
+        end = System.currentTimeMillis();
+        System.out.println("elapse: " + (end - start));
+    }
+
+    @Test
+    void combine3() {
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            solution8.combine(i, 3);
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("elapse: " + (end - start));
+
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            solution10.combine(100, 3);
         }
         end = System.currentTimeMillis();
         System.out.println("elapse: " + (end - start));

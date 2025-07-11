@@ -15,7 +15,8 @@ import java.util.List;
 @Slf4j
 public class P77Solution8 {
 
-    // 30ms
+    // 33ms 击败10%
+    // 98.77MB
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> ans = new LinkedList<>();
         List<Integer> tmpList;

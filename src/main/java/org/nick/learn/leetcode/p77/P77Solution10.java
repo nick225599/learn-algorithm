@@ -12,9 +12,14 @@ import java.util.List;
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 @Slf4j
 public class P77Solution10 {
+    List<List<Integer>> ans;
+    List<Integer> temp;
+
+    // 31ms, 89.96MB
     public List<List<Integer>> combine(int n, int k) {
-        List<Integer> temp = new ArrayList<>();
-        List<List<Integer>> ans = new ArrayList<>();
+        ans = new ArrayList<>();
+        temp = new ArrayList<>();
+
         // 初始化
         // 将 temp 中 [0, k - 1] 每个位置 i 设置为 i + 1，即 [0, k - 1] 存 [1, k]
         // 末尾加一位 n + 1 作为哨兵
@@ -26,7 +31,6 @@ public class P77Solution10 {
         int j = 0;
         while (j < k) {
             ans.add(new ArrayList<>(temp.subList(0, k)));
-            log.info("temp.size(): {}", temp.size());
             j = 0;
             // 寻找第一个 temp[j] + 1 != temp[j + 1] 的位置 t
             // 我们需要把 [0, t - 1] 区间内的每个位置重置成 [1, t]
