@@ -5,12 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class P77Solution6 {
-    private List<List<Integer>> result = new LinkedList<>();
-    private List<Integer> list = new LinkedList<>();
+
+    private List<List<Integer>> result;
+    private List<Integer> list;
     private int n;
     private int k;
 
-    // 24ms 击败30%
+    // 15ms ~ 19ms 击败 95%
     public List<List<Integer>> combine(int n, int k) {
         this.result = new LinkedList<>();
         this.list = new ArrayList<>(k);
