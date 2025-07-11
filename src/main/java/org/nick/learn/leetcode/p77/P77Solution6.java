@@ -20,22 +20,19 @@ public class P77Solution6 {
     }
 
     private void dfs(int i) {
-
         // 跳过太多，不可能凑够 k 个数，直接结束
-        if(list.size() + n - i + 1 < k){
+        if (list.size() + n - i + 1 < k) {
             return;
         }
 
         // 不放
-        if (i + 1 <= n) {
-            this.dfs(i + 1);
-        }
+        this.dfs(i + 1);
 
         // 放
         list.add(i);
         if (list.size() == k) {
             result.add(new LinkedList<>(list));
-        } else if (i + 1 <= n) { // 有 else 27ms 没有就是 36ms
+        } else {
             this.dfs(i + 1);
         }
         list.removeLast();
