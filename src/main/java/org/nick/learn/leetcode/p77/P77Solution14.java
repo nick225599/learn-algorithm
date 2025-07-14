@@ -28,14 +28,14 @@ public class P77Solution14 {
         }
         while (true) {
             int i;
-            for (i = 0; i - 1 < k && list.get(i) + 1 == list.get(i + 1); i++) {
+            for (i = 0; i < k - 1 && list.get(i) + 1 == list.get(i + 1); i++) {
                 list.set(i, i + 1);
             }
             list.set(i, list.get(i) + 1);
             if (list.get(i) > n) {
                 break;
             }
-            result.add(new ArrayList<>(list.subList(0, k)));
+            result.add(new ArrayList<>(list));
         }
 
         // 规则一：x 的最低位为 1，这种情况下，如果末尾由 t 个连续的 1，
