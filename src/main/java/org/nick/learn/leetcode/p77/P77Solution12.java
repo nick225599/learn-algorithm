@@ -11,7 +11,6 @@ import java.util.List;
 @Slf4j
 public class P77Solution12 {
 
-    //TODO nick 20250714 不行,压根没脑子学这题
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> result = new LinkedList<>();
         if (n < k) {
