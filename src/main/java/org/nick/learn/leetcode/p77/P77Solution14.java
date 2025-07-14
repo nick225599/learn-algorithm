@@ -9,6 +9,7 @@ import java.util.List;
 
 
 // 无哨兵版本
+//nick 20250714 这个解法回头又要忘了，自己怎么推衍出这种解法...得能回想起来二进制01数组的变化规律
 @Slf4j
 public class P77Solution14 {
 
