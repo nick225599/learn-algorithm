@@ -21,17 +21,19 @@ public class P52Solution1 {
             return;
         }
 
-        // 不放
-        boolean[] newChessBoard1 = Arrays.copyOf(chessboard, chessboard.length);
-        dfs(newChessBoard1, n, placeIndex + 1, count);
-
-        // 放
-        if (chessboard[placeIndex]) { // 已经被限制了，不能再放了
+        if(placeIndex == chessboard.length){
             return;
         }
-        boolean[] newChessBoard2 = Arrays.copyOf(chessboard, chessboard.length);
-        this.place(newChessBoard2, n, placeIndex);
-        dfs(newChessBoard2, n, placeIndex + 1, count + 1);
+
+        // 放
+        if (!chessboard[placeIndex]) {
+            boolean[] newChessBoard = Arrays.copyOf(chessboard, chessboard.length);
+            this.place(newChessBoard, n, placeIndex);
+            dfs(newChessBoard, n, placeIndex + 1, count + 1);
+        }
+
+        // 不放
+        dfs(chessboard, n, placeIndex + 1, count);
     }
 
     void place(boolean[] chessboard, int n, int placeIndex) {
