@@ -69,30 +69,4 @@ public class P52Solution1 {
             i += (n + 1);
         }
     }
-
-    //    public static void main(String[] args) {
-    //        int n = 5;
-    //
-    //        for(int i = 0; i < n * n; i++){
-    //            boolean[] chessboard = new boolean[n * n];
-    //            boolean[] newChessBoard = new P52Solution1().place(chessboard, n, i);
-    //            printChessBoard(newChessBoard, n);
-    //            System.out.println();
-    //        }
-    //
-    //    }
-
-    //    public static void printChessBoard(boolean[] chessBoard, int width) {
-    //        StringBuilder sb = new StringBuilder();
-    //        for (int i = 0; i < chessBoard.length; i++) {
-    //            if (i % width == 0) {
-    //                sb.append("\r\n");
-    //            }
-    //            sb.append(chessBoard[i] ? 1 : 0);
-    //            sb.append(" ");
-    //        }
-    //        System.out.println(sb);
-    //    }
-
-
 }
