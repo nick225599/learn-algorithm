@@ -1,8 +1,8 @@
-package org.nick.learn.leetcode.p46;
+package org.nick.learn.leetcode.p49;
 
 import java.util.*;
 
-public class P46Solution1 {
+public class P49Solution1 {
 
     // 朴素解法
     // 时间复杂度 O(n * klogk) k 字符串最大的长度

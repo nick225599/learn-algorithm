@@ -1,8 +1,8 @@
-package org.nick.learn.leetcode.p46;
+package org.nick.learn.leetcode.p49;
 
 import java.util.*;
 
-public class P46Solution5 {
+public class P49Solution5 {
 
     // 原理跟 Solution2 一样
     public List<List<String>> groupAnagrams(String[] strs) {

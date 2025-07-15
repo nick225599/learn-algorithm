@@ -1,8 +1,8 @@
-package org.nick.learn.leetcode.p46;
+package org.nick.learn.leetcode.p49;
 
 import java.util.*;
 
-public class P46Solution2 {
+public class P49Solution2 {
 
     // 朴素解法，优化版，不存整个字符串作为 key 而是算它的 hash 值
     // 不用排序了，也能一定程度优化内存
