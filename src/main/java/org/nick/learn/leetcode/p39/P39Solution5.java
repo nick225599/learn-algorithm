@@ -17,6 +17,7 @@ public class P39Solution5 {
         this.list = new LinkedList<>();
         this.candidates = candidates;
 
+
         backtrack(target, candidates.length - 1); // 从大到小挑
         return ans;
     }
@@ -27,14 +28,12 @@ public class P39Solution5 {
             return;
         }
 
-
         for (int i = start; i >= 0; i--) {
-            //剪枝：如果当前元素大于剩余值，跳过（后续的值更大，无需继续）
-            if (candidates[i] > remain)
-                continue;
-            list.add(candidates[i]);
-            backtrack(remain - candidates[i], i );
-            list.removeLast();
+            if (remain >= candidates[i]) {
+                list.add(candidates[i]);
+                backtrack(remain - candidates[i], i);
+                list.removeLast();
+            }
         }
     }
 
