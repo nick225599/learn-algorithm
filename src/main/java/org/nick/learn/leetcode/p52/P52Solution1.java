@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class P52Solution1 {
     int result;
 
+    // 785ms 击败6%
     public int totalNQueens(int n) {
         if (n == 1) {
             return 1;
