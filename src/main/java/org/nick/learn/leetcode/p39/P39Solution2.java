@@ -12,6 +12,7 @@ public class P39Solution2 {
 
     // 官方题解 “搜索回溯” 法
     // 2ms 击败 88.99%
+    //TODO nick 看上去差不多，吃过饭来理解一下
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
         List<Integer> combine = new ArrayList<Integer>();
