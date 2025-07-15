@@ -22,7 +22,7 @@ public class P52Solution1 {
             return;
         }
 
-        if(placeIndex == chessboard.length){
+        if (placeIndex >= chessboard.length) {
             return;
         }
 
