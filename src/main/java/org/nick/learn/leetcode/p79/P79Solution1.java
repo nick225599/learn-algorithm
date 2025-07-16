@@ -22,7 +22,7 @@ public class P79Solution1 {
         if (column < 0 || column >= board[0].length) {
             return false;
         }
-        if (this.isUsed(used, row, column, board.length)) {
+        if (this.isUsed(used, row, column, board[0].length)) {
             return false;
         }
         if (board[row][column] != word.charAt(wordIndex)) {
@@ -31,7 +31,7 @@ public class P79Solution1 {
         if (wordIndex == word.length() - 1) {
             return true;
         }
-        int newUsed = this.markUsed(used, row, column, board.length);
+        int newUsed = this.markUsed(used, row, column, board[0].length);
         return dfs(board, word, row - 1, column, wordIndex + 1, newUsed)
                 || dfs(board, word, row + 1, column, wordIndex + 1, newUsed)
                 || dfs(board, word, row, column - 1, wordIndex + 1, newUsed)
