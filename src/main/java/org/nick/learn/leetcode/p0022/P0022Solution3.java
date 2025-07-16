@@ -10,6 +10,9 @@ public class P0022Solution3 {
     static List<String>[] cache = new LinkedList[9];
 
     static {
+        cache[0] = new LinkedList<>();
+        cache[0].add(""); // 空字符串不能少
+
         cache[1] = new LinkedList<>();
         cache[1].add("()");
     }
@@ -20,7 +23,10 @@ public class P0022Solution3 {
             return cache[n];
         }
         List<String> cur = new LinkedList<>();
-        for (int i = 1; n - i - 1 >= 1; i++) {
+
+        // parenthesis(n) = "(" + parenthesis(a) + ")" + parenthesis(b)
+        // a b 都得允许为 0
+        for (int i = 0; n - i - 1 >= 0; i++) {
             List<String> lefts = generateParenthesis(i);
             List<String> rights = generateParenthesis(n - i - 1);
             for(String l: lefts){
