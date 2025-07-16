@@ -62,7 +62,11 @@ public class P52Solution2 {
             forbiddenRight[(column + 1) % n] = true;
 
             this.count++;
-            this.dfs(index + 1);
+            int tmp = index;
+            while(tmp % 4 != 0){
+                tmp++;
+            }
+            this.dfs(tmp);
             this.count--;
 
             forbiddenColumns = arr1;
