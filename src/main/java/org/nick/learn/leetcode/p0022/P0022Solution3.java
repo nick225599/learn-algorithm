@@ -10,7 +10,6 @@ public class P0022Solution3 {
     static List<String>[] cache = new LinkedList[9];
 
     static {
-        cache[0] = new LinkedList<>();
         cache[1] = new LinkedList<>();
         cache[1].add("()");
     }
@@ -21,7 +20,7 @@ public class P0022Solution3 {
             return cache[n];
         }
         List<String> cur = new LinkedList<>();
-        for (int i = 1; i <= n - 1; i++) {
+        for (int i = 1; n - i - 1 >= 1; i++) {
             List<String> lefts = generateParenthesis(i);
             List<String> rights = generateParenthesis(n - i - 1);
             for(String l: lefts){
