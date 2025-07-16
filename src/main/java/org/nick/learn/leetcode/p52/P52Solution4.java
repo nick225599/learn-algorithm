@@ -1,80 +1,43 @@
 package org.nick.learn.leetcode.p52;
 
-import java.util.Arrays;
-
 public class P52Solution4 {
     int n;
     int result;
-    int count;
+    boolean[] arr1;
+    boolean[] arr2;
+    boolean[] arr3;
 
-    boolean[] forbiddenColumns;
-    boolean[] forbiddenLeft;
-    boolean[] forbiddenRight;
-
-    //TODO nick 20250716 看了官方题解的思路，也看了官方题解代码，该自己实现了这块了
+    // 0ms 击败100%
     public int totalNQueens(int n) {
         this.n = n;
         this.result = 0;
-        this.count = 0;
-        forbiddenColumns = new boolean[n];
-        forbiddenLeft = new boolean[n];
-        forbiddenRight = new boolean[n];
+        this.arr1 = new boolean[n];
+        this.arr2 = new boolean[2 * n - 1];
+        this.arr3 = new boolean[2 * n - 1];
         this.dfs(0);
         return result;
     }
 
-    private void dfs(int index) {
-        if (index >= n * n) {
+    private void dfs(int row) {
+        if (row == n) {
+            this.result++;
             return;
         }
 
-        if (count == n) {
-            result++;
-            return;
+        for (int column = 0; column < n; column++) {
+            if (arr1[column] || arr2[column - row + n - 1] || arr3[column + row]) {
+                continue;
+            }
+
+            arr1[column] = true;
+            arr2[column - row + n - 1] = true;
+            arr3[column + row] = true;
+            dfs(row + 1);
+            arr1[column] = false;
+            arr2[column - row + n - 1] = false;
+            arr3[column + row] = false;
         }
-
-        int column = index % n;
-
-
-        // 放
-        if (!forbiddenColumns[column] && !forbiddenLeft[column] && !forbiddenRight[column]) {
-            boolean[] arr1 = Arrays.copyOf(forbiddenColumns, n);
-            boolean[] arr2 = Arrays.copyOf(forbiddenLeft, n);
-            boolean[] arr3 = Arrays.copyOf(forbiddenRight, n);
-
-            forbiddenColumns[column] = true;
-            for (int i = n - 1; i >= 0; i--) {
-                if (forbiddenLeft[i]) {
-                    forbiddenLeft[i] = false;
-                    forbiddenLeft[(i + n - 1) % n] = true;
-                    i--;
-                }
-            }
-            for (int i = 0; i < n; i++) {
-                if (forbiddenRight[i]) {
-                    forbiddenRight[i] = false;
-                    forbiddenRight[(i + n) % n] = true;
-                    i++;
-                }
-            }
-            forbiddenLeft[(column + n - 1) % n] = true;
-            forbiddenRight[(column + 1) % n] = true;
-
-            this.count++;
-            int tmp = index;
-            while(tmp % 4 != 0){
-                tmp++;
-            }
-            this.dfs(tmp);
-            this.count--;
-
-            forbiddenColumns = arr1;
-            forbiddenLeft = arr2;
-            forbiddenRight = arr3;
-        }
-
-        // 不放
-        this.dfs(index + 1);
     }
+
 
 }
