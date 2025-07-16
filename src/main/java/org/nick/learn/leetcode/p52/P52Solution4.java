@@ -14,11 +14,11 @@ public class P52Solution4 {
         this.arr1 = new boolean[n];
         this.arr2 = new boolean[2 * n - 1];
         this.arr3 = new boolean[2 * n - 1];
-        this.dfs(0);
+        this.backtrace(0);
         return result;
     }
 
-    private void dfs(int row) {
+    private void backtrace(int row) {
         if (row == n) {
             this.result++;
             return;
@@ -32,7 +32,7 @@ public class P52Solution4 {
             arr1[column] = true;
             arr2[column - row + n - 1] = true;
             arr3[column + row] = true;
-            dfs(row + 1);
+            backtrace(row + 1);
             arr1[column] = false;
             arr2[column - row + n - 1] = false;
             arr3[column + row] = false;
