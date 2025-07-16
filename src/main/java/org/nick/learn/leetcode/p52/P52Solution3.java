@@ -3,20 +3,28 @@ package org.nick.learn.leetcode.p52;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class P52Solution3 {
+
+    Set<Integer> columns;
+    Set<Integer> diagonals1;
+    Set<Integer> diagonals2;
+    int n;
+
 
     // 作者：力扣官方题解
     // 链接：https://leetcode.cn/problems/n-queens-ii/solutions/449388/nhuang-hou-ii-by-leetcode-solution/
     // 来源：力扣（LeetCode）
     // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
     public int totalNQueens(int n) {
-        Set<Integer> columns = new HashSet<>();
-        Set<Integer> diagonals1 = new HashSet<>();
-        Set<Integer> diagonals2 = new HashSet<>();
-        return backtrack(n, 0, columns, diagonals1, diagonals2);
+        this.columns = new HashSet<>();
+        this.diagonals1 = new HashSet<>();
+        this.diagonals2 = new HashSet<>();
+        this.n = n;
+        return backtrack(0);
     }
 
-    public int backtrack(int n, int row, Set<Integer> columns, Set<Integer> diagonals1, Set<Integer> diagonals2) {
+    public int backtrack(int row) {
         if (row == n) {
             return 1;
         }
@@ -37,7 +45,7 @@ public class P52Solution3 {
             columns.add(i);
             diagonals1.add(diagonal1);
             diagonals2.add(diagonal2);
-            count += backtrack(n, row + 1, columns, diagonals1, diagonals2);
+            count += backtrack(row + 1);
             columns.remove(i);
             diagonals1.remove(diagonal1);
             diagonals2.remove(diagonal2);
