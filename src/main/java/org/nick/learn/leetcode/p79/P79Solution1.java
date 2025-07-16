@@ -3,14 +3,18 @@ package org.nick.learn.leetcode.p79;
 public class P79Solution1 {
     int rowNum;
     int columnNum;
+    char[][] board;
+    String word;
 
     // 终于写对了，150ms 击败54%
     public boolean exist(char[][] board, String word) {
-        rowNum = board.length;
-        columnNum = board[0].length;
+        this.rowNum = board.length;
+        this.columnNum = board[0].length;
+        this.board = board;
+        this.word = word;
         for (int row = 0; row < rowNum; row++) {
             for (int column = 0; column < columnNum; column++) {
-                if (dfs(board, word, row, column, 0, 0)) {
+                if (dfs(row, column, 0, 0)) {
                     return true;
                 }
             }
@@ -18,7 +22,7 @@ public class P79Solution1 {
         return false;
     }
 
-    private boolean dfs(char[][] board, String word, int row, int column, int wordIndex, int used) {
+    private boolean dfs(int row, int column, int wordIndex, int used) {
         if (row < 0 || row >= rowNum) {
             return false;
         }
@@ -35,10 +39,10 @@ public class P79Solution1 {
             return true;
         }
         int newUsed = this.markUsed(used, row, column);
-        return dfs(board, word, row - 1, column, wordIndex + 1, newUsed)
-                || dfs(board, word, row + 1, column, wordIndex + 1, newUsed)
-                || dfs(board, word, row, column - 1, wordIndex + 1, newUsed)
-                || dfs(board, word, row, column + 1, wordIndex + 1, newUsed);
+        return dfs(row - 1, column, wordIndex + 1, newUsed)
+                || dfs(row + 1, column, wordIndex + 1, newUsed)
+                || dfs(row, column - 1, wordIndex + 1, newUsed)
+                || dfs(row, column + 1, wordIndex + 1, newUsed);
     }
 
     private boolean isUsed(int used, int row, int column) {
