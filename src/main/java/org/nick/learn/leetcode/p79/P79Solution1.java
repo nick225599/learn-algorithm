@@ -43,7 +43,7 @@ public class P79Solution1 {
     private boolean isUsed(int used, int row, int column) {
         int bitIndex = row * columnNum + column;
         int mask = 1 << bitIndex;
-        return (used & mask) == 1;
+        return (used & mask) > 0;
     }
 
     private int markUsed(int used, int row, int column) {
