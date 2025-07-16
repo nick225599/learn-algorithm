@@ -29,7 +29,7 @@ public class P79Solution2 {
     public boolean check(char[][] board, boolean[][] visited, int i, int j, String s, int k) {
         if (board[i][j] != s.charAt(k)) {
             return false;
-        } else if (k == s.length() - 1) {
+        } else if (k == s.length() - 1) { 
             return true;
         }
         visited[i][j] = true;
