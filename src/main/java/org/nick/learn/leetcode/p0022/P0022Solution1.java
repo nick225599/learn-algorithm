@@ -16,14 +16,12 @@ public class P0022Solution1 {
             ans.add(new String(chars));
         }
 
-        boolean canInsertLeft = lSum < n;
-        if (canInsertLeft) {
+        if (lSum < n) {
             chars[insertPos] = '(';
             backstrace(ans, n, chars, insertPos + 1, lSum + 1, rSum);
         }
 
-        boolean canInsertRight = lSum != rSum;
-        if(canInsertRight){
+        if(lSum != rSum){
             chars[insertPos] = ')';
             backstrace(ans, n, chars, insertPos + 1, lSum, rSum + 1);
         }
