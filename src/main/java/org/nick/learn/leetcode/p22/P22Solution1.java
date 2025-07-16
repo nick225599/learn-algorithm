@@ -1,9 +1,9 @@
-package org.nick.learn.leetcode.p0022;
+package org.nick.learn.leetcode.p22;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class P0022Solution1 {
+public class P22Solution1 {
     // 0ms 击败 100%
     public List<String> generateParenthesis(int n) {
         List<String> ans = new LinkedList<>();

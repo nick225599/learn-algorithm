@@ -1,11 +1,9 @@
-package org.nick.learn.leetcode.p0022;
+package org.nick.learn.leetcode.p22;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class P0022Solution3 {
+public class P22Solution3 {
 
     static List<String>[] cache = new LinkedList[9];
 

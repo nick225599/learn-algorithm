@@ -1,9 +1,9 @@
-package org.nick.learn.leetcode.p0022;
+package org.nick.learn.leetcode.p22;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class P0022Solution2 {
+public class P22Solution2 {
     //    作者：力扣官方题解
 //    链接：https://leetcode.cn/problems/generate-parentheses/solutions/192912/gua-hao-sheng-cheng-by-leetcode-solution/
 //    来源：力扣（LeetCode）

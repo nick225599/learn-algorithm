@@ -1,11 +1,11 @@
-package org.nick.learn.leetcode.p0022;
+package org.nick.learn.leetcode.p22;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 class P0022Solution3Test {
-    P0022Solution3 solution = new P0022Solution3();
+    P22Solution3 solution = new P22Solution3();
 
     @Test
     void generateParenthesis() {
