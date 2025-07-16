@@ -2,7 +2,6 @@ package org.nick.learn.leetcode.p52;
 
 import java.util.Arrays;
 
-//TODO nick 20250715 应该是判断列和两个斜线
 public class P52Solution4 {
     int n;
     int result;
@@ -12,7 +11,7 @@ public class P52Solution4 {
     boolean[] forbiddenLeft;
     boolean[] forbiddenRight;
 
-    // 785ms 击败6%
+    //TODO nick 20250716 看了官方题解的思路，也看了官方题解代码，该自己实现了这块了
     public int totalNQueens(int n) {
         this.n = n;
         this.result = 0;
