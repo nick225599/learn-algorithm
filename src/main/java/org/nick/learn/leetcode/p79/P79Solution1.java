@@ -4,6 +4,7 @@ public class P79Solution1 {
     int rowNum;
     int columnNum;
 
+    // 终于写对了，150ms 击败54%
     public boolean exist(char[][] board, String word) {
         rowNum = board.length;
         columnNum = board[0].length;
