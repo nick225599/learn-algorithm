@@ -36,12 +36,16 @@ public class P53Solution6 {
         CompoundSum r = maxSubArray(nums, mid + 1, j);
 
         // 合
+        // lSum 表示 [l,r] 内以 l 为左端点的最大子段和
         int lSum = l.iSum + r.lSum;
+        // rSum 表示 [l,r] 内以 r 为右端点的最大子段和
         int rSum = l.rSum + r.iSum;
+        // mSum 表示 [l,r] 内的最大子段和
         int mSum = Math.max(
                 Math.max(l.mSum, r.mSum),
                 l.rSum + r.lSum
         );
+        // iSum 表示 [l,r] 的区间和
         int iSum = l.iSum + r.iSum;
         return new CompoundSum(lSum, rSum, mSum, iSum);
     }
