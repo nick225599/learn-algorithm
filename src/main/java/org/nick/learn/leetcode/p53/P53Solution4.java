@@ -11,15 +11,15 @@ public class P53Solution4 {
 
         int n = nums.length;
 
-        int[] left = new int[n];
-        left[0] = nums[0];
+        int[] bitMax = new int[n];
+        bitMax[0] = nums[0];
         for (int i = 1; i < n; i++) {
-            left[i] = Math.max(left[i - 1] + nums[i], nums[i]);
+            bitMax[i] = Math.max(bitMax[i - 1] + nums[i], nums[i]); // 看了下题解，这就是 dp 思想...
         }
 
-        int max = left[0];
+        int max = bitMax[0];
         for(int i = 1; i < n; i++){
-            max = Math.max(max, left[i]);
+            max = Math.max(max, bitMax[i]);
         }
 
         return max;
