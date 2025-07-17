@@ -14,14 +14,14 @@ package org.nick.learn.leetcode.p148;
 public class P148Solution14 {
 
     // 自己尝试一下 O(1) 空间复杂度的解法
-    //TODO nick 超时了，吃过饭查下为啥
+    // 16ms 击败 19%
     public ListNode sortList(ListNode head) {
         int length = calculateLength(head);
 
         ListNode dummy = new ListNode();
         dummy.next = head;
 
-        for (int granularity = 1; granularity <= length; granularity <<= 1) {
+        for (int granularity = 1; granularity < length; granularity <<= 1) {
 
             ListNode pre = dummy;
             ListNode cur = pre.next;
@@ -61,7 +61,9 @@ public class P148Solution14 {
                     next = tail2.next;
                 }
 
-                // 两两合并（合并时保持有序）
+                // 切断后，两两合并（合并时保持有序）
+                tail1.next = null;
+                tail2.next = null;
                 ListNode headOfSortedList = this.merge(head1, head2);
                 ListNode tailOfSortedList = headOfSortedList;
                 while(tailOfSortedList.next != null){
