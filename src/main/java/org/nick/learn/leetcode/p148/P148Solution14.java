@@ -24,7 +24,7 @@ public class P148Solution14 {
         for (int granularity = 1; granularity <= length; granularity <<= 1) {
 
             ListNode pre = dummy;
-            ListNode cur = head;
+            ListNode cur = pre.next;
 
 
             while (cur != null) {
@@ -32,29 +32,32 @@ public class P148Solution14 {
                 // 拆解出前面的部分、第 1 份、第 2 份以及剩余部分
                 ListNode head1, tail1;
                 head1 = cur;
-                tail1 = cur.next;
-                for (int i = 0; i < granularity; i++) {
-                    if (tail1 == null || tail1.next == null) {
+                tail1 = head1;
+                for (int i = 1; i < granularity; i++) {
+                    if (tail1.next == null) {
                         break;
                     }
                     tail1 = tail1.next;
                 }
-                if (tail1 == null || tail1.next == null) {
+
+                if (tail1.next == null) {
                     break;
                 }
+
                 ListNode head2, tail2;
                 head2 = tail1.next;
-                tail2 = head2.next;
-                for (int i = 0; i < granularity; i++) {
-                    if (tail2 == null || tail2.next == null) {
+                tail2 = head2;
+                for (int i = 1; i < granularity; i++) {
+                    if (tail2.next == null) {
                         break;
                     }
                     tail2 = tail2.next;
                 }
+
                 ListNode next;
-                if(tail2 == null || tail2.next == null){
+                if (tail2.next == null) {
                     next = null;
-                }else{
+                } else {
                     next = tail2.next;
                 }
 
