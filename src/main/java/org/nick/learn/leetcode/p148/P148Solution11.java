@@ -16,6 +16,8 @@ public class P148Solution11 {
     // 时间复杂度 O(nlogn)
     // 空间复杂度 O(logn)
     // 11ms 击败63%
+
+    // 10ms 击败91%
     public ListNode sortList(ListNode head) {
         if (head == null) {
             return null;
@@ -63,16 +65,7 @@ public class P148Solution11 {
             }
             head = head.next;
         }
-        while (left != null) {
-            head.next = left;
-            head = head.next;
-            left = left.next;
-        }
-        while (right != null) {
-            head.next = right;
-            head = head.next;
-            right = right.next;
-        }
+        head.next = left != null ? left : right;
         return dummy.next;
     }
 }
