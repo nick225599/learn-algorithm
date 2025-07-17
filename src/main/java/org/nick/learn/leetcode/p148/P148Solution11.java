@@ -12,9 +12,10 @@ package org.nick.learn.leetcode.p148;
  */
 public class P148Solution11 {
 
-    // 时间复杂度 O(n^2)
+    // 快慢指针找到中间节点
+    // 时间复杂度 O(nlogn)
     // 空间复杂度 O(logn)
-    // AI 了一下，可以用快慢指针，找到链表的中间节点
+    // 11ms 击败63%
     public ListNode sortList(ListNode head) {
         if (head == null) {
             return null;
@@ -23,31 +24,30 @@ public class P148Solution11 {
             return head;
         }
 
-//        if (head.next.next == null) {
-//            if (head.val > head.next.val) {
-//                ListNode n = head.next;
-//                n.next = head;
-//                head.next = null;
-//                return n;
-//            } else {
-//                return head;
-//            }
-//        }
+        if (head.next.next == null) {
+            if (head.val > head.next.val) {
+                ListNode n = head.next;
+                n.next = head;
+                head.next = null;
+                return n;
+            } else {
+                return head;
+            }
+        }
 
         ListNode fast = head;
         ListNode slow = head;
-        while (fast != null && fast.next != null) {
+        while (fast.next != null && fast.next.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
 
-        ListNode left = slow;
+        ListNode left = head;
         ListNode right = slow.next;
-        left.next = null;
+        slow.next = null;
         left = sortList(left);
         right = sortList(right);
-        ListNode cur = this.merge(left, right);
-        return cur;
+        return this.merge(left, right);
     }
 
     private ListNode merge(ListNode left, ListNode right) {
