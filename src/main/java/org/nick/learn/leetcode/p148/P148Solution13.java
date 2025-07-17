@@ -21,22 +21,29 @@ public class P148Solution13 {
         if (head == null) {
             return head;
         }
-        int length = 0;
-        ListNode node = head;
-        while (node != null) {
-            length++;
-            node = node.next;
-        }
+
+        // 计算节点总长度
+        int length = this.calculateLength(head);
+
         ListNode dummyHead = new ListNode(0, head);
+
+        // 将链表拆分成 1 节点一份、2 节点一份、4 节点一份、8 节点一份...
         for (int subLength = 1; subLength < length; subLength <<= 1) {
-            ListNode prev = dummyHead, curr = dummyHead.next;
+
+            ListNode prev = dummyHead;
+            ListNode curr = dummyHead.next;
+
             while (curr != null) {
+
+                // head1 指向第 1 份的头节点
                 ListNode head1 = curr;
                 for (int i = 1; i < subLength && curr.next != null; i++) {
                     curr = curr.next;
                 }
+
+                // head2 指向第 2 份的头节点
                 ListNode head2 = curr.next;
-                curr.next = null;
+                curr.next = null; // 切断第 1 份和第 2 份
                 curr = head2;
                 for (int i = 1; i < subLength && curr != null && curr.next != null; i++) {
                     curr = curr.next;
@@ -44,17 +51,36 @@ public class P148Solution13 {
                 ListNode next = null;
                 if (curr != null) {
                     next = curr.next;
-                    curr.next = null;
+                    curr.next = null; // 将第 2 份与后续部分切断
                 }
+
+                // 合并第 1 份和第 2 份
                 ListNode merged = merge(head1, head2);
+
+                // 将合并结果和上一次 while 循环的合并结果给接上
                 prev.next = merged;
+
+                // 找到这一份的尾巴，作为下一次 while 循环执行结果要拼接的位置
                 while (prev.next != null) {
                     prev = prev.next;
                 }
+
+                // 第 2 份尾节点的 next 节点，就是下一次 while 循环要处理的头节点
                 curr = next;
+
+                // 忒反直觉了
             }
         }
         return dummyHead.next;
+    }
+
+    private int calculateLength(ListNode head) {
+        int l = 0;
+        while(head != null){
+            head = head.next;
+            l++;
+        }
+        return l;
     }
 
     private ListNode merge(ListNode left, ListNode right) {
