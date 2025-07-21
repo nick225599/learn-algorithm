@@ -5,6 +5,8 @@ import java.util.Arrays;
 public class P918Solution4 {
 
     // dp
+    // 时间复杂度  O(n)
+    // 空间复杂度 O(n)
     public int maxSubarraySumCircular(int[] nums) {
         int n = nums.length;
 
