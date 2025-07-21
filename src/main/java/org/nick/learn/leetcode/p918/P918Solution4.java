@@ -27,15 +27,17 @@ public class P918Solution4 {
         System.out.println("arr2: " + Arrays.toString(arr2));
 
         // [0, n-1] 的最大子数组和
-        int max = arr2[0];
-        for(int arr2Tmp : arr2){
-            max = Math.max(max, arr2Tmp);
+        int pre = nums[0];
+        int max = nums[0];
+        for (int i = 1; i < n; i++) {
+            pre = Math.max(nums[i], nums[i] + pre);
+            max = Math.max(max, pre);
         }
         System.out.println("max of [0, n - 1]: " + max);
 
         int[] arr3 = new int[n];
         arr3[0] = max;
-        for(int i = 1; i <= n - 1 ; i++){
+        for (int i = 1; i <= n - 1; i++) {
             // [i,n-1] 的元素和 + [0, i-1]以 0  为左边界的子数组最大和
             // = 跨右边界的子数组的最大和 [i, n - 1] & [0, i - 1]
             arr3[i] = arr1[i] + arr2[i - 1];
@@ -43,7 +45,7 @@ public class P918Solution4 {
         System.out.println("arr3: " + Arrays.toString(arr3));
 
         // 找到最大值
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             max = Math.max(max, arr3[i]);
         }
         System.out.println("final max: " + max);
