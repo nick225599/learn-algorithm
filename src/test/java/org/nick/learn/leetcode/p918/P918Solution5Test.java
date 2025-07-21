@@ -19,4 +19,11 @@ class P918Solution5Test {
         int max = solution.maxSubarraySumCircular(new int[]{-3, -2, -3});
         assertEquals(-2, max);
     }
+
+
+    @Test
+    void maxSubarraySumCircular3() {
+        int max = solution.maxSubarraySumCircular(new int[]{3,-1,2,-1});
+        assertEquals(4, max);
+    }
 }
