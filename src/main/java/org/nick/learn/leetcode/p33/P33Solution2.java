@@ -2,7 +2,8 @@ package org.nick.learn.leetcode.p33;
 
 public class P33Solution2 {
 
-    // 怎么二分
+    // 自己尝试二分
+    // 0ms 击败 100%
     public int search(int[] nums, int target) {
         int n = nums.length;
         int l = 0;
@@ -20,8 +21,11 @@ public class P33Solution2 {
                 while (true) {
                     int newM = l + ((r - l) >> 1);
                     int newNum = nums[newM % n];
-                    if (newNum < num) {
-                        r = l + ((r - l) >> 1);
+                    if (newNum <= num) {
+                        r = newM - 1;
+                        if (l > r) {
+                            return -1;
+                        }
                     } else {
                         break;
                     }
@@ -39,8 +43,11 @@ public class P33Solution2 {
                 while (true) {
                     int newM = l + ((r - l) >> 1);
                     int newNum = nums[newM % n];
-                    if (newNum > num) {
-                        l = l + ((r - l) >> 1);
+                    if (newNum >= num) {
+                        l = newM + 1;
+                        if (l > r) {
+                            return -1;
+                        }
                     } else {
                         break;
                     }
