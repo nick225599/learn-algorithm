@@ -8,6 +8,7 @@ public class P162Solution1 {
     // 怎么二分？？？？
 
     // 0ms 击败 100%？？？？？
+    // 但时间复杂度依旧是 O(n)
     public int findPeakElement(int[] nums) {
         int n = nums.length;
         if (n == 1) {
