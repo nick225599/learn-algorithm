@@ -3,6 +3,7 @@ package org.nick.learn.leetcode.p33;
 public class P33Solution5 {
 
 
+    // 复刻官方题解成功
     // 0ms 击败 100%
     public int search(int[] nums, int target) {
         int n = nums.length;
