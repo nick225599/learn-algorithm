@@ -3,60 +3,52 @@ package org.nick.learn.leetcode.p74;
 public class P74Solution1 {
     public boolean searchMatrix(int[][] matrix, int target) {
 
-        int rowNum = matrix.length;
-        int columnNum = matrix[0].length;
-        if (target < matrix[0][0] || target > matrix[rowNum - 1][columnNum - 1]) {
+        int n = matrix.length;
+        int m = matrix[0].length;
+        if (target < matrix[0][0] || target > matrix[n - 1][m - 1]) {
             return false;
         }
 
         // 1. 先在行里找 target 在哪一行
-        int midRow = rowNum >> 1;
-        int targetRow = -1;
+        int i = (n - 1) >> 1;
         while (true) {
-            if (matrix[midRow][0] < target) {
-                // target 在 [midRow, rowN - 1] 行
-                if (matrix[midRow + 1][0] > target) {
-                    targetRow = midRow;
+            if (matrix[i][0] < target) {
+                if (matrix[i + 1][0] > target) {
+                    // target 就在第 i 行
                     break;
                 } else {
-                    midRow = ((rowNum - 1 - midRow) >> 1) + midRow;
+                    // target 在 [i, n - 1] 行
+                    i = ((n - 1 - i) >> 1) + i;
                 }
-            } else if (matrix[midRow][0] > target) {
-                // target 在 [0, midRow - 1] 行
-                if (matrix[midRow - 1][0] <= target) {
-                    targetRow = midRow - 1;
-                    break;
+            } else {
+                if (matrix[i][0] == target) {
+                    // target 就在第 i 行
+                    return true;
                 } else {
-                    midRow = (midRow - 1) >> 1;
+                    // target 在 [0, i - 1] 行
+                    i = (i - 1) >> 1;
                 }
+            }
+        }
+
+        System.out.println(target + " 在 m[" + i + "][] 中");
+
+
+        // 2. 再在那一行的列里找 target 有没有
+        int j = (m - 1) >> 1;
+        while (true) {
+            System.out.println("j: " + j);
+            if (matrix[i][j] < target) {
+                // target 在 [j + 1, m] 列
+                j = ((j + 1 - m) >> 1) + (j + 1);
+            } else if (matrix[i][j] > target) {
+                // target 在 [0, j - 1] 列
+                j = (j - 1) >> 1;
             } else {
                 return true;
             }
         }
 
-        // 2. 再在那一行的列里找 target 有没有
-        int midColumn = columnNum >> 1;
-        boolean exist = false;
-        while (true) {
-            if (matrix[targetRow][midColumn] < target) {
-                // target 在 [midColumn + 1, columnNum - 1] 列
-                int tmpColumn = (columnNum - 1 - midColumn - 1) >> 1;
-                if (tmpColumn == midColumn ) {
-                    return false;
-                } else {
-                    midColumn = tmpColumn;
-                }
-            } else if (matrix[targetRow][midColumn] > target) {
-                // target 在 [0, midColumn - 1] 列
-                int tmpColumn = (midColumn - 1) >> 1;
-                if (tmpColumn == midColumn) {
-                    return false;
-                } else {
-                    midColumn = tmpColumn;
-                }
-            } else {
-                return true;
-            }
-        }
+        //TODO nick 下午看下怎么退出死循环
     }
 }
