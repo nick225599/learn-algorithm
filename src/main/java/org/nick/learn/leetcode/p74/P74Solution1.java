@@ -13,7 +13,7 @@ public class P74Solution1 {
         // 拉平整个二维数组进行二分查找
         int left = 0;
         int right = n * m - 1;
-        while (left < right) {
+        while (left <= right) {
             int mid = ((right - left) >> 1) + left;
             int num = matrix[mid / m][mid % m];
             if (target < num) {
@@ -24,7 +24,7 @@ public class P74Solution1 {
                 return true;
             }
         }
-        return matrix[left / m][left % m] == target;
+        return false;
     }
 
 }
