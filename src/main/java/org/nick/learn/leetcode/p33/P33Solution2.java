@@ -14,7 +14,9 @@ public class P33Solution2 {
                 // l, m, target, r
                 // target 在 m 的右边 [m+1, r]
                 l = m + 1;
-
+                if (l > r) {
+                    return -1;
+                }
                 while (true) {
                     int newM = l + ((r - l) >> 1);
                     int newNum = nums[newM % n];
@@ -31,7 +33,9 @@ public class P33Solution2 {
                 // l target m r
                 // target 在 m 的左边
                 r = m - 1;
-
+                if (l > r) {
+                    return -1;
+                }
                 while (true) {
                     int newM = l + ((r - l) >> 1);
                     int newNum = nums[newM % n];

@@ -21,4 +21,9 @@ class P33Solution2Test {
     void search3() {
         assertEquals(0, solution.search(new int[]{1}, 1));
     }
+
+    @Test
+    void search4() {
+        assertEquals(-1, solution.search(new int[]{1, 3}, 0));
+    }
 }
