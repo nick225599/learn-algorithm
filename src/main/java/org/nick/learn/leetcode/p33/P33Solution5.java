@@ -5,6 +5,8 @@ public class P33Solution5 {
 
     // 复刻官方题解成功
     // 0ms 击败 100%
+    // 需要注意的是，二分的写法有很多种，
+    // 所以在判断 target 大小与有序部分的关系的时候可能会出现细节上的差别。
     public int search(int[] nums, int target) {
         int n = nums.length;
 
