@@ -16,7 +16,7 @@ public class P74Solution1 {
             if (matrix[midRow][0] < target) {
                 // target 在 [midRow, rowN - 1] 行
                 if (matrix[midRow + 1][0] > target) {
-                    targetRow = midRow + 1;
+                    targetRow = midRow;
                     break;
                 } else {
                     midRow = ((rowNum - 1 - midRow) >> 1) + midRow;
@@ -33,6 +33,7 @@ public class P74Solution1 {
                 return true;
             }
         }
+        System.out.println("target 在第 " + targetRow + " 行");
 
 
         // 2. 再在那一行的列里找 target 有没有
@@ -50,9 +51,9 @@ public class P74Solution1 {
             } else if (matrix[targetRow][midColumn] > target) {
                 // target 在 [0, midColumn - 1] 列
                 int tmpColumn = (midColumn - 1) >> 1;
-                if(tmpColumn == 0){
+                if (tmpColumn == 0) {
                     return false;
-                }else{
+                } else {
                     midColumn = tmpColumn;
                 }
             } else {
