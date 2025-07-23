@@ -25,4 +25,6 @@ public class P153Solution2 {
             return nums[low];
         }
 
+        // 后记： 二分查找法怎么这么多变种啊？ 嗷 不对，是各种题型怪怪的
+
 }
