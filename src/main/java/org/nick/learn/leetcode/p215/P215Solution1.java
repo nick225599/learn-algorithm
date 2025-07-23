@@ -25,7 +25,7 @@ public class P215Solution1 {
             }
         }
         this.quicksort(nums, i, tIdx - 1);
-        this.quicksort(nums, tIdx + 1, j);
+        this.quicksort(nums, tIdx, j);
     }
 
     private void swap(int[] nums, int i, int j) {
