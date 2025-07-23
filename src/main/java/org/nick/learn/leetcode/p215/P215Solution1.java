@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class P215Solution1 {
 
     // 快排
-    // 没写对
+    //TODO nick 20250723 看下怎么把快排改一下 适配一下这个题目
     public int findKthLargest(int[] nums, int k) {
         int n = nums.length;
         this.quicksort(nums, 0, n - 1);
