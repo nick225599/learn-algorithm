@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class P215Solution1 {
 
     // 快排
+    // 没写对
     public int findKthLargest(int[] nums, int k) {
         int n = nums.length;
         this.quicksort(nums, 0, n - 1);
@@ -25,6 +26,9 @@ public class P215Solution1 {
             }
         }
         this.quicksort(nums, i, tIdx - 1);
+        if (tIdx == i) {
+            return;
+        }
         this.quicksort(nums, tIdx, j);
     }
 
