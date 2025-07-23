@@ -16,28 +16,16 @@ public class P215Solution1 {
         if (i >= j) {
             return;
         }
-
-        int t = i;
-        for(i = i + 1; i <= j; i++){
-            if(nums[i] < nums[t]){
-
-                int tmp = nums[i];
-                nums[i] = nums[t];
-                nums[t] = tmp;
-
-                t++;
+        int tIdx = i;
+        int tNum = nums[i];
+        for (int f = tIdx + 1; f <= j; f++) {
+            if (nums[f] < tNum) {
+                this.swap(nums, f, tIdx);
+                tIdx++;
             }
         }
-//        int tIdx = i;
-//        int tNum = nums[i];
-//        for (int f = tIdx + 1; f <= j; f++) {
-//            if (nums[f] < tNum) {
-//                this.swap(nums, f, tIdx);
-//                tIdx++;
-//            }
-//        }
-        this.quicksort(nums, i, t - 1);
-        this.quicksort(nums, t + 1, j);
+        this.quicksort(nums, i, tIdx - 1);
+        this.quicksort(nums, tIdx + 1, j);
     }
 
     private void swap(int[] nums, int i, int j) {
