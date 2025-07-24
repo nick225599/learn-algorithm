@@ -13,6 +13,7 @@ public class P215Solution2 {
     }
 
     // 双指针快排
+//    Hoare 分区法（Hoare's Partition Scheme）
     int quickselect(int[] nums, int l, int r, int k) {
         if (l == r) return nums[k];
         int x = nums[l], i = l - 1, j = r + 1;
