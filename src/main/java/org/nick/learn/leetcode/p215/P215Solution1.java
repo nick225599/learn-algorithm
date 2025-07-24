@@ -1,33 +1,39 @@
 package org.nick.learn.leetcode.p215;
 
-import java.util.Arrays;
-
 public class P215Solution1 {
+    private int k;
 
     // 快排
-    //TODO nick 20250723 看下怎么把快排改一下 适配一下这个题目
     public int findKthLargest(int[] nums, int k) {
+        this.k = k;
         int n = nums.length;
         this.quicksort(nums, 0, n - 1);
-        System.out.println(Arrays.toString(nums));
-        return -1;
+        return nums[n - k];
     }
 
-    private void quicksort(int[] nums, int i, int j) {
-        if (i >= j) {
+    private void quicksort(int[] nums, int l, int r) {
+        if (l >= r) {
             return;
         }
-        int tIdx = i;
-        int tNum = nums[i];
-        for (int f = tIdx + 1; f <= j; f++) {
-            if (nums[f] < tNum) {
-                this.swap(nums, f, tIdx);
-                tIdx++;
+        int position = this.partition(nums, l, r);
+        if (position < nums.length - k) {
+            this.quicksort(nums, position + 1, r);
+        } else if (nums.length - k < position) {
+            this.quicksort(nums, l, position - 1);
+        }
+    }
+
+    private int partition(int[] nums, int l, int r) {
+        int pivot = nums[l];
+        int j = l + 1;
+        for (int i = l + 1; i <= r; i++) {
+            if (nums[i] < pivot) {
+                this.swap(nums, i, j);
+                j++;
             }
         }
-        this.swap(nums, tIdx, j);
-        this.quicksort(nums, i, tIdx - 1);
-        this.quicksort(nums, tIdx + 1, j);
+        this.swap(nums, l, j - 1);
+        return j - 1;
     }
 
     private void swap(int[] nums, int i, int j) {
