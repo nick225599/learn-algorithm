@@ -7,6 +7,7 @@ public class P912Solution1 {
     }
 
     private void quicksort(int[] nums, int l, int r) {
+        System.out.println("l: " + l + ", r: " + r);
         if (l >= r) {
             return;
         }
@@ -18,11 +19,16 @@ public class P912Solution1 {
                 i++;
             }
         }
-        if (i != r && nums[i] < nums[r]) {
-            this.swap(nums, i, r);
+        if (i != l) {
+            swap(nums, i, r);
         }
+        // 怎么提前结束，避免无限递归死循环？
         this.quicksort(nums, l, i - 1);
-        this.quicksort(nums, i + 1, r);
+        if (i == l) {
+            this.quicksort(nums, i + 1, r);
+        } else {
+            this.quicksort(nums, i, r);
+        }
     }
 
     private void swap(int[] nums, int i, int j) {
