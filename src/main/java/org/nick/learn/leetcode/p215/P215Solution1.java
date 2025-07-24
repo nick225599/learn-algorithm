@@ -6,6 +6,7 @@ public class P215Solution1 {
     // 快排
     // 在递增或递减区间时会退化至 O(n^2)
 //    Lomuto 分区法（Lomuto's Partition Scheme）
+    // 最左元素为轴
     public int findKthLargest(int[] nums, int k) {
         this.k = k;
         int n = nums.length;
