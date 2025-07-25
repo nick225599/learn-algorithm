@@ -16,7 +16,14 @@ public class P912Solution6 {
         }
     }
 
-    // TODO 以前这个错在哪？
+    /**
+     * 快排 Lomuto 分区法，选最左侧元素作为 pivot，
+     * 初始分区下标为 l - 1
+     * 写错了
+     *
+     * 以前这个错在哪？
+     * 下标 j = l - 1 就没想好要怎么控制分区指针
+     */
     private int lomutoParitition1(int[] nums, int l, int r) {
         int pivot = nums[l];
         int j = l - 1;
@@ -34,7 +41,13 @@ public class P912Solution6 {
         }
     }
 
-    // 写对了
+    /**
+     * 快排 Lomuto 分区法，选最左侧元素作为 pivot，
+     * 初始分区下标为 l + 1
+     * 写对了
+     *
+     * 但是最后需要进行 j - 1 的修正
+     */
     private int lomutoParitition2(int[] nums, int l, int r) {
         int pivot = nums[l];
         int j = l + 1;
@@ -52,15 +65,22 @@ public class P912Solution6 {
         return j - 1;
     }
 
+    /**
+     * 快排 Lomuto 分区法，选最左侧元素作为 pivot，
+     * 初始分区下标为 l
+     * 写对了
+     *
+     * 代码相对最干净，但是遇上所有元素都相等的数组时，超时了
+     */
     private int lomutoParitition(int[] nums, int l, int r) {
         int pivot = nums[l];
-        int j = l + 1;
+        int j = l;
         for (int i = l + 1; i <= r; i++) {
             if (nums[i] < pivot) {
+                j++;
                 if (i != j) {
                     this.swap(nums, i, j);
                 }
-                j++;
             }
         }
         if (l != j) {
