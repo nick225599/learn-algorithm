@@ -27,14 +27,17 @@ public class P912Solution8 {
             // 从左往右找到第一个大于 pivot 的数的下标
             do {
                 i++;
+
+                //TODO 处理越界问题？
+                // 比如 [3, 1, 2, 3]
+                // i 递增到了 4
+                // 再进行 nums[i] < pivot 时越界了
                 if(i > r){
                     break;
                 }
+
             } while (nums[i] < pivot);
-            //TODO 处理越界问题？
-            // 比如 [3, 1, 2, 3]
-            // i 递增到了 4
-            // 再进行 nums[i] < pivot 时越界了
+
 
             // 从右往左找到第一个小于 pivot 的数的下标
             do {
