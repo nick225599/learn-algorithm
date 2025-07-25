@@ -1,6 +1,6 @@
 package org.nick.learn.leetcode.p912;
 
-public class P912Solution8 {
+public class P912Solution9 {
 
     // 1660ms 击败 23.35%
     public int[] sortArray(int[] nums) {
@@ -28,7 +28,7 @@ public class P912Solution8 {
             do {
                 i++;
 
-                //处理越界问题？
+                //TODO 处理越界问题？
                 // 比如 [3, 1, 2, 3]
                 // i 递增到了 4
                 // 再进行 nums[i] < pivot 时越界了
