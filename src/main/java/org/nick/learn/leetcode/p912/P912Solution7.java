@@ -16,21 +16,27 @@ public class P912Solution7 {
         }
     }
 
+    /**
+     * 快排 Lomuto 分区法，选最右侧元素作为 pivot，
+     * 初始分区下标为 l
+     *
+     * 同样元素的数组依旧超时
+     */
     private int lomutoParitition(int[] nums, int l, int r) {
         int pivot = nums[r];
-        int j = l - 1;
+        int j = l;
         for (int i = l; i < r; i++) {
             if (nums[i] < pivot) {
+                if (i != j) {
+                    this.swap(nums, i, j);
+                }
                 j++;
-                this.swap(nums, i, j);
             }
         }
-        if (j != l - 1) {
-            this.swap(nums, l, j);
-            return j;
-        } else {
-            return j + 1;
+        if (r != j) {
+            this.swap(nums, r, j);
         }
+        return j;
     }
 
     private void swap(int[] nums, int i, int j) {
