@@ -17,7 +17,7 @@ public class P912Solution6 {
     }
 
     // TODO 以前这个错在哪？
-    private int lomutoParitition2(int[] nums, int l, int r) {
+    private int lomutoParitition1(int[] nums, int l, int r) {
         int pivot = nums[l];
         int j = l - 1;
         for (int i = l + 1; i <= r; i++) {
@@ -35,7 +35,7 @@ public class P912Solution6 {
     }
 
     // 写对了
-    private int lomutoParitition(int[] nums, int l, int r) {
+    private int lomutoParitition2(int[] nums, int l, int r) {
         int pivot = nums[l];
         int j = l + 1;
         for (int i = l + 1; i <= r; i++) {
@@ -50,6 +50,23 @@ public class P912Solution6 {
             this.swap(nums, l, j - 1);
         }
         return j - 1;
+    }
+
+    private int lomutoParitition(int[] nums, int l, int r) {
+        int pivot = nums[l];
+        int j = l + 1;
+        for (int i = l + 1; i <= r; i++) {
+            if (nums[i] < pivot) {
+                if (i != j) {
+                    this.swap(nums, i, j);
+                }
+                j++;
+            }
+        }
+        if (l != j) {
+            this.swap(nums, l, j);
+        }
+        return j;
     }
 
     private void swap(int[] nums, int i, int j) {
