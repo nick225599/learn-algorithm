@@ -21,7 +21,7 @@ public class P912Solution9 {
      */
     public int hoarePartition(int[] nums, int l, int r) {
         int pivot = nums[l];
-        int i = l;
+        int i = l + 1;
         int j = r;
         while (true) {
             while (i <= j && nums[i] <= pivot) {
