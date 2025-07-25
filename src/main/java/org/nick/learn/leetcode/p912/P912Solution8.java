@@ -2,7 +2,7 @@ package org.nick.learn.leetcode.p912;
 
 public class P912Solution8 {
 
-    // 快排 Lomuto 分区法，选最右侧元素作为 pivot
+    // 1660ms 击败 23.35%
     public int[] sortArray(int[] nums) {
         this.quickSort(nums, 0, nums.length - 1);
         return nums;
@@ -27,6 +27,9 @@ public class P912Solution8 {
             // 从左往右找到第一个大于 pivot 的数的下标
             do {
                 i++;
+                if(i > r){
+                    break;
+                }
             } while (nums[i] < pivot);
             //TODO 处理越界问题？
             // 比如 [3, 1, 2, 3]
@@ -36,6 +39,9 @@ public class P912Solution8 {
             // 从右往左找到第一个小于 pivot 的数的下标
             do {
                 j--;
+                if(j < l + 1){
+                    break;
+                }
             } while (nums[j] > pivot);
 
             if (i < j) {
