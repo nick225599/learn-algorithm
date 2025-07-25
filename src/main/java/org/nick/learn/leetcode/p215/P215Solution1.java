@@ -28,15 +28,15 @@ public class P215Solution1 {
 
     private int partition(int[] nums, int l, int r) {
         int pivot = nums[l];
-        int j = l + 1;
+        int j = l - 1;
         for (int i = l + 1; i <= r; i++) {
             if (nums[i] < pivot) {
-                this.swap(nums, i, j);
                 j++;
+                this.swap(nums, i, j);
             }
         }
-        this.swap(nums, l, j - 1);
-        return j - 1;
+        this.swap(nums, l, j);
+        return j;
     }
 
     private void swap(int[] nums, int i, int j) {
