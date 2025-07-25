@@ -2,7 +2,7 @@ package org.nick.learn.leetcode.p912;
 
 public class P912Solution9 {
 
-    // 1660ms 击败 23.35%
+    // 超时了
     public int[] sortArray(int[] nums) {
         this.quickSort(nums, 0, nums.length - 1);
         return nums;
@@ -10,7 +10,7 @@ public class P912Solution9 {
 
     private void quickSort(int[] nums, int l, int r) {
         if (l < r) {
-            int pos = hoareParitition(nums, l, r);
+            int pos = hoarePartition(nums, l, r);
             this.quickSort(nums, l, pos - 1);
             this.quickSort(nums, pos + 1, r);
         }
@@ -19,44 +19,25 @@ public class P912Solution9 {
     /**
      * 快排 hoare 分区法
      */
-    private int hoareParitition(int[] nums, int l, int r) {
+    public int hoarePartition(int[] nums, int l, int r) {
         int pivot = nums[l];
         int i = l;
-        int j = r + 1;
+        int j = r;
         while (true) {
-            // 从左往右找到第一个大于 pivot 的数的下标
-            do {
+            while (i <= j && nums[i] <= pivot) {
                 i++;
-
-                //TODO 处理越界问题？
-                // 比如 [3, 1, 2, 3]
-                // i 递增到了 4
-                // 再进行 nums[i] < pivot 时越界了
-                if(i > r){
-                    break;
-                }
-
-            } while (nums[i] < pivot);
-
-
-            // 从右往左找到第一个小于 pivot 的数的下标
-            do {
+            }
+            while (i <= j && nums[j] >= pivot) {
                 j--;
-                if(j < l + 1){
-                    break;
-                }
-            } while (nums[j] > pivot);
-
-            if (i < j) {
-                this.swap(nums, i, j);
-            } else {
+            }
+            if (i >= j) {
                 break;
             }
-
+            this.swap(nums, i, j);
+            i++;
+            j--;
         }
-        if (l != j) {
-            this.swap(nums, l, j);
-        }
+        this.swap(nums, l, j);
         return j;
     }
 
