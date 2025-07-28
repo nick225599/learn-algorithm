@@ -2,7 +2,6 @@ package org.nick.learn.leetcode.p912;
 
 public class P912Solution9 {
 
-    // 超时了
     public int[] sortArray(int[] nums) {
         this.quickSort(nums, 0, nums.length - 1);
         return nums;
@@ -16,9 +15,6 @@ public class P912Solution9 {
         }
     }
 
-    /**
-     * 快排 hoare 分区法
-     */
     public int hoarePartition(int[] nums, int l, int r) {
         int pivot = nums[l];
         int i = l + 1;
