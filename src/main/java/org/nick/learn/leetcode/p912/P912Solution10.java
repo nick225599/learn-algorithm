@@ -3,6 +3,7 @@ package org.nick.learn.leetcode.p912;
 public class P912Solution10 {
 
     // 为啥不会超时?
+    //TODO nick 20250728 当初为啥写了句不会超时？自己写的 Solution9 超时了？？？？
     public int[] sortArray(int[] nums) {
         this.quicksort(nums, 0, nums.length - 1);
         return nums;
