@@ -10,6 +10,9 @@ public class P502Solution1 {
      * @param k Pick a list of at most k distinct projects
      * @param w Initially, you have w capital.
      */
+
+    // 自研题解
+    // 1197ms 击败 5%
     public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
         // 题目没有说 profits 是有序的，也没有说 capital 是有序的
         // 1. 根据 profits 构建一个大顶堆
@@ -27,15 +30,17 @@ public class P502Solution1 {
         while (!maxHeap.isEmpty()) {
 
             int[] project = maxHeap.poll();
+            int profit = project[0];
+            int startupCapital = project[1];
 
             // 启动资金不够做不了，先放到一边
-            if (project[1] > w) {
+            if (startupCapital > w) {
                 buff.add(project);
                 continue;
             }
 
             // 干项目
-            w += profits[0];
+            w += profit;
             curk++;
 
             if (curk == k) {
