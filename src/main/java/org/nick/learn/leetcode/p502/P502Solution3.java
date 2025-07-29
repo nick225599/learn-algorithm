@@ -19,8 +19,7 @@ public class P502Solution3 {
 
         PriorityQueue<Integer> capitalHeap = new PriorityQueue<>((o1, o2) -> o2 - o1);
         int i = 0;
-        int num = 0;
-        while (i < n || !capitalHeap.isEmpty()) {
+        for(int iK = 0; iK < k; iK++){
 
             while (i < n && projects[i][0] <= w) {
                 capitalHeap.add(projects[i][1]);
@@ -32,11 +31,6 @@ public class P502Solution3 {
             }
 
             w += capitalHeap.poll();
-            num++;
-
-            if(num == k){
-                break;
-            }
         }
 
         return w;
