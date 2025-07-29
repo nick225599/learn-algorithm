@@ -5,6 +5,8 @@ import java.util.PriorityQueue;
 
 public class P502Solution3 {
 
+    // 仿写官方题解
+    // 106ms 击败48%
     public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
         int n = profits.length;
 
@@ -25,13 +27,15 @@ public class P502Solution3 {
                 i++;
             }
 
-            if (!capitalHeap.isEmpty()) {
-                w += capitalHeap.poll();
-                num++;
+            if (capitalHeap.isEmpty()) {
+                break;
+            }
 
-                if(num == k){
-                    break;
-                }
+            w += capitalHeap.poll();
+            num++;
+
+            if(num == k){
+                break;
             }
         }
 
