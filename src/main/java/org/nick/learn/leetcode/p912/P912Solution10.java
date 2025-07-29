@@ -29,7 +29,9 @@ public class P912Solution10 {
     }
 
     private void quicksort(int[] nums, int l, int r) {
-        if (l == r) return;
+
+        if (l >= r) return;
+        System.out.println("l: " + l + ", r: " + r);
         int x = nums[l], i = l - 1, j = r + 1;
         while (i < j) {
             // 为什么 solution10 相比于 solution9 不会超时
@@ -60,6 +62,6 @@ public class P912Solution10 {
         }
         // Solution10 的递归区间 [l, j] 和 [j+1, r] 是严格匹配其分区逻辑的（左区间 ≤ 基准，右区间 ≥ 基准），直接修改会破坏这种匹配关系，导致元素遗漏或错误划分，最终排序失败。
         quicksort(nums, l, j);
-        quicksort(nums, j+ 1, r);
+        quicksort(nums, j + 1, r);
     }
 }
