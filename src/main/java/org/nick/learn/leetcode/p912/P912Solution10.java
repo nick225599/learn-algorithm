@@ -49,6 +49,8 @@ public class P912Solution10 {
             do {
                 i++;
             } while (nums[i] < x);
+            // [l, i)  小于 x
+            // [i, r] 大于等于 x
 
             do {
                 j--;
