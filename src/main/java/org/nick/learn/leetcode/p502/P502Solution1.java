@@ -13,6 +13,7 @@ public class P502Solution1 {
 
     // 自研题解
     // 1197ms 击败 5%
+    // 感觉快排也不是不行...
     public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
         // 题目没有说 profits 是有序的，也没有说 capital 是有序的
         // 1. 根据 profits 构建一个大顶堆
