@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 
 public class P373Solution1 {
 
+    // 超出内存限制
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         PriorityQueue<int[]> pq1 = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
         for (int i1 : nums1) {
