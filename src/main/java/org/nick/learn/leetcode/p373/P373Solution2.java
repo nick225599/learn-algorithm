@@ -5,101 +5,95 @@ import java.util.List;
 
 public class P373Solution2 {
 
-    int[] nums1, nums2;
-    int l1 = 0, l2 = 0, r1 = 0, r2 = 0;
-    boolean preIsLeft = true, preIsRight = true;
-    int n1;
-    int n2;
-    List<List<Integer>> ans;
-
+    // 思路是对的，但是代码没写对
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
-        this.n1 = nums1.length;
-        this.n2 = nums2.length;
-        this.ans = new ArrayList<>(k);
-        this.nums1 = nums1;
-        this.nums2 = nums2;
+        int n1 = nums1.length, n2 = nums2.length;
+        int l1 = 0, l2 = 0, r1 = 0, r2 = 0;
+        boolean leftUsed = false;
+        boolean rightUsed = false;
+        List<List<Integer>> ans = new ArrayList<>(k);
 
         List<Integer> pair = new ArrayList<>(2);
-        pair.add(nums1[0]);
-        pair.add(nums2[0]);
+        pair.add(nums1[l1]);
+        pair.add(nums2[l2]);
         ans.add(pair);
-
         k--;
+        leftUsed = true;
+        rightUsed = true;
+
         while (k > 0) {
-            Integer num1 = this.getNextNumLeftFixed();
-            Integer num2 = this.getNextNumRightFixed();
-            if (num1 == null || (num2 != null && num1 > num2)) {
-                pair = new ArrayList<>(2);
-                pair.add(nums1[r1]);
-                pair.add(nums2[r2]);
-                preIsLeft = false;
-                preIsRight = true;
-            } else if (num2 == null || (num1 != null && num1 < num2)) {
+            if (leftUsed) {
+                int[] arr = this.moveToNext(n1, n2, l1, l2, r1, r2, true);
+                l1 = arr[0];
+                l2 = arr[1];
+            }
+            if (rightUsed) {
+                int[] arr = this.moveToNext(n1, n2, l1, l2, r1, r2, false);
+                r1 = arr[0];
+                r2 = arr[1];
+            }
+            if (r1 == -1 || (nums1[l1] + nums2[l2] < nums1[r1] + nums2[r2])) {
                 pair = new ArrayList<>(2);
                 pair.add(nums1[l1]);
                 pair.add(nums2[l2]);
-                preIsLeft = true;
-                preIsRight = false;
+                ans.add(pair);
+                k--;
+                leftUsed = true;
+                rightUsed = false;
+            } else if (l1 == -1 || (nums1[l1] + nums2[l2] > nums1[r1] + nums2[r2])) {
+                pair = new ArrayList<>(2);
+                pair.add(nums1[r1]);
+                pair.add(nums2[r2]);
+                ans.add(pair);
+                k--;
+                leftUsed = false;
+                rightUsed = true;
             } else {
                 pair = new ArrayList<>(2);
-                pair.add(nums1[r1]);
-                pair.add(nums2[r2]);
-
-                pair = new ArrayList<>(2);
                 pair.add(nums1[l1]);
                 pair.add(nums2[l2]);
-
-                preIsLeft = true;
-                preIsRight = true;
+                ans.add(pair);
+                pair = new ArrayList<>(2);
+                pair.add(nums1[r1]);
+                pair.add(nums2[r2]);
+                ans.add(pair);
+                k -= 2;
+                leftUsed = true;
+                rightUsed = true;
             }
-
-            ans.add(pair);
-            k--;
         }
         return ans;
     }
 
+    private int[] moveToNext(int n1, int n2, int l1, int l2, int r1, int r2, boolean isLeft) {
+        if (isLeft) {
+            while (l1 != -1 && (l1 <= r1 && l2 <= r2)) {
+                l2++;
+                if (l2 == n2) {
+                    l1++;
+                    l2 = 0;
+                    if (l1 == n1) {
+                        l1 = l2 = -1;
 
-    private Integer getNextNumLeftFixed() {
-        if (preIsLeft) {
-            if (l1 < n1) {
-                while (l1 <= r1 && l2 <= r2) {
-                    l2++;
-                    if (l2 == n2) {
-                        l1++;
-                        l2 = 0;
-                        if (l1 == n1) {
-                            return null;
-                        }
                     }
                 }
-                return nums1[l1] + nums2[l2];
             }
-            return null;
+            return new int[]{l1, l2};
         } else {
-            return nums1[l1] + nums2[l2];
+            while (r2 != -1 && (r1 <= l1 && r2 <= l2)) {
+                r1++;
+                if (r1 == n1) {
+                    r1 = 0;
+                    r2++;
+                    if (r2 == n2) {
+                        r1 = -1;
+                        r2 = -1;
+                    }
+                }
+            }
+            return new int[]{r1, r2};
         }
     }
 
-    private Integer getNextNumRightFixed() {
-        if (preIsRight) {
-            if (r2 < n2) {
-                while (r1 <= l1 && r2 <= l2) {
-                    r1++;
-                    if (r1 == n1) {
-                        r1 = 0;
-                        r2++;
-                        if (r2 == n2) {
-                            return null;
-                        }
-                    }
-                }
-                return nums1[r1] + nums2[r2];
-            }
-            return null;
-        } else {
-            return nums1[r1] + nums2[r2];
-        }
-    }
 
 }
