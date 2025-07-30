@@ -71,7 +71,7 @@ public class P373Solution2 {
 
     private int[] moveToNext(int n1, int n2, int l1, int l2, int r1, int r2, boolean isLeft) {
         if (isLeft) {
-            while (l1 != -1) {
+            if (l1 != -1) {
                 do {
                     l2++;
                     if (l2 == n2) {
@@ -86,7 +86,7 @@ public class P373Solution2 {
             }
             return new int[]{l1, l2};
         } else {
-            while (r2 != -1) {
+            if (r2 != -1) {
                 do {
                     r1++;
                     if (r1 == n1) {
