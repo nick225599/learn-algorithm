@@ -9,8 +9,7 @@ public class P373Solution2 {
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         int n1 = nums1.length, n2 = nums2.length;
         int l1 = 0, l2 = 0, r1 = 0, r2 = 0;
-        boolean leftUsed = false;
-        boolean rightUsed = false;
+        boolean leftUsed = true, rightUsed = true;
         List<List<Integer>> ans = new ArrayList<>(k);
 
         List<Integer> pair = new ArrayList<>(2);
@@ -18,8 +17,6 @@ public class P373Solution2 {
         pair.add(nums2[l2]);
         ans.add(pair);
         k--;
-        leftUsed = true;
-        rightUsed = true;
 
         while (k > 0) {
             if (leftUsed) {
