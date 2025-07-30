@@ -34,10 +34,12 @@ public class P373Solution2 {
                 pair.add(nums1[l1]);
                 pair.add(nums2[l2]);
                 preIsLeft = true;
+                preIsRight = false;
             } else {
                 pair = new ArrayList<>(2);
                 pair.add(nums1[r1]);
                 pair.add(nums2[r2]);
+                preIsLeft = false;
                 preIsRight = true;
             }
             ans.add(pair);
