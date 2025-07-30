@@ -29,7 +29,6 @@ class P373Solution2Test {
             int sum2 = this.sum(ans2, i);
             assertEquals(sum2, sum1, "excepted: " + Arrays.toString(ans2[i]));
         }
-
     }
 
 
@@ -49,5 +48,28 @@ class P373Solution2Test {
             sum += num;
         }
         return sum;
+    }
+
+    @Test
+    void testKSmallestPairs2() {
+        List<List<Integer>> ans = solution.kSmallestPairs(new int[]{-10,-4,0,0,6}, new int[]{3,5,6,7,8,100}, 10);
+        int[][] ans2 = new int[][]{
+                new int[]{-10,3},
+                new int[]{-10,5},
+                new int[]{-10,6},
+                new int[]{-10,7},
+                new int[]{-10,8},
+                new int[]{-4,3},
+                new int[]{-4,5},
+                new int[]{-4,6},
+                new int[]{-4,7},
+                new int[]{0,3}
+        };
+        for (int i = 0; i < ans2.length; i++) {
+            int sum1 = this.sum(ans, i);
+            int sum2 = this.sum(ans2, i);
+            assertEquals(sum2, sum1, "excepted: " + Arrays.toString(ans2[i])
+                    + ", but actual: " + Arrays.toString(ans.get(i).toArray()));
+        }
     }
 }

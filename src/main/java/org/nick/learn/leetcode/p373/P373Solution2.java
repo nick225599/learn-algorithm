@@ -18,7 +18,18 @@ public class P373Solution2 {
         ans.add(pair);
         k--;
 
+        //l1-> -10	0	3
+        //		-4	1	5
+        //		0	2	6
+        //		0	3	7
+        //		6	4	8	<-l2
+        //			5	100
+
+        // TODO nick 以左为轴，下一个要判断的对不应该是 (-10, 100)，而应该是 (-4, 3)
+        //   回家总结一下这个选择的逻辑，然后转成代码
+
         while (k > 0) {
+            int resultSize = ans.size();
             if (leftUsed) {
                 int[] arr = this.moveToNext(n1, n2, l1, l2, r1, r2, true);
                 l1 = arr[0];
