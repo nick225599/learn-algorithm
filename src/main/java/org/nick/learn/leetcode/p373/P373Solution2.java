@@ -28,8 +28,13 @@ public class P373Solution2 {
         while (k > 0) {
             Integer num1 = this.getNextNumLeftFixed();
             Integer num2 = this.getNextNumRightFixed();
-            boolean useLeft = this.useLeft(num1, num2);
-            if (useLeft) {
+            if (num1 == null || (num2 != null && num1 > num2)) {
+                pair = new ArrayList<>(2);
+                pair.add(nums1[r1]);
+                pair.add(nums2[r2]);
+                preIsLeft = false;
+                preIsRight = true;
+            } else if (num2 == null || (num1 != null && num1 < num2)) {
                 pair = new ArrayList<>(2);
                 pair.add(nums1[l1]);
                 pair.add(nums2[l2]);
@@ -39,9 +44,15 @@ public class P373Solution2 {
                 pair = new ArrayList<>(2);
                 pair.add(nums1[r1]);
                 pair.add(nums2[r2]);
-                preIsLeft = false;
+
+                pair = new ArrayList<>(2);
+                pair.add(nums1[l1]);
+                pair.add(nums2[l2]);
+
+                preIsLeft = true;
                 preIsRight = true;
             }
+
             ans.add(pair);
             k--;
         }
@@ -52,12 +63,14 @@ public class P373Solution2 {
     private Integer getNextNumLeftFixed() {
         if (preIsLeft) {
             if (l1 < n1) {
-                l2++;
-                if (l2 == n2) {
-                    l1++;
-                    l2 = 0;
-                    if (l1 == n1) {
-                        return null;
+                while (l1 <= r1 && l2 <= r2) {
+                    l2++;
+                    if (l2 == n2) {
+                        l1++;
+                        l2 = 0;
+                        if (l1 == n1) {
+                            return null;
+                        }
                     }
                 }
                 return nums1[l1] + nums2[l2];
@@ -71,12 +84,14 @@ public class P373Solution2 {
     private Integer getNextNumRightFixed() {
         if (preIsRight) {
             if (r2 < n2) {
-                r1++;
-                if (r1 == n1) {
-                    r1 = 0;
-                    r2++;
-                    if (r2 == n2) {
-                        return null;
+                while (r1 <= l1 && r2 <= l2) {
+                    r1++;
+                    if (r1 == n1) {
+                        r1 = 0;
+                        r2++;
+                        if (r2 == n2) {
+                            return null;
+                        }
                     }
                 }
                 return nums1[r1] + nums2[r2];
@@ -86,16 +101,5 @@ public class P373Solution2 {
             return nums1[r1] + nums2[r2];
         }
     }
-
-    private boolean useLeft(Integer num1, Integer num2) {
-        if (num1 == null) {
-            return false;
-        }
-        if (num2 == null) {
-            return true;
-        }
-        return num1 < num2;
-    }
-
 
 }
