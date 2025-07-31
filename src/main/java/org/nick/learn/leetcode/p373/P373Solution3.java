@@ -1,41 +1,54 @@
 package org.nick.learn.leetcode.p373;
 
-import java.util.List;
+import java.util.*;
 
 public class P373Solution3 {
-    //作者：力扣官方题解
-    //链接：https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/solutions/1208350/cha-zhao-he-zui-xiao-de-kdui-shu-zi-by-l-z526/
-    //来源：力扣（LeetCode）
-    //著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-    //todo nick 20250730 写一下一般解法和非一般解法
-    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
-        // 如果我们每次都将已选的数对 (a
-        //i
-        //​
-        // ,b
-        //i
-        //​
-        // ) 的待选索引 (a
-        //i
-        //​
-        // +1,b
-        //i
-        //​
-        // ),(a
-        //i
-        //​
-        // ,b
-        //i
-        //​
-        // +1) 加入到堆中则可能出现重复的问题，一般需要设置标记位解决去重的问题。我们可以将 nums
-        //1
-        //​
-        //  的前 k 个索引数对 (0,0),(1,0),…,(k−1,0) 加入到队列中，每次从队列中取出元素 (x,y) 时，我们只需要将 nums
-        //2
-        //​
-        //  的索引增加即可，这样避免了重复加入元素的问题。
-        //
 
+    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+        int n1 = nums1.length;
+        int n2 = nums2.length;
+
+        PriorityQueue<int[]> priorityQueue = new PriorityQueue<>((o1, o2) -> o1[0] - o2[0]);
+        Set<String> used = new HashSet<>();
+        priorityQueue.add(new int[]{nums1[0] + nums2[0], 0, 0});
+        used.add(this.key(0, 0));
+
+        List<List<Integer>> ans = new ArrayList<>(k);
+
+        for (int i = 0; i < k; i++) {
+
+            int[] idx = priorityQueue.poll();
+            int x = idx[1];
+            int y = idx[2];
+
+            List<Integer> pair = new ArrayList<>(2);
+            pair.add(nums1[x]);
+            pair.add(nums2[y]);
+            ans.add(pair);
+
+            if (x + 1 < n1) {
+                String key = this.key(x + 1, y);
+                if (!used.contains(key)) {
+                    priorityQueue.add(new int[]{nums1[x + 1] + nums2[y], x + 1, y});
+                    used.add(key);
+                }
+            }
+
+            if (y + 1 < n2) {
+                String key = this.key(x, y + 1);
+                if (!used.contains(key)) {
+                    priorityQueue.add(new int[]{nums1[x] + nums2[y + 1], x, y + 1});
+                    used.add(key);
+                }
+            }
+
+        }
+
+        return ans;
+    }
+
+    private String key(int x, int y) {
+        return x + "," + y;
     }
 
 
