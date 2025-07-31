@@ -8,6 +8,7 @@ public class P373Solution5 {
 
     // 民间 top0 解法
     // 16ms 击败99%
+    //TODO nick 二分法怎么解？
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         int n = nums1.length, m = nums2.length;
         int left = nums1[0] + nums2[0], right = nums1[n - 1] + nums2[m - 1];
