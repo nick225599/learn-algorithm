@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 
 public class P373Solution4 {
 
-    // 用技巧来去重，这个技巧是真的难理解
+    // 用技巧来去重，这个技巧是真的难理解，官方题解下面那个点赞量第二的民间题解通俗易懂地解释清楚了。
     // 32ms 击败51%
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         int n1 = nums1.length;
