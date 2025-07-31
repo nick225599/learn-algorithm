@@ -4,6 +4,7 @@ import java.util.*;
 
 public class P373Solution3 {
 
+    // 用 hashtable 来去重
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         int n1 = nums1.length;
         int n2 = nums2.length;
