@@ -1,10 +1,10 @@
 package org.nick.learn.leetcode.p295;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class P295Solution1 {
- //TODO nick 20250731 写错了 不对
 }
 
 class MedianFinder {
@@ -15,6 +15,7 @@ class MedianFinder {
 
     public void addNum(int num) {
         list.add(num);
+        Collections.sort(list);
     }
 
     public double findMedian() {
