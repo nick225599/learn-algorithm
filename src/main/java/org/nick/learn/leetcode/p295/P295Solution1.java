@@ -13,6 +13,8 @@ class MedianFinder {
 
     public MedianFinder() {}
 
+    // 超时了，得用个满二叉搜索树？？？
+    // 不用，大小堆就行，我咋没想到呢，我真是的傻叉 - -
     public void addNum(int num) {
         list.add(num);
         Collections.sort(list);
