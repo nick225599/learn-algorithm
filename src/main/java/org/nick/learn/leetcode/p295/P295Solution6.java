@@ -41,8 +41,7 @@ public class P295Solution6 {
                         smallerCount = treeMap.get(smaller);
                     }
                 } else {
-                    //TODO nick
-
+                    //TODO nick 自己写不出来，看官方题解吧，感觉两个数倒来倒去挺烦的
                 }
             } else {
                 if (num <= smaller) {
