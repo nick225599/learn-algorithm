@@ -28,14 +28,15 @@ public class P295Solution5 {
             nums.put(num, nums.getOrDefault(num, 0) + 1);
             if (n == 0) {
                 left[0] = right[0] = num;
-                left[1] = right[1] = 1;
-            } else if ((n & 1) != 0) {
+                left[1] = right[1] = 1; //TODO nick 怎么理解 right[1] ?
+            } else if ((n & 1) != 0) { // 总数为奇数
                 if (num < left[0]) {
                     decrease(left);
                 } else {
                     increase(right);
                 }
             } else {
+                // 奇数
                 if (num > left[0] && num < right[0]) {
                     increase(left);
                     decrease(right);

@@ -7,59 +7,56 @@ public class P295Solution6 {
     // 仿制官方题解二
     static class MedianFinder {
 
-        int smaller;
-        int smallerCount = 0;
-
-        int larger;
-        int largerCount = 0;
-
-        TreeMap<Integer, Integer> treeMap = new TreeMap<>();
-        int n = 0;
-
+        TreeMap<Integer, Integer> nums;
+        int n;
+        int[] left;
+        int[] right;
 
         public MedianFinder() {
+            nums = new TreeMap<>();
         }
 
         public void addNum(int num) {
-            if (treeMap.containsKey(num)) {
-                treeMap.put(num, treeMap.get(num) + 1);
-            } else {
-                treeMap.put(num, 1);
-            }
-
+            nums.put(num, nums.getOrDefault(num, 0) + 1);
             if (n == 0) {
-                smaller = num;
-                smallerCount = 1;
-            } else if (n % 2 == 0) {
-                if (num <= smaller) {
-                    smallerCount--;
-                    if (smallerCount == 1) {
-                        larger = smaller;
-                    } else if (smallerCount == 0) {
-                        larger = smaller;
-                        smaller = treeMap.ceilingKey(smaller);
-                        smallerCount = treeMap.get(smaller);
+                left[0] = num;
+                left[1] = right[1] = 1;
+                n++;
+                return;
+            }
+
+            if (n % 2 == 1) {
+                if (num < left[0]) {
+                    left[1]--;
+                    if(left[1] == 0){
+                        left[0] = nums.floorKey(left[0] - 1);
+                        left[1] = nums.get(left[0]);
                     }
-                } else {
-                    //TODO nick 自己写不出来，看官方题解吧，感觉两个数倒来倒去挺烦的
+                } else if (num == left[0]) {
+                    // 不知道要干啥
+                } else if (left[0] < num) {
+                    right[1] ++;
+                    if(right[1] > nums.get(right[0])){
+                        right[0] = nums.ceilingKey(right[0] + 1);
+                        right[1] = 1;
+                    }
                 }
             } else {
-                if (num <= smaller) {
+                //TODO nick 仿制官方题解 2
+                if (num <= left[0]) {
+
+                } else if (right[0] <= num) {
 
                 } else {
 
                 }
             }
 
-            n++;
+
         }
 
         public double findMedian() {
-            if (smallerCount == largerCount) {
-                return (smaller + larger) / 2.0D;
-            } else {
-                return smaller;
-            }
+
         }
     }
 }
