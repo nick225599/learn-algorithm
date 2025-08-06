@@ -17,14 +17,14 @@ public class PDFMerger {
     public static void main(String[] args) {
         // 要合并的4个PDF文件路径
         String[] pdfFiles = {
-                "平安银行个人账户交易明细 JYLS250801099191-1.pdf",
-                "平安银行个人账户交易明细 JYLS250801099191-2.pdf",
-                "平安银行个人账户交易明细 JYLS250801099191-3.pdf",
-                "平安银行个人账户交易明细 JYLS250801099191-4.pdf",
+                "1.pdf",
+                "2.pdf",
+                "3.pdf",
+                "4.pdf",
         };
 
         // 合并后的PDF文件路径
-        String outputFile = "平安银行个人账户交易明细 JYLS250801099191-from1to4.pdf";
+        String outputFile = " merged.pdf";
 
         try {
             // 执行合并操作
