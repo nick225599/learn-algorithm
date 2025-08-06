@@ -12,42 +12,36 @@ public class P295Solution5 {
     // 官方题解二，有序集合 + 双指针
     // 没完全看懂，自己尝试写一下估计就能明白了
     static class MedianFinder {
-        TreeMap<Integer, Integer> treeMap;
+        TreeMap<Integer, Integer> nums;
         int n;
         int[] left;
         int[] right;
 
         public MedianFinder() {
-            treeMap = new TreeMap<>();
+            nums = new TreeMap<Integer, Integer>();
             n = 0;
             left = new int[2];
             right = new int[2];
         }
 
         public void addNum(int num) {
-
-            // key 是数字，value 是数量
-            //TODO 跟指针 left right 怎么关联上？？？
-            treeMap.put(num, treeMap.getOrDefault(num, 0) + 1);
-
+            nums.put(num, nums.getOrDefault(num, 0) + 1);
             if (n == 0) {
                 left[0] = right[0] = num;
-                left[1] = right[1] = 1; //TODO 为啥需要第 2 套指针？ 为啥是值 1？
-            } else if (isOdd(n)) {
-                // 有序集合为中元素为奇数时，left 和 right 同时指向中位数。
-                // 如果 num 小于等于中位数，那么只要让 left 左移，否则让 right 右移即可。
+                left[1] = right[1] = 1;
+            } else if ((n & 1) != 0) {
                 if (num < left[0]) {
                     decrease(left);
                 } else {
                     increase(right);
                 }
             } else {
-                if (left[0] < num && num < right[0]) {
+                if (num > left[0] && num < right[0]) {
                     increase(left);
                     decrease(right);
-                } else if (right[0] <= num) {
+                } else if (num >= right[0]) {
                     increase(left);
-                } else if (num < left[0]) {
+                } else {
                     decrease(right);
                     System.arraycopy(right, 0, left, 0, 2);
                 }
@@ -59,32 +53,22 @@ public class P295Solution5 {
             return (left[0] + right[0]) / 2.0;
         }
 
-        private void increase(int[] arr) {
-            arr[1]++;
-            if (arr[1] > treeMap.get(arr[0])) {
-                arr[0] = treeMap.ceilingKey(arr[0] + 1);
-                arr[1] = 1;
+        private void increase(int[] iterator) {
+            iterator[1]++;
+            if (iterator[1] > nums.get(iterator[0])) {
+                iterator[0] = nums.ceilingKey(iterator[0] + 1);
+                iterator[1] = 1;
             }
         }
 
-        private void decrease(int[] arr) {
-            arr[1]--;
-            if (arr[1] == 0) {
-                arr[0] = treeMap.floorKey(arr[0] - 1);
-                arr[1] = treeMap.get(arr[0]);
+        private void decrease(int[] iterator) {
+            iterator[1]--;
+            if (iterator[1] == 0) {
+                iterator[0] = nums.floorKey(iterator[0] - 1);
+                iterator[1] = nums.get(iterator[0]);
             }
-        }
-
-        private boolean isOdd(int n) {
-            return (n & 1) == 1;
-        }
-
-        private boolean isEven(int n) {
-            return !isOdd(n);
         }
     }
-
-
 }
 
 /**
