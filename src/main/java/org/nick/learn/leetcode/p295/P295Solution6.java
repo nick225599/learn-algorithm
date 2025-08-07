@@ -32,15 +32,6 @@ public class P295Solution6 {
                 }
             } else if (n % 2 == 0) {
                 if (num < left[0]) {
-                    // [50, 50]
-                    // 50 50
-                    // 1  2
-
-                    // add(40)
-
-                    // [40, 50, 50]
-                    // 50, 50
-                    // 1, 1
                     decrease(right);
                     System.arraycopy(right, 0, left, 0, 2);
                 } else if (left[0] == num) {
@@ -53,9 +44,9 @@ public class P295Solution6 {
                     // [50, 50, 50]
                     // 50, 50
                     // 2, 2
-//                    increase(left);
+                    increase(left);
                     // 或
-                    System.arraycopy(right, 0, left, 0, 2);
+//                    System.arraycopy(right, 0, left, 0, 2);
                 } else if (left[0] < num && num < right[0]) {
                     // [50, 60]
                     // 50 60
@@ -66,11 +57,11 @@ public class P295Solution6 {
                     // [50, 55, 60]
                     // 55, 55
                     // 1, 1
-//                    increase(left);
-//                    decrease(right);
+                    increase(left);
+                    decrease(right);
                     // 或
-                    left[0] = right[0] = num;
-                    left[1] = right[1] = 1;
+//                    left[0] = right[0] = num;
+//                    left[1] = right[1] = 1;
 
                 } else if (right[0] == num) {
                     // [40, 50]
@@ -82,9 +73,9 @@ public class P295Solution6 {
                     // [40, 50, 50]
                     // 50, 50
                     // 1, 1
-//                    increase(left);
+                    increase(left);
                     // 或
-                    System.arraycopy(right, 0, left, 0, 2);
+//                    System.arraycopy(right, 0, left, 0, 2);
 
                 } else if (right[0] < num) {
                     // [40, 50]
@@ -96,9 +87,9 @@ public class P295Solution6 {
                     // [40, 50, 60]
                     // 50, 50
                     // 1, 1
-//                    increase(left);
+                    increase(left);
                     // 或
-                    System.arraycopy(right, 0, left, 0, 2);
+//                    System.arraycopy(right, 0, left, 0, 2);
                 }
             }
             n++;
