@@ -38,15 +38,10 @@ public class P295Solution6 {
                     decrease(right);
                     System.arraycopy(right, 0, left, 0, 2);
                 } else if (left[0] < num && num < right[0]) {
-                    increase(left);
-                    decrease(right);
-                    // 或
-//                    left[0] = right[0] = num;
-//                    left[1] = right[1] = 1;
+                    left[0] = right[0] = num;
+                    left[1] = right[1] = 1;
                 } else {
-                    increase(left);
-                    // 或
-//                    System.arraycopy(right, 0, left, 0, 2);
+                    System.arraycopy(right, 0, left, 0, 2);
                 }
             }
             n++;
