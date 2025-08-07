@@ -18,7 +18,7 @@ public class P295Solution5 {
         int[] right;
 
         public MedianFinder() {
-            nums = new TreeMap<Integer, Integer>();
+            nums = new TreeMap<>();
             n = 0;
             left = new int[2];
             right = new int[2];
@@ -28,16 +28,14 @@ public class P295Solution5 {
             nums.put(num, nums.getOrDefault(num, 0) + 1);
             if (n == 0) {
                 left[0] = right[0] = num;
-                left[1] = right[1] = 1; //TODO nick 怎么理解 right[1] ?
-            } else if ((n & 1) != 0) {
-                // 奇数
+                left[1] = right[1] = 1;
+            } else if (n % 2 == 1) {
                 if (num < left[0]) {
                     decrease(left);
                 } else {
                     increase(right);
                 }
             } else {
-                // 偶数
                 if (num <= left[0]) {
                     decrease(right);
                     System.arraycopy(right, 0, left, 0, 2);
