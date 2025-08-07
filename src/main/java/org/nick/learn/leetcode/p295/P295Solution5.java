@@ -29,22 +29,23 @@ public class P295Solution5 {
             if (n == 0) {
                 left[0] = right[0] = num;
                 left[1] = right[1] = 1; //TODO nick 怎么理解 right[1] ?
-            } else if ((n & 1) != 0) { // 总数为奇数
+            } else if ((n & 1) != 0) {
+                // 奇数
                 if (num < left[0]) {
                     decrease(left);
                 } else {
                     increase(right);
                 }
             } else {
-                // 奇数
-                if (num > left[0] && num < right[0]) {
-                    increase(left);
-                    decrease(right);
-                } else if (num >= right[0]) {
-                    increase(left);
-                } else {
+                // 偶数
+                if (num <= left[0]) {
                     decrease(right);
                     System.arraycopy(right, 0, left, 0, 2);
+                } else if (num > left[0] && num < right[0]) {
+                    increase(left);
+                    decrease(right);
+                } else if (right[0] <= num) {
+                    increase(left);
                 }
             }
             n++;

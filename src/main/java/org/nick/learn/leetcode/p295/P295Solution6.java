@@ -9,8 +9,8 @@ public class P295Solution6 {
 
         TreeMap<Integer, Integer> nums;
         int n;
-        int[] left;
-        int[] right;
+        int[] left = new int[2];
+        int[] right = new int[2];
 
         public MedianFinder() {
             nums = new TreeMap<>();
@@ -19,44 +19,44 @@ public class P295Solution6 {
         public void addNum(int num) {
             nums.put(num, nums.getOrDefault(num, 0) + 1);
             if (n == 0) {
-                left[0] = num;
+                left[0] = right[0] = num;
                 left[1] = right[1] = 1;
-                n++;
-                return;
-            }
-
-            if (n % 2 == 1) {
+            } else if (n % 2 == 0) {
                 if (num < left[0]) {
-                    left[1]--;
-                    if(left[1] == 0){
-                        left[0] = nums.floorKey(left[0] - 1);
-                        left[1] = nums.get(left[0]);
-                    }
                 } else if (num == left[0]) {
-                    // 不知道要干啥
-                } else if (left[0] < num) {
-                    right[1] ++;
-                    if(right[1] > nums.get(right[0])){
-                        right[0] = nums.ceilingKey(right[0] + 1);
-                        right[1] = 1;
-                    }
+                } else if (left[0] < num && num < right[0]) {
+                } else if (right[0] == num) {
+                } else if (right[0] < num) {
                 }
-            } else {
-                //TODO nick 仿制官方题解 2
-                if (num <= left[0]) {
-
-                } else if (right[0] <= num) {
-
-                } else {
-
+            } else if (n % 2 == 1) {
+                if (num < left[0]) {
+                } else if (left[0] == num) {
+                } else if (left[0] < num && num < right[0]) {
+                } else if (right[0] == num) {
+                } else if (right[0] < num) {
                 }
             }
-
-
+            n++;
         }
 
         public double findMedian() {
+            return (left[0] + right[0]) / 2.0;
+        }
 
+        private void increase(int[] iterator) {
+            iterator[1]++;
+            if (iterator[1] > nums.get(iterator[0])) {
+                iterator[0] = nums.ceilingKey(iterator[0] + 1);
+                iterator[1] = 1;
+            }
+        }
+
+        private void decrease(int[] iterator) {
+            iterator[1]--;
+            if (iterator[1] == 0) {
+                iterator[0] = nums.floorKey(iterator[0] - 1);
+                iterator[1] = nums.get(iterator[0]);
+            }
         }
     }
 }
