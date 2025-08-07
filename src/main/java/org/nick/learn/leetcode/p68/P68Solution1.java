@@ -30,43 +30,76 @@ public class P68Solution1 {
             } else {
                 endIndex = curIdx - 1;
             }
-            log.info("第 {} 行，取词范围从 {} 到 {}", lineNumber++, words[startIndex], words[endIndex]);
 
             // 求出单词间隙为 1 个空格时的行长度
             if (lineWidth > maxWidth) {
                 lineWidth -= words[endIndex + 1].length();
                 lineWidth -= 1;
             }
-            log.info("第 {} 行，单词之间不额外添加空格时的长度 {}", lineNumber, lineWidth);
 
             // 计算有几个单词间隙，需要补多少个空格，每个间隙需要补多少个
             int wordSpaceNum = endIndex - startIndex;
             int spaceTotalNumToFill = maxWidth - lineWidth;
-            int allocatedSpaceNum = (int) Math.ceil((double) spaceTotalNumToFill / wordSpaceNum);
-            log.info("第 {} 行，一共有 {} 个单词间隙，需要填充 {} 个空格，平均每个间隙需要填充 {} 个空格",
-                    lineNumber, wordSpaceNum, spaceTotalNumToFill, allocatedSpaceNum);
+            int allocatedSpaceNum = wordSpaceNum == 0 ? spaceTotalNumToFill
+                    : (int) Math.ceil((double) spaceTotalNumToFill / wordSpaceNum);
 
             // 开始拼凑字符串
-            StringBuilder sb = new StringBuilder(words[startIndex]);
-            for (int i = startIndex + 1; i <= endIndex; i++) {
-                sb.append(" ");
-                if (endIndex != n - 1) {
-                    if (spaceTotalNumToFill > allocatedSpaceNum) {
-                        sb.append(" ".repeat(allocatedSpaceNum));
-                        spaceTotalNumToFill -= allocatedSpaceNum;
-                    } else if (spaceTotalNumToFill > 0) {
-                        sb.append(" ".repeat(spaceTotalNumToFill));
-                        spaceTotalNumToFill = 0;
+            StringBuilder sb = new StringBuilder();
+            for (int i = startIndex; i <= endIndex; i++) {
+                if (i != startIndex) {
+                    sb.append(" ");
+                    if (endIndex != n - 1) {
+                        if (spaceTotalNumToFill > allocatedSpaceNum) {
+                            sb.append(" ".repeat(allocatedSpaceNum));
+                            spaceTotalNumToFill -= allocatedSpaceNum;
+                        } else if (spaceTotalNumToFill > 0) {
+                            sb.append(" ".repeat(spaceTotalNumToFill));
+                            spaceTotalNumToFill = 0;
+                        }
                     }
                 }
                 sb.append(words[i]);
+                if (i == endIndex) {
+                    sb.append(" ".repeat(spaceTotalNumToFill));
+                }
+
             }
-
-            log.info("第 {} 行 {}", lineNumber, sb.toString());
-
-            log.info("");
+            lines.add(sb.toString());
+            lineNumber++;
         }
 
         return lines;
     }
+
+    /*
+    输出
+    [
+        "Give  me  my  Romeo; and,",
+        "when  he  shall die, Take",
+        "him  and  cut  him out in",
+        "little stars, And he will",
+        "make  the  face of heaven",
+        "so   fine   That  all the", 3, 3, 2, 1
+        "world  will  be  in  love",
+        "with  night  And  pay  no",
+        "worship   to   the garish",
+        "sun.                     "
+    ]
+
+    真特么无语，凭啥上面就是错的？
+
+    预期
+    [
+        "Give  me  my  Romeo; and,",
+        "when  he  shall die, Take",
+        "him  and  cut  him out in",
+        "little stars, And he will",
+        "make  the  face of heaven",
+        "so   fine  That  all  the", 3, 2, 2, 2
+        "world  will  be  in  love",
+        "with  night  And  pay  no",
+        "worship   to  the  garish",
+        "sun.                     "
+    ]
+    */
 }
