@@ -7,68 +7,60 @@ import java.util.List;
 
 @Slf4j
 public class P68Solution1 {
+
+    // 超出时间限制
     public List<String> fullJustify(String[] words, int maxWidth) {
+        List<String> ans = new ArrayList<>();
         int n = words.length;
-        List<String> lines = new ArrayList<>();
-        int startIndex = -1, endIndex = -1;
-        int lineNumber = 1;
-        while (endIndex != words.length - 1) {
-            startIndex = endIndex + 1;
-            // 判断这行能用第几到第几个单词，一共几个单词，几个单词间隙
-            int curIdx;
-            int lineWidth = 0;
-            for (curIdx = startIndex; lineWidth <= maxWidth && curIdx < n; curIdx++) {
-                if (lineWidth != 0) {
-                    lineWidth += 1;
+        int lastIndex = n - 1;
+        int startIndex = 0, endIndex = 0;
+        while (endIndex != lastIndex) {
+            if (startIndex != 0) {
+                startIndex = endIndex + 1;
+            }
+            int i = startIndex;
+            int w = words[i].length();
+            while (w < maxWidth) {
+                if (i == lastIndex) {
+                    break;
                 }
-                String word = words[curIdx];
-                int wordLength = word.length();
-                lineWidth += wordLength;
+                if (w + 1 + words[i + 1].length() > maxWidth) {
+                    break;
+                }
+                i++;
+                w += (1 + words[i].length());
             }
-            if (lineWidth > maxWidth) {
-                endIndex = curIdx - 2;
-            } else {
-                endIndex = curIdx - 1;
-            }
+            endIndex = i;
 
-            // 求出单词间隙为 1 个空格时的行长度
-            if (lineWidth > maxWidth) {
-                lineWidth -= words[endIndex + 1].length();
-                lineWidth -= 1;
-            }
+            // 计算一行能放 x 个单词
+            int x = endIndex - startIndex + 1;
 
-            // 计算有几个单词间隙，需要补多少个空格，每个间隙需要补多少个
-            int wordSpaceNum = endIndex - startIndex;
-            int spaceTotalNumToFill = maxWidth - lineWidth;
-            int allocatedSpaceNum = wordSpaceNum == 0 ? spaceTotalNumToFill
-                    : (int) Math.ceil((double) spaceTotalNumToFill / wordSpaceNum);
+            // 计算单词之间要放 y 个空格
+            int slotsNum = x - 1;
+            int y = ((maxWidth - w) / slotsNum) + 1;
 
-            // 开始拼凑字符串
+            // 如果有空格余数，那么每个间隙还得补放 1 个空格
+            int remainderWidth = (maxWidth - w) % slotsNum;
+
+            // 拼凑出这一行
             StringBuilder sb = new StringBuilder();
-            for (int i = startIndex; i <= endIndex; i++) {
-                if (i != startIndex) {
-                    sb.append(" ");
-                    if (endIndex != n - 1) {
-                        if (spaceTotalNumToFill > allocatedSpaceNum) {
-                            sb.append(" ".repeat(allocatedSpaceNum));
-                            spaceTotalNumToFill -= allocatedSpaceNum;
-                        } else if (spaceTotalNumToFill > 0) {
-                            sb.append(" ".repeat(spaceTotalNumToFill));
-                            spaceTotalNumToFill = 0;
-                        }
+            for(int k = startIndex; k <= endIndex; k++){
+                if(k != startIndex){
+                    sb.append(" ".repeat(y));
+                    if(remainderWidth > 0){
+                        sb.append(" ");
+                        remainderWidth--;
                     }
                 }
-                sb.append(words[i]);
-                if (i == endIndex) {
-                    sb.append(" ".repeat(spaceTotalNumToFill));
-                }
-
+                sb.append(words[k]);
             }
-            lines.add(sb.toString());
-            lineNumber++;
-        }
+            String curLine = sb.toString();
+            ans.add(curLine);
 
-        return lines;
+            // 继续下一行
+        }
+        return ans;
+
     }
 
     /*
