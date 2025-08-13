@@ -15,9 +15,6 @@ public class P68Solution1 {
         int lastIndex = n - 1;
         int startIndex = 0, endIndex = 0;
         while (endIndex != lastIndex) {
-            if (startIndex != 0) {
-                startIndex = endIndex + 1;
-            }
             int i = startIndex;
             int w = words[i].length();
             while (w < maxWidth) {
@@ -37,17 +34,23 @@ public class P68Solution1 {
 
             // 计算单词之间要放 y 个空格
             int slotsNum = x - 1;
-            int y = ((maxWidth - w) / slotsNum) + 1;
+            int y, remainderWidth;
+            if (slotsNum != 0) {
+                y = ((maxWidth - w) / slotsNum) + 1;
 
-            // 如果有空格余数，那么每个间隙还得补放 1 个空格
-            int remainderWidth = (maxWidth - w) % slotsNum;
+                // 如果有空格余数，那么每个间隙还得补放 1 个空格
+                remainderWidth = (maxWidth - w) % slotsNum;
+            } else {
+                y = 0;
+                remainderWidth = maxWidth - w;
+            }
 
             // 拼凑出这一行
             StringBuilder sb = new StringBuilder();
-            for(int k = startIndex; k <= endIndex; k++){
-                if(k != startIndex){
+            for (int k = startIndex; k <= endIndex; k++) {
+                if (k != startIndex) {
                     sb.append(" ".repeat(y));
-                    if(remainderWidth > 0){
+                    if (remainderWidth > 0) {
                         sb.append(" ");
                         remainderWidth--;
                     }
@@ -58,9 +61,12 @@ public class P68Solution1 {
             ans.add(curLine);
 
             // 继续下一行
+            startIndex = endIndex + 1;
         }
+        String str = ans.removeLast();
+        str = str.trim();
+        ans.add(str);
         return ans;
-
     }
 
     /*
