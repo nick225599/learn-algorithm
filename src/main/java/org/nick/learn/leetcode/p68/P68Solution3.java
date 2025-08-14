@@ -27,13 +27,13 @@ public class P68Solution3 {
 
             // 判断第 i 个单词是否可以放入当前行
             int endIndex = startIndex;
-            for (i = startIndex + 1; true; i++) {
-                // 当前行容不下第 i 个单词了
+            for (i = startIndex + 1; i < n; i++) {
+                // 当前行容不下第 i 个单词
                 if (w + 1 + words[i].length() > maxWidth) {
                     break;
                 }
 
-                // 容得下下一个单词
+                // 当前行容得下第 i 个单词
                 w = w + 1 + words[i].length();
                 endIndex = i;
 
@@ -42,6 +42,8 @@ public class P68Solution3 {
                     break;
                 }
             }
+
+//            System.out.println("startIndex: " + startIndex + ", endIndex: " + endIndex);
 
             String str = this.buildStr(words, n, startIndex, endIndex, maxWidth - w);
             ans.add(str);
@@ -62,6 +64,10 @@ public class P68Solution3 {
         }
 
         int slotsNum = endIndex - startIndex;
+
+        if(slotsNum == 0){
+            return words[startIndex] + " ".repeat(remainderWidth);
+        }
 
         // 每个插槽需要至少需要补多少个空格
         int x = remainderWidth / slotsNum;
