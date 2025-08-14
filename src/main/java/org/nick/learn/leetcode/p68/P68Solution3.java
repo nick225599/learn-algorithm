@@ -2,6 +2,7 @@ package org.nick.learn.leetcode.p68;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -16,8 +17,76 @@ public class P68Solution3 {
     在实际开发中，“把简单逻辑写对” 往往比 “实现复杂算法” 更常见，也更能体现编程功底。这正是这类题的价值所在。
      */
     public List<String> fullJustify(String[] words, int maxWidth) {
-        //todo nick 20250813 沉住气 把这道题 好好写出来
-        return null;
+        int n = words.length;
+        List<String> ans = new ArrayList<>();
+        int startIndex = 0;
+        while (true) {
+            // 计算一行能出放几个单词
+            int w = words[startIndex].length();
+            int i;
+
+            // 判断第 i 个单词是否可以放入当前行
+            int endIndex = startIndex;
+            for (i = startIndex + 1; true; i++) {
+                // 当前行容不下第 i 个单词了
+                if (w + 1 + words[i].length() > maxWidth) {
+                    break;
+                }
+
+                // 容得下下一个单词
+                w = w + 1 + words[i].length();
+                endIndex = i;
+
+                // 没容量了，或者没词了，提前结束判断
+                if (w >= maxWidth || i >= n - 1) {
+                    break;
+                }
+            }
+
+            String str = this.buildStr(words, n, startIndex, endIndex, maxWidth - w);
+            ans.add(str);
+
+            if (endIndex == n - 1) {
+                break;
+            }
+
+            startIndex = endIndex + 1;
+        }
+        return ans;
+    }
+
+    private String buildStr(String[] words, int n, int startIndex, int endIndex, int remainderWidth) {
+        boolean isLastLine = endIndex == n - 1;
+        if (isLastLine) {
+            return buildLastStr(words, n, startIndex, endIndex, remainderWidth);
+        }
+
+        int slotsNum = endIndex - startIndex;
+
+        // 每个插槽需要至少需要补多少个空格
+        int x = remainderWidth / slotsNum;
+        // 还剩下多少个空格需要平铺到插槽中
+        int y = remainderWidth % slotsNum;
+
+        StringBuilder sb = new StringBuilder(words[startIndex]);
+        for (int i = startIndex + 1; i <= endIndex; i++) {
+            sb.append(" ".repeat(x + 1));
+            if (y > 0) {
+                sb.append(" ");
+                y--;
+            }
+            sb.append(words[i]);
+        }
+        return sb.toString();
+    }
+
+    private String buildLastStr(String[] words, int n, int startIndex, int endIndex, int remainderWidth) {
+        StringBuilder sb = new StringBuilder(words[startIndex]);
+        for (int i = startIndex + 1; i <= endIndex; i++) {
+            sb.append(" ").append(words[i]);
+        }
+        sb.append(" ".repeat(remainderWidth));
+        return sb.toString();
     }
 
 
