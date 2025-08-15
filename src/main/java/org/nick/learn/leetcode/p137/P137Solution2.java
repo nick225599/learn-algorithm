@@ -1,5 +1,7 @@
 package org.nick.learn.leetcode.p137;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class P137Solution2 {
 
     // You must implement a solution with a linear runtime complexity and use only constant extra space.
@@ -15,6 +17,10 @@ public class P137Solution2 {
                 // num 第 i 位是 0 还是 1 ？
                 int bitNum = ((1 << i) & num) == 1 ? 1 : 0;
                 bitSum += bitNum;
+
+                String binaryString = StringUtils.leftPad(Integer.toBinaryString(num), 32, '0');
+
+
             }
             // ans 第 i 位的值
             int bitVal = bitSum % 3;
