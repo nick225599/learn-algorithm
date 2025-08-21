@@ -4,13 +4,19 @@ public class P137Solution7 {
 
     // 数字电路优化
     public int singleNumber(int[] nums) {
+//        int a = 0, b = 0;
+//        int nextA, nextB;
+//        for (int num : nums) {
+//            nextB = ~a & (b ^ num);
+//            nextA = ~nextB & (a ^ num);
+//            b = nextB;
+//            a = nextA;
+//        }
+//        return b;
         int a = 0, b = 0;
-        int nextA, nextB;
         for (int num : nums) {
-            nextB = ~a & (b ^ num);
-            nextA = ~nextB & (a ^ num);
-            b = nextB;
-            a = nextA;
+            b = ~a & (b ^ num);
+            a = ~b & (a ^ num);
         }
         return b;
     }
