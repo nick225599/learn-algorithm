@@ -10,6 +10,7 @@ public class P201Solution1 {
     // 14:  1110
     // 15:  1111
     // 16: 10000
+    // 朴素解法，会超出时间限制
     public int rangeBitwiseAnd(int left, int right) {
         System.out.println("left: " + left);
         System.out.println("binary left: " + Integer.toBinaryString(left));
