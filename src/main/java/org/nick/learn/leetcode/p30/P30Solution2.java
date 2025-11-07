@@ -12,9 +12,7 @@ public class P30Solution2 {
 
     // 给定一个字符串数组，怎么列举出所有的排列组合？
     private List<String> enumerateAllCombinations(String[] words) {
-      for(String w: words){
-
-      }
+        return null;
     }
 
 
