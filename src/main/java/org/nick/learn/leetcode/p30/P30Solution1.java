@@ -10,6 +10,7 @@ import java.util.concurrent.*;
 public class P30Solution1 {
     static class Solution {
 
+        // 第 179 个测试案例超时，多线程依旧超时
         public List<Integer> findSubstring(String s, String[] words) {
             try {
                 int wLength = words[0].length();
@@ -18,7 +19,7 @@ public class P30Solution1 {
                     return new ArrayList<>();
                 }
 
-                int endIndex = s.length() - sLength + 1;
+                int endIndex = s.length() - sLength;
                 List<Future<Integer>> futures = new ArrayList<>(endIndex);
                 List<Integer> result = new ArrayList<>();
                 try (ExecutorService executorService = Executors.newCachedThreadPool()) {
